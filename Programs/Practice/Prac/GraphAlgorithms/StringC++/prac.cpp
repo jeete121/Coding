@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string str = "abc";
+    str.append("d");
+
+    cout << str << "\n";
+    
+    
+}
+/*
+Append a C string.
+
+Parameters:
+__s – The C string to append.
+
+Returns:
+Reference to this string.
+*/
