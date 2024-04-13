@@ -1,0 +1,245 @@
+Multiple occurrences allowed
+
+Recursive Approach::
+
+int knapsack(int wt[],int val[],int w,int n)
+{
+   //Base Condition
+   if(n==0||w==0)
+     return 0;
+   if(wt[n-1]<=w)
+    return max(val[n-1]+knapsack(wt,val,w-wt[n-1],n),
+                        knapsack(wt,val,w,n-1));
+   else
+     return knapsack(wt,val,w,n-1);
+}
+
+
+Memoization Approach::
+
+create a global matrix of the size
+according to the constraints of n and w.
+and initialize it with -1.
+
+
+int t[1000001][1000001];
+
+int knapsack(int wt[],int val[],int w,int n)
+{
+   //Base Condition
+   if(n==0||w==0)
+     return 0;
+   if(t[n][w]!=-1)
+      return t[n][w];
+   if(wt[n-1]<=w)
+    return t[n][w]=max(val[n-1]+knapsack(wt,val,w-wt[n-1],n),
+                        knapsack(wt,val,w,n-1));
+   else
+     return t[n][w]=knapsack(wt,val,w,n-1);
+}
+
+
+Top Down Approach::
+
+base condition will be used to initilization
+
+for(int i=0;i<n+1;i++)
+for(int j=0;j<w+1;j++)
+ if(i==0||j==0)
+   t[i][j]=0;
+
+
+for(int i=1;i<=n;i++)
+ {
+   for(int j=1;j<=w;j++)
+  {
+   if(wt[i-1]<=j)
+     t[i][j]=max(val[i-1]+t[i][j-wt[i-1]],t[i-1][j]);
+   else
+     t[i][j]=t[i-1][j];
+  }
+}
+
+
+
+Unbounded KnapSack Problem( https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1)
+
+class Solution{
+    static int knapSack(int N,int W,int val[],int wt[],int t[][])
+    {
+        if(N==0||W==0)
+           return 0;
+        if(t[N][W]!=-1)
+          return t[N][W];
+        if(wt[N-1]<=W)
+           return t[N][W]= Math.max(val[N-1]+knapSack(N,W-wt[N-1],val,wt,t),
+                          knapSack(N-1,W,val,wt,t));
+        return t[N][W]=knapSack(N-1,W,val,wt,t);
+    }
+    static int knapSack(int N, int W, int val[], int wt[])
+    {
+        
+        int t[][]=new int[N+1][W+1];
+        for(int i=0;i<=N;i++)
+          {
+              for(int j=0;j<=W;j++)
+                {
+                    t[i][j]=-1;
+                }
+          }
+         return knapSack(N,W,val,wt,t);
+        // code here
+    }
+}
+
+
+Related Problems::
+
+1. Rod Cutting (https://www.geeksforgeeks.org/problems/rod-cutting0840/1)
+
+2. Coin Change I (https://www.geeksforgeeks.org/problems/coin-change2448/1)
+
+
+3. Coin Change II (https://www.geeksforgeeks.org/problems/number-of-coins1824/1)
+
+
+4. Maximum Ribbon Cut (https://www.geeksforgeeks.org/problems/max-rope-cutting1312/1)
+
+
+
+1. Rod Cutting
+
+class Solution{
+    public int cutRod(int val[],int wt[],int n,int w,int t[][])
+    {
+        if(n==0||w==0)
+          return 0;
+        if(t[n][w]!=-1)
+          return t[n][w];
+        if(wt[n-1]<=w)
+          return t[n][w]=Math.max(val[n-1]+cutRod(val,wt,n,w-wt[n-1],t),cutRod(val,wt,n-1,w,t));
+        return t[n][w]=cutRod(val,wt,n-1,w,t);
+    }
+    public int cutRod(int price[], int n) {
+        //code here
+        
+        int length[]=new int [n];
+        for(int i=0;i<n;i++)
+          length[i]=i+1;
+        int t[][]=new int[n+1][n+1];
+        for(int i=0;i<=n;i++)
+          {
+              for(int j=0;j<=n;j++)
+                {
+                    t[i][j]=-1;
+                }
+          }
+        return cutRod(price,length,n,n,t);
+    }
+}
+
+
+2. Coin Change::
+
+class Solution {
+    public long count(int coins[],int N,int sum,long t[][])
+    {
+        if(sum==0)
+          return 1;
+        if(N==0)
+          return 0;
+        if(t[N][sum]!=-1)
+          return t[N][sum];
+        if(coins[N-1]<=sum)
+          return t[N][sum]=count(coins,N,sum-coins[N-1],t)+count(coins,N-1,sum,t);
+        return t[N][sum]=count(coins,N-1,sum,t);
+    }
+    public long count(int coins[], int N, int sum) {
+        // code here.
+        long t[][]=new long[N+1][sum+1];
+        for(int i=0;i<=N;i++)
+         {
+             for(int j=0;j<=sum;j++)
+               {
+                   t[i][j]=-1L;
+               }
+         }
+      return count(coins,N,sum,t);
+    }
+}
+
+
+
+3.  Coin Change II
+
+
+class Solution{
+
+    public int minCoins(int coins[],int M,int V,int t[][])
+    {
+        if(V==0)
+	      return 0;
+	    if(M==0)
+	      return Integer.MAX_VALUE-1;
+	    if(t[M][V]!=-1)
+	      return t[M][V];
+	    if(coins[M-1]<=V)
+	      return t[M][V]=Math.min(1+minCoins(coins,M,V-coins[M-1],t),minCoins(coins,M-1,V,t));
+	    return t[M][V]=minCoins(coins,M-1,V,t);
+    }
+	public int minCoins(int coins[], int M, int V) 
+	{ 
+	    // Your code goes here
+	    
+	    int t[][]=new int[M+1][V+1];
+	    for(int i=0;i<=M;i++)
+	     {
+	         for(int j=0;j<=V;j++)
+	           {
+	               t[i][j]=-1;
+	           }
+	     }
+	    int res=minCoins(coins,M,V,t);
+	    return res==Integer.MAX_VALUE-1?-1:res;
+	    
+	} 
+}
+
+
+
+
+
+4. Maximum Ribbon Cut
+
+
+class Solution {
+    long maxProduct(int n,int arr[],int w,long t[][])
+    {
+        if(n==1||w==0)
+          return 1;
+        if(t[n][w]!=-1)
+          return t[n][w];
+        if(arr[n-1]<=w)
+          return t[n][w]= Math.max(arr[n-1]*maxProduct(n,arr,w-arr[n-1],t),maxProduct(n-1,arr,w,t));
+        return t[n][w]=maxProduct(n-1,arr,w,t);
+        
+    }
+    long maxProduct(int n) {
+        
+        if(n==1)
+          return 0;
+        // code here
+        int arr[]=new int[n+1];
+        for(int i=1;i<=n;i++)
+          arr[i]=i;
+        long t[][]=new long[n+1][n+1];
+        for(int i=0;i<=n;i++)
+         {
+             for(int j=0;j<=n;j++)
+              {
+                  t[i][j]=-1;
+              }
+         }
+        return  maxProduct(n,arr,n,t);
+    }
+}

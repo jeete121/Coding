@@ -1,0 +1,15 @@
+while(j<size)
+ {
+    calculation
+    
+    if(windowSize < k)          windowSize==> (j-i+1)
+            j++
+    else if(windowSize==k)
+     {
+       ans<--- Calculation
+       Calculation remove for ith index
+       Window size maintaind and slide window
+    }
+ }
+
+return ans

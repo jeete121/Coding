@@ -1,0 +1,25 @@
+while(j<size)
+{
+  calculation
+
+  if(condition<k)
+     j++
+
+  else if(condition==k)
+    {
+      ans<--- Calculation
+      j++
+    }
+  
+   else if(condition>k)
+    {
+        while(condition>k)
+        {
+              remove calculation for i
+              i++
+        }
+        j++
+    }
+}
+
+return ans
