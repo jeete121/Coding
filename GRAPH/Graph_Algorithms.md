@@ -51,14 +51,15 @@ public class Solution {
 6. Depth First Search (DFS) (https://takeuforward.org/data-structure/depth-first-search-dfs/)
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
+Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
 
-Solution :: 
+Solution:: 
 
 
 class Solution {
     
     ArrayList<Integer> dfsArray;
+    
     void dfs(int node,ArrayList<ArrayList<Integer>> adj,int vis[])
     {
         
