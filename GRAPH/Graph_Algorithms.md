@@ -7,13 +7,16 @@
 5. Breadth First Search (BFS): Level Order Traversal (https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/)
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+
+
+
 
 
 Solution:: 
 
 public class Solution {
-    // Function to return Breadth First Traversal of given graph.
+    // Function to return Breadth First Traversal of a given graph.
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
         
