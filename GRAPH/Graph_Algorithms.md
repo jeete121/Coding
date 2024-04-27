@@ -12,7 +12,7 @@ Problem Link :: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 
 Solution:: 
 
-class Solution {
+public class Solution {
     // Function to return Breadth First Traversal of given graph.
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
