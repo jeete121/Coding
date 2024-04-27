@@ -54,37 +54,34 @@ Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-
 
 Solution:: 
 
+public class Solution {
 
-class Solution {
-    
-    ArrayList<Integer> dfsArray;
-    
-    void dfs(int node,ArrayList<ArrayList<Integer>> adj,int vis[])
-    {
-        
-        dfsArray.add(node);
-        vis[node]=1;
-        ArrayList<Integer> list = adj.get(node);
-        for( int i=0;i<list.size();i++)
-        {
-            if(vis[list.get(i)]==0)
-              {
-                  dfs(list.get(i),adj,vis);
-              }
-        }
-    }
-    // Function to return a list containing the DFS traversal of the graph.
-    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        
-        int vis [] = new int[V+1];
-        for(int i=0;i<=V;i++)
-          vis[i]=0;
-        dfsArray=new ArrayList<>();
-        dfs(0,adj,vis);
-        
-        return dfsArray;
-    }
+	ArrayList<Integer> dfsArray;
+
+	void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[]) {
+
+		dfsArray.add(node);
+		vis[node] = 1;
+		ArrayList<Integer> list = adj.get(node);
+		for (int i = 0; i < list.size(); i++) {
+			if (vis[list.get(i)] == 0) {
+				dfs(list.get(i), adj, vis);
+			}
+		}
+	}
+
+	// Function to return a list containing the DFS traversal of the graph.
+	public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+		// Code here
+
+		int vis[] = new int[V + 1];
+		for (int i = 0; i <= V; i++)
+			vis[i] = 0;
+		dfsArray = new ArrayList<>();
+		dfs(0, adj, vis);
+
+		return dfsArray;
+	}
 }
 
 
@@ -98,51 +95,44 @@ Problem Link:: https://www.geeksforgeeks.org/problems/number-of-provinces/1
 
 Solution::
 
+public class Solution {
 
-class Solution {
+	static void dfs(int start, ArrayList<ArrayList<Integer>> adj, int vis[]) {
+		vis[start] = 1;
 
+		for (Integer it : adj.get(start)) {
+			if (vis[it] == 0) {
+				dfs(it, adj, vis);
+			}
+		}
+	}
 
-    static void dfs(int start,ArrayList<ArrayList<Integer>> adj,int vis[])
-    {
-        vis[start]=1;
-       
-        for(Integer it: adj.get(start))
-        {
-            if(vis[it]==0)
-            {
-                dfs(it,adj,vis);
-            }
-        }
-    }
-    static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
-        
-      int vis [] = new int[V];
-      ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
-      for(int i = 0;i<V;i++)
-      {
-          adjList.add(new ArrayList<>());
-      }
-       for(int i = 0;i<V;i++) {
-            for(int j = 0;j<V;j++) {
-            
-                if(adj.get(i).get(j) == 1 && i != j) {
-                    adjList.get(i).add(j); 
-                    adjList.get(j).add(i); 
-                }
-            }
-        }
-        int cnt = 0;
-        for(int i=0;i<V;i++)
-        {
-            if(vis[i]==0)
-            {
-                cnt++;
-                dfs(i,adjList,vis);
-            }
-        }
-        
-        return cnt;
-    }
+	static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
+
+		int vis[] = new int[V];
+		ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
+		for (int i = 0; i < V; i++) {
+			adjList.add(new ArrayList<>());
+		}
+		for (int i = 0; i < V; i++) {
+			for (int j = 0; j < V; j++) {
+
+				if (adj.get(i).get(j) == 1 && i != j) {
+					adjList.get(i).add(j);
+					adjList.get(j).add(i);
+				}
+			}
+		}
+		int cnt = 0;
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				cnt++;
+				dfs(i, adjList, vis);
+			}
+		}
+
+		return cnt;
+	}
 }
 
 
@@ -154,61 +144,50 @@ Problem Link:: https://www.geeksforgeeks.org/problems/find-the-number-of-islands
 
 Solution::
 
+public class Solution {
 
+	int dx[] = { 0, 1, -1, 0, 1, -1, 1, -1 };
+	int dy[] = { 1, 0, 0, -1, 1, -1, -1, 1 };
 
-class Solution {
+	private void dfs(int x, int y, char[][] grid, int vis[][]) {
+		vis[x][y] = 1;
+		int n = grid.length;
+		int m = grid[0].length;
+		for (int i = 0; i < 8; i++) {
+			int newX = x + dx[i];
+			int newY = y + dy[i];
+			if (newX >= 0 && newX < n && newY >= 0 && newY < m && grid[newX][newY] == '1' && vis[newX][newY] == 0) {
+				dfs(newX, newY, grid, vis);
+			}
+		}
+	}
 
-    int dx[]={0,1,-1,0,1,-1,1,-1};
-    int dy[]={1,0,0,-1,1,-1,-1,1};
-    private void dfs(int x,int y, char[][] grid,int vis[][])
-    {
-        vis[x][y]=1;
-        int n = grid.length;
-        int m = grid[0].length;
-        for(int i=0;i<8;i++)
-        {
-            int newX = x + dx[i];
-            int newY = y + dy[i];
-            if(newX>=0 && newX<n && newY>=0 && newY<m 
-                && grid[newX][newY]=='1' && vis[newX][newY]==0)
-                {
-                    dfs(newX,newY,grid,vis);
-                }
-        }
-    }
-    // Function to find the number of islands.
-    public int numIslands(char[][] grid) {
-        
-        int cnt = 0;
-        int n = grid.length;
-        int m = grid[0].length;
-        int vis[][] = new int[n][m];
-        for (int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                vis[i][j]=0;
-            }
-        }
-        
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(vis[i][j]==0 && grid[i][j]=='1')
-                {
-                    cnt++;
-                    dfs(i,j,grid,vis);
-                }
-            }
-        }
-        
-        return cnt;
-        
-    }
+	// Function to find the number of islands.
+	public int numIslands(char[][] grid) {
+
+		int cnt = 0;
+		int n = grid.length;
+		int m = grid[0].length;
+		int vis[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (vis[i][j] == 0 && grid[i][j] == '1') {
+					cnt++;
+					dfs(i, j, grid, vis);
+				}
+			}
+		}
+
+		return cnt;
+
+	}
 }
-
-
 
 
 9. Flood Fill Algorithm - Graphs (https://takeuforward.org/graph/flood-fill-algorithm-graphs/)
