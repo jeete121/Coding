@@ -16,6 +16,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 Solution:: 
 
 public class Solution {
+
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
         int vis[]= new int[V+1];
         for(int i=0;i<=V;i++)
