@@ -193,68 +193,62 @@ public class Solution {
 9. Flood Fill Algorithm - Graphs (https://takeuforward.org/graph/flood-fill-algorithm-graphs/)
 
 
-
 Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
 
 
 Solution::
 
-class Solution {
+public class Solution {
 
-    int dx[]={0,1,-1,0};
-    int dy[]={1,0,0,-1};
-    public int[][] floodFill(int[][] image, int sr, int sc, int newColor)
-    {
-        // Code here 
-        int n = image.length;
-        int m = image[0].length;
-        Queue<Pair> qp = new LinkedList<>();
-        int vis[][] = new int[n][m];
-        for(int i = 0;i<n;i++)
-        {
-            for(int j= 0 ;j<m;j++)
-            {
-                vis[i][j]=0;
-            }
-        }
-        vis[sr][sc] = 1;
-        int color = image[sr][sc];
-        image[sr][sc] = newColor;
-        qp.add(new Pair(sr,sc));
-        
-        while(!qp.isEmpty())
-        {
-            Pair p = qp.poll();
-            int x = p.x;
-            int y = p.y;
-            for(int i=0;i<4;i++)
-            {
-                int newX = x + dx[i];
-                int newY = y + dy[i];
-                if(newX>=0 && newX<n && newY>=0 && newY<m 
-                      && vis[newX][newY]==0 && image[newX][newY]==color )
-                       {
-                           vis[newX][newY] = 1;  
-                           image[newX][newY] = newColor;
-                           qp.add(new Pair(newX,newY));
-                       }
-            }
-        }
-        
-        return image;
-    }
-    
+	int dx[] = { 0, 1, -1, 0 };
+	int dy[] = { 1, 0, 0, -1 };
+
+	public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+		// Code here
+		int n = image.length;
+		int m = image[0].length;
+		Queue<Pair> qp = new LinkedList<>();
+		int vis[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+			}
+		}
+		vis[sr][sc] = 1;
+		int color = image[sr][sc];
+		image[sr][sc] = newColor;
+		qp.add(new Pair(sr, sc));
+
+		while (!qp.isEmpty()) {
+			Pair p = qp.poll();
+			int x = p.x;
+			int y = p.y;
+			for (int i = 0; i < 4; i++) {
+				int newX = x + dx[i];
+				int newY = y + dy[i];
+				if (newX >= 0 && newX < n && newY >= 0 && newY < m && vis[newX][newY] == 0
+						&& image[newX][newY] == color) {
+					vis[newX][newY] = 1;
+					image[newX][newY] = newColor;
+					qp.add(new Pair(newX, newY));
+				}
+			}
+		}
+
+		return image;
+	}
+
 }
-
 
 class Pair {
 
-   int x;
-   int y;
-   Pair(int x,int y) {
-       this.x=x;
-       this.y=y;
-   }
+	int x;
+	int y;
+
+	Pair(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 }
 
 
