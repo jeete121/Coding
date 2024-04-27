@@ -16,10 +16,10 @@ Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 Solution:: 
 
 public class Solution {
-    // Function to return Breadth First Traversal of a given graph.
+
+   
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        
+
         int vis[]= new int[V+1];
         for(int i=0;i<=V;i++)
         {
