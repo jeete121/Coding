@@ -7,12 +7,45 @@
 5. Breadth First Search (BFS): Level Order Traversal (https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/)
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+
+
+
 
 
 Solution:: 
 
 public class Solution {
+
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        int vis[]= new int[V+1];
+        for(int i=0;i<=V;i++)
+        {
+            vis[i]=0;
+        }
+        Queue<Integer> q = new LinkedList<>();
+        
+        q.add(0);
+        vis[0]=1;
+        ArrayList<Integer> res = new ArrayList<>();
+        while(!q.isEmpty())
+        {
+          Integer val= q.poll();
+          res.add(val);
+          List<Integer> list = adj.get(val);
+          for(int i=0;i<list.size();i++)
+          {
+              if(vis[list.get(i)]==0)
+                {
+                    q.add(list.get(i));
+                    vis[list.get(i)]=1;
+                }
+          }
+        }
+        return res;
+    }
+}
+
 
 	// Function to return Breadth First Traversal of given graph.
 
@@ -47,14 +80,15 @@ public class Solution {
 6. Depth First Search (DFS) (https://takeuforward.org/data-structure/depth-first-search-dfs/)
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
+Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
 
-Solution :: 
+Solution:: 
 
 
 class Solution {
     
     ArrayList<Integer> dfsArray;
+    
     void dfs(int node,ArrayList<ArrayList<Integer>> adj,int vis[])
     {
         
@@ -90,12 +124,14 @@ class Solution {
 
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/number-of-provinces/1
+Problem Link:: https://www.geeksforgeeks.org/problems/number-of-provinces/1
 
 Solution::
 
 
 class Solution {
+
+
     static void dfs(int start,ArrayList<ArrayList<Integer>> adj,int vis[])
     {
         vis[start]=1;
@@ -143,13 +179,15 @@ class Solution {
 
 8. Number of Islands | Number of Connected Components in Matrix
 
-Problem Link :: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
+Problem Link:: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
 
 
 Solution::
 
 
+
 class Solution {
+
     int dx[]={0,1,-1,0,1,-1,1,-1};
     int dy[]={1,0,0,-1,1,-1,-1,1};
     private void dfs(int x,int y, char[][] grid,int vis[][])
@@ -212,8 +250,8 @@ Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
 
 Solution::
 
-class Solution
-{
+class Solution {
+
     int dx[]={0,1,-1,0};
     int dy[]={1,0,0,-1};
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor)
@@ -258,22 +296,17 @@ class Solution
     }
     
 }
+
+
 class Pair {
-   
+
    int x;
-   
    int y;
-   
-   Pair(int x,int y)
-   {
+   Pair(int x,int y) {
        this.x=x;
        this.y=y;
    }
 }
-
-
-
-
 
 
 
@@ -286,8 +319,8 @@ Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 Solution::
 
 
-class Solution
-{
+class Solution {
+
     int cntFresh;
     public boolean isValid(int i ,int j, int n, int m)
     {
@@ -327,7 +360,7 @@ class Solution
       return cntFresh==0?cnt:-1;
     }
     
-    //Function to find minimum time required to rot all oranges. 
+    //Function to find the minimum time required to rot all oranges. 
     public int orangesRotting(int[][] grid)
     {
         // Code here
@@ -356,32 +389,28 @@ class Solution
 }
 
 class Pair {
+
     private Integer key;
     private Integer value;
     private Integer time;
     
-    public Integer getKey()
-    {
+    public Integer getKey() {
         return this.key;
     }
-    public Integer getValue()
-    {
+    public Integer getValue() {
         return this.value;
     }
     
-     public Integer getTime()
-    {
+     public Integer getTime() {
         return this.time;
     }
     
-    Pair(Integer key,Integer value,Integer time)
-    {
+    Pair(Integer key,Integer value,Integer time) {
         this.key=key;
         this.value=value;
         this.time=time;
     }
 }
-
 
 
 
@@ -397,8 +426,7 @@ Solution::
 
 class Solution {
     
-   public boolean bfs(int src,ArrayList<ArrayList<Integer>> adj,boolean vis[])
-   {
+   public boolean bfs(int src,ArrayList<ArrayList<Integer>> adj,boolean vis[])  {
     
         Queue<Pair> qp = new LinkedList<>();
         vis[src] = true;
@@ -446,8 +474,7 @@ class Pair {
    int node;
    int parent;
    
-   Pair(int node,int parent)
-   {
+   Pair(int node,int parent) {
        this.node = node;
        this.parent = parent;
    }
@@ -469,8 +496,7 @@ Solution::
 
 class Solution {
     
-    public boolean dfs(int node,ArrayList<ArrayList<Integer>> adj, int vis[],int parent)
-    {
+    public boolean dfs(int node,ArrayList<ArrayList<Integer>> adj, int vis[],int parent) {
         vis[node] = 1;
         for(Integer it:adj.get(node))
         {
@@ -514,19 +540,18 @@ class Solution {
 
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
+Problem Link:: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
 
 Solution::
 
 
-class Solution
-{
+class Solution {
+
     int dx[] = {0,1,0,-1};
     int dy[] = {1,0,-1,0};
     
-    //Function to find distance of nearest 1 in the grid for each cell.
-    public int[][] nearest(int[][] grid)
-    {
+    //Function to find the distance of the nearest 1 in the grid for each cell.
+    public int[][] nearest(int[][] grid) {
         // Code here
         
         int n = grid.length;
@@ -582,8 +607,7 @@ class Node {
     int first;
     int second;
     int third;
-    Node(int first,int second,int third)
-    {
+    Node(int first,int second,int third) {
        this.first = first;
        this.second = second;
        this.third = third;
@@ -600,7 +624,8 @@ Problem Link :: (https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1
 
 Solution::
 
-class Solution{
+class Solution {
+
     static int dx[]={1,0,-1,0};
     static int dy[]={0,1,0,-1};
     static void dfs(int x,int y,int vis[][],char a[][])
@@ -666,8 +691,7 @@ class Solution {
     
     int dx[] = {0,1,-1,0};
     int dy[] = {1,0,0,-1};
-    int bfs(int x,int y,int [][] grid,int vis[][])
-    {
+    int bfs(int x,int y,int [][] grid,int vis[][]) {
         Queue<Pair> qp = new LinkedList<>();
         vis[x][y]=1;
         qp.add(new Pair(x,y));
@@ -736,6 +760,7 @@ class Solution {
 }
 
 class Pair {
+
   int x;
   int y;
   Pair(int x,int y) {
@@ -750,7 +775,7 @@ class Pair {
 16.  Number of Distinct Islands
 
 
-Problem Link :: https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1
+Problem Link:: https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1
 
 
 
@@ -761,12 +786,10 @@ class Solution {
     int dx[]={-1,0,1,0};
     int dy[]={0,1,0,-1};
     
-    public String toString(int x,int y)
-    {
+    public String toString(int x,int y)  {
         return Integer.toString(x)+" "+Integer.toString(y);
     }
-   public void dfs(int x,int y, int [][] grid, int [][] vis,List<String> lp,int r,int c)
-    {
+   public void dfs(int x,int y, int [][] grid, int [][] vis,List<String> lp,int r,int c) {
           vis[x][y]=1;
           lp.add(toString(x-r,y-c));
           for(int i=0;i<4;i++)
@@ -814,10 +837,6 @@ class Solution {
 }
 
 
-
-
-
- 
 17. Bipartite Graph | BFS Implementation (https://takeuforward.org/graph/bipartite-graph-bfs-implementation/)
 
 
@@ -828,10 +847,9 @@ Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 Solution:: 
 
 
-class Solution
-{
-    public boolean bfs(int node, int V,ArrayList<ArrayList<Integer>>adj, int [] color )
-     {
+class Solution {
+
+    public boolean bfs(int node, int V,ArrayList<ArrayList<Integer>>adj, int [] color ) {
          color[node] = 0;
          Queue<Integer> q = new LinkedList<>();
          q.add(node);
@@ -853,8 +871,7 @@ class Solution
          
          return true;
      }
-    public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj)
-    {
+    public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj) {
        int color[] = new int[V];
        for(int i = 0; i<V; i++)
        {
