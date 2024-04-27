@@ -1,17 +1,12 @@
-1. Introduction to Graph (https://takeuforward.org/graph/introduction-to-graph/)
+1. Introduction to Graph: https://takeuforward.org/graph/introduction-to-graph/
 
-2. Graph Representation (https://takeuforward.org/graph/graph-representation-in-c/)
+2. Graph Representation: https://takeuforward.org/graph/graph-representation-in-c/
 
-4. Connected Components in Graphs (https://takeuforward.org/graph/connected-components-in-graphs/)
+3. Connected Components in Graphs: https://takeuforward.org/graph/connected-components-in-graphs/
 
-5. Breadth First Search (BFS): Level Order Traversal (https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/)
-
+4. Breadth First Search (BFS): Level Order Traversal: https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
-
-
-
-
 
 Solution:: 
 
@@ -46,9 +41,7 @@ public class Solution {
     }
 }
 
-
-6. Depth First Search (DFS) (https://takeuforward.org/data-structure/depth-first-search-dfs/)
-
+6. Depth First Search (DFS): https://takeuforward.org/data-structure/depth-first-search-dfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
 
@@ -84,12 +77,7 @@ public class Solution {
 	}
 }
 
-
-
-
-7. Number of Provinces (https://takeuforward.org/data-structure/number-of-provinces/)
-
-
+7. Number of Provinces: https://takeuforward.org/data-structure/number-of-provinces/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-provinces/1
 
@@ -135,12 +123,9 @@ public class Solution {
 	}
 }
 
-
-
 8. Number of Islands | Number of Connected Components in Matrix
 
 Problem Link:: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
-
 
 Solution::
 
@@ -190,11 +175,9 @@ public class Solution {
 }
 
 
-9. Flood Fill Algorithm - Graphs (https://takeuforward.org/graph/flood-fill-algorithm-graphs/)
-
+9. Flood Fill Algorithm - Graphs: https://takeuforward.org/graph/flood-fill-algorithm-graphs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
-
 
 Solution::
 
@@ -253,11 +236,9 @@ class Pair {
 
 
 
-10. Rotten Oranges ( https://takeuforward.org/data-structure/rotten-oranges/)
-
+10. Rotten Oranges: https://takeuforward.org/data-structure/rotten-oranges/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
-
 
 Solution::
 
@@ -351,8 +332,7 @@ class Pair {
 
 
 
-11. Detect Cycle in an Undirected Graph (using BFS) (https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-bfs/)
-
+11. Detect Cycle in an Undirected Graph (using BFS): https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-bfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
@@ -413,14 +393,11 @@ class Pair {
 }
 
 
-12. Detect Cycle in an Undirected Graph (using DFS) (https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-dfs/)
-
+12. Detect Cycle in an Undirected Graph (using DFS): https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-dfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
-
 Solution::
-
 
 public class Solution {
 
@@ -460,9 +437,7 @@ public class Solution {
 }
 
 
-13. Distance of Nearest Cell having 1 (https://takeuforward.org/graph/distance-of-nearest-cell-having-1/)
-
-
+13. Distance of Nearest Cell having 1: https://takeuforward.org/graph/distance-of-nearest-cell-having-1/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
 
@@ -530,10 +505,9 @@ class Node {
 
 }
 
-14. Surrounded Regions | Replace O’s with X’s (https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/)
+14. Surrounded Regions | Replace O’s with X’s: https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/
 
-
-Problem Link :: (https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1)
+Problem Link :: https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1
 
 Solution::
 
@@ -583,9 +557,9 @@ public class Solution {
 }
 
 
-15. Number of Enclaves (https://takeuforward.org/graph/number-of-enclaves/)
+15. Number of Enclaves: https://takeuforward.org/graph/number-of-enclaves/
 
-Problem Link:: (https://www.geeksforgeeks.org/problems/number-of-enclaves/1)
+Problem Link:: https://www.geeksforgeeks.org/problems/number-of-enclaves/1
 
 Solution:: 
 
@@ -719,7 +693,7 @@ public class Solution {
 }
 
 
-17. Bipartite Graph | BFS Implementation (https://takeuforward.org/graph/bipartite-graph-bfs-implementation/)
+17. Bipartite Graph | BFS Implementation: https://takeuforward.org/graph/bipartite-graph-bfs-implementation/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 
