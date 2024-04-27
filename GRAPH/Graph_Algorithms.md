@@ -261,99 +261,93 @@ Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 
 Solution::
 
+public class Solution {
 
-class Solution {
+	int cntFresh;
 
-    int cntFresh;
-    public boolean isValid(int i ,int j, int n, int m)
-    {
-        if(i>=0 &&i<n && j>=0 &&j<m)
-          return true;
-        return false;
-    }
-    public int bfs(int [][] grid,int [][] vis,Queue<Pair> qp)
-    {
-      int cnt = 0;
-      int n = grid.length;
-      int m = grid[0].length;
-      int dx[] = {-1, 0, 1, 0};
-      int dy[] = {0, 1, 0, -1}; 
-      while(!qp.isEmpty())
-      {
-        
-              Pair p = qp.poll();
-              int x = p.getKey();
-              int y = p.getValue();
-              int t = p.getTime();
-              cnt = Math.max(t,cnt);
-              for(int i=0;i<4;i++)
-              {
-                  int newX = x+dx[i];
-                  int newY = y+dy[i];
-                  if(isValid(newX,newY,n,m) && grid[newX][newY]==1 && vis[newX][newY]==0)
-                  {
-                      vis[newX][newY]=1;
-                      qp.add(new Pair(newX,newY,t+1));
-                      cntFresh--;
-                  }
-              }
+	public boolean isValid(int i, int j, int n, int m) {
+		if (i >= 0 && i < n && j >= 0 && j < m)
+			return true;
+		return false;
+	}
 
-      }
-      
-      return cntFresh==0?cnt:-1;
-    }
-    
-    //Function to find the minimum time required to rot all oranges. 
-    public int orangesRotting(int[][] grid)
-    {
-        // Code here
-        int n = grid.length;
-        int m = grid[0].length;
-        int vis[][]=new int [n][m];
-        Queue<Pair> qp = new LinkedList<>();
-        cntFresh=0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                vis[i][j]=0;
-                if(grid[i][j]==2)
-                   {
-                       qp.add(new Pair(i,j,0));
-                       vis[i][j]=1;
-                   }
-                if(grid[i][j]==1)
-                  cntFresh++;
-            }
-        }
-        
-      return  bfs(grid,vis,qp);
-    }
+	public int bfs(int[][] grid, int[][] vis, Queue<Pair> qp) {
+		int cnt = 0;
+		int n = grid.length;
+		int m = grid[0].length;
+		int dx[] = { -1, 0, 1, 0 };
+		int dy[] = { 0, 1, 0, -1 };
+		while (!qp.isEmpty()) {
+
+			Pair p = qp.poll();
+			int x = p.getKey();
+			int y = p.getValue();
+			int t = p.getTime();
+			cnt = Math.max(t, cnt);
+			for (int i = 0; i < 4; i++) {
+				int newX = x + dx[i];
+				int newY = y + dy[i];
+				if (isValid(newX, newY, n, m) && grid[newX][newY] == 1 && vis[newX][newY] == 0) {
+					vis[newX][newY] = 1;
+					qp.add(new Pair(newX, newY, t + 1));
+					cntFresh--;
+				}
+			}
+
+		}
+
+		return cntFresh == 0 ? cnt : -1;
+	}
+
+	// Function to find the minimum time required to rot all oranges.
+	public int orangesRotting(int[][] grid) {
+		// Code here
+		int n = grid.length;
+		int m = grid[0].length;
+		int vis[][] = new int[n][m];
+		Queue<Pair> qp = new LinkedList<>();
+		cntFresh = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+				if (grid[i][j] == 2) {
+					qp.add(new Pair(i, j, 0));
+					vis[i][j] = 1;
+				}
+				if (grid[i][j] == 1)
+					cntFresh++;
+			}
+		}
+
+		return bfs(grid, vis, qp);
+	}
 }
 
 class Pair {
 
-    private Integer key;
-    private Integer value;
-    private Integer time;
-    
-    public Integer getKey() {
-        return this.key;
-    }
-    public Integer getValue() {
-        return this.value;
-    }
-    
-     public Integer getTime() {
-        return this.time;
-    }
-    
-    Pair(Integer key,Integer value,Integer time) {
-        this.key=key;
-        this.value=value;
-        this.time=time;
-    }
+	private Integer key;
+	private Integer value;
+	private Integer time;
+
+	public Integer getKey() {
+		return this.key;
+	}
+
+	public Integer getValue() {
+		return this.value;
+	}
+
+	public Integer getTime() {
+		return this.time;
+	}
+
+	Pair(Integer key, Integer value, Integer time) {
+		this.key = key;
+		this.value = value;
+		this.time = time;
+	}
 }
+
 
 
 
@@ -362,69 +356,61 @@ class Pair {
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
-
-
 Solution::
 
+public class Solution {
 
-class Solution {
-    
-   public boolean bfs(int src,ArrayList<ArrayList<Integer>> adj,boolean vis[])  {
-    
-        Queue<Pair> qp = new LinkedList<>();
-        vis[src] = true;
-        qp.add(new Pair(src,-1));
-        
-        while(!qp.isEmpty())
-        {
-           
-            int node = qp.peek().node;
-            int parent = qp.peek().parent;
-            
-            qp.remove();
-            
-            for(Integer it:adj.get(node))
-            {
-                if(vis[it]==false)
-                {
-                  vis[it] = true;
-                  qp.add(new Pair(it,node));
-                }
-                else if(parent!=it)
-                     return true;
-            }
-        }
-        return false;
-   }
-    // Function to detect cycle in an undirected graph.
-    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        
-        boolean vis[] = new boolean[V];
-        Arrays.fill(vis,false);
-        for(int i = 0;i<V;i++) 
-            if(vis[i]==false)
-                if(bfs(i, adj, vis))
-                     return true;
-        
-        return false;
-        
-    }
+	public boolean bfs(int src, ArrayList<ArrayList<Integer>> adj, boolean vis[]) {
+
+		Queue<Pair> qp = new LinkedList<>();
+		vis[src] = true;
+		qp.add(new Pair(src, -1));
+
+		while (!qp.isEmpty()) {
+
+			int node = qp.peek().node;
+			int parent = qp.peek().parent;
+
+			qp.remove();
+
+			for (Integer it : adj.get(node)) {
+				if (vis[it] == false) {
+					vis[it] = true;
+					qp.add(new Pair(it, node));
+				} else if (parent != it)
+					return true;
+			}
+		}
+		return false;
+	}
+
+	// Function to detect cycle in an undirected graph.
+	public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+		// Code here
+
+		boolean vis[] = new boolean[V];
+		Arrays.fill(vis, false);
+		for (int i = 0; i < V; i++)
+			if (vis[i] == false)
+				if (bfs(i, adj, vis))
+					return true;
+
+		return false;
+
+	}
 }
 
 class Pair {
 
-   int node;
-   int parent;
-   
-   Pair(int node,int parent) {
-       this.node = node;
-       this.parent = parent;
-   }
-   
+	int node;
+	int parent;
+
+	Pair(int node, int parent) {
+		this.node = node;
+		this.parent = parent;
+	}
+
 }
-
-
 
 
 12. Detect Cycle in an Undirected Graph (using DFS) (https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-dfs/)
@@ -436,47 +422,42 @@ Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirec
 Solution::
 
 
+public class Solution {
 
-class Solution {
-    
-    public boolean dfs(int node,ArrayList<ArrayList<Integer>> adj, int vis[],int parent) {
-        vis[node] = 1;
-        for(Integer it:adj.get(node))
-        {
-            
-            if(vis[it]==0)
-             {
-                if(dfs(it,adj,vis,node)==true)
-                  return true;   
-             }
-               
-          else if(it!=parent)
-            return true;
-        }
-        
-        return false;
-    }
-    // Function to detect cycle in an undirected graph.
-    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        
-        int vis[] = new int [V];
-        Arrays.fill(vis,0);
-        
-        for(int i=0;i<V;i++)
-        {
-            if(vis[i]==0)
-            {
-                vis[i] = 1;
-                if(dfs(i,adj,vis,-1))
-                  return true;
-            }
-        }
-        
-        return false;
-    }
+	public boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], int parent) {
+		vis[node] = 1;
+		for (Integer it : adj.get(node)) {
+
+			if (vis[it] == 0) {
+				if (dfs(it, adj, vis, node) == true)
+					return true;
+			}
+
+			else if (it != parent)
+				return true;
+		}
+
+		return false;
+	}
+
+	// Function to detect cycle in an undirected graph.
+	public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+		// Code here
+
+		int vis[] = new int[V];
+		Arrays.fill(vis, 0);
+
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				vis[i] = 1;
+				if (dfs(i, adj, vis, -1))
+					return true;
+			}
+		}
+
+		return false;
+	}
 }
-
 
 
 13. Distance of Nearest Cell having 1 (https://takeuforward.org/graph/distance-of-nearest-cell-having-1/)
@@ -487,139 +468,118 @@ Problem Link:: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-h
 
 Solution::
 
+public class Solution {
 
-class Solution {
+	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 };
 
-    int dx[] = {0,1,0,-1};
-    int dy[] = {1,0,-1,0};
-    
-    //Function to find the distance of the nearest 1 in the grid for each cell.
-    public int[][] nearest(int[][] grid) {
-        // Code here
-        
-        int n = grid.length;
-        int m = grid[0].length;
-        
-        int dist[][] = new int[n][m];
-        int vis[][] = new int[n][m];
-        
-       Queue<Node> qp = new LinkedList<>();
-        
-        for(int i = 0; i<n;i++)
-        {
-            for(int j = 0;j<m;j++)
-            {
-                if(grid[i][j]==1)
-                {
-                    qp.add(new Node(i,j,0));
-                    vis[i][j] = 1;
-                }
-                else
-                  vis[i][j] = 0;
-            }
-        }
-        
-        while(!qp.isEmpty())
-        {
-            int x = qp.peek().first;
-            int y = qp.peek().second;
-            int steps = qp.peek().third;
-            qp.remove();
-            dist[x][y] = steps;
-            for(int i =0;i<4;i++)
-            {
-                int newX = x + dx[i];
-                int newY = y + dy[i];
-                if(newX>=0 && newX<n && newY>=0 && newY<m
-                   && vis[newX][newY]==0)
-                  {
-                      vis[newX][newY] = 1;
-                      qp.add(new Node(newX,newY,steps+1));
-                  }
-            }
-            
-            
-        }
-        
-        return dist;
-    }
+	// Function to find the distance of the nearest 1 in the grid for each cell.
+	public int[][] nearest(int[][] grid) {
+		// Code here
+
+		int n = grid.length;
+		int m = grid[0].length;
+
+		int dist[][] = new int[n][m];
+		int vis[][] = new int[n][m];
+
+		Queue<Node> qp = new LinkedList<>();
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (grid[i][j] == 1) {
+					qp.add(new Node(i, j, 0));
+					vis[i][j] = 1;
+				} else
+					vis[i][j] = 0;
+			}
+		}
+
+		while (!qp.isEmpty()) {
+			int x = qp.peek().first;
+			int y = qp.peek().second;
+			int steps = qp.peek().third;
+			qp.remove();
+			dist[x][y] = steps;
+			for (int i = 0; i < 4; i++) {
+				int newX = x + dx[i];
+				int newY = y + dy[i];
+				if (newX >= 0 && newX < n && newY >= 0 && newY < m && vis[newX][newY] == 0) {
+					vis[newX][newY] = 1;
+					qp.add(new Node(newX, newY, steps + 1));
+				}
+			}
+
+		}
+
+		return dist;
+	}
 }
 
 class Node {
-    
-    int first;
-    int second;
-    int third;
-    Node(int first,int second,int third) {
-       this.first = first;
-       this.second = second;
-       this.third = third;
-    } 
-    
-}
 
+	int first;
+	int second;
+	int third;
+
+	Node(int first, int second, int third) {
+		this.first = first;
+		this.second = second;
+		this.third = third;
+	}
+
+}
 
 14. Surrounded Regions | Replace O’s with X’s (https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/)
 
 
 Problem Link :: (https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1)
 
-
 Solution::
 
-class Solution {
+public class Solution {
 
-    static int dx[]={1,0,-1,0};
-    static int dy[]={0,1,0,-1};
-    static void dfs(int x,int y,int vis[][],char a[][])
-    {
-        vis[x][y]=1;
-        int n = a.length;
-        int m = a[0].length;
-        for(int i=0;i<4;i++)
-        {
-            int newX = x + dx[i];
-            int newY = y + dy[i];
-            if(newX>=0 && newX<n && newY>=0 && newY<m && 
-            vis[newX][newY]==0 &&a[newX][newY]=='O' )
-              {
-                  dfs(newX,newY,vis,a);
-              }
-        }
-    }
-    static char[][] fill(int n, int m, char a[][])
-    {
-        // code here
-        
-        int vis[][] = new int[n+1][m+1];
-        for(int i = 0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-             {
-                 vis[i][j]=0;
-             }
-        }
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if((i==0||j==0 ||i==n-1||j==m-1) && a[i][j]=='O')
-                 {
-                   dfs(i,j,vis,a);
-                 }
-            }
-        }
-        
-        for(int i = 0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(vis[i][j]==0 && a[i][j]=='O')
-                  a[i][j]='X';
-            }
-        }
-        return a;
-    }
+	static int dx[] = { 1, 0, -1, 0 };
+	static int dy[] = { 0, 1, 0, -1 };
+
+	static void dfs(int x, int y, int vis[][], char a[][]) {
+		vis[x][y] = 1;
+		int n = a.length;
+		int m = a[0].length;
+		for (int i = 0; i < 4; i++) {
+			int newX = x + dx[i];
+			int newY = y + dy[i];
+			if (newX >= 0 && newX < n && newY >= 0 && newY < m && vis[newX][newY] == 0 && a[newX][newY] == 'O') {
+				dfs(newX, newY, vis, a);
+			}
+		}
+	}
+
+	static char[][] fill(int n, int m, char a[][]) {
+		// code here
+
+		int vis[][] = new int[n + 1][m + 1];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if ((i == 0 || j == 0 || i == n - 1 || j == m - 1) && a[i][j] == 'O') {
+					dfs(i, j, vis, a);
+				}
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (vis[i][j] == 0 && a[i][j] == 'O')
+					a[i][j] = 'X';
+			}
+		}
+		return a;
+	}
 }
 
 
@@ -627,209 +587,178 @@ class Solution {
 
 Problem Link:: (https://www.geeksforgeeks.org/problems/number-of-enclaves/1)
 
-
 Solution:: 
 
-class Solution {
-    
-    int dx[] = {0,1,-1,0};
-    int dy[] = {1,0,0,-1};
-    int bfs(int x,int y,int [][] grid,int vis[][]) {
-        Queue<Pair> qp = new LinkedList<>();
-        vis[x][y]=1;
-        qp.add(new Pair(x,y));
-        int cnt = 1;
-        boolean flag = true;
-        int n = grid.length;
-        int m = grid[0].length;
-        while(!qp.isEmpty())
-        {
-            Pair p = qp.poll();
-            for(int i=0;i<4;i++)
-            {
-                int newX = p.x + dx[i];
-                int newY = p.y + dy[i];
-                if(newX>0 && newX<n-1 && newY>0 && newY<m-1
-                 && grid[newX][newY]==1 && vis[newX][newY]==0)
-                {
-                    vis[newX][newY]=1;
-                    qp.add(new Pair(newX,newY));
-                    cnt++;
-                }
-               if((newX>=0 && newX<n && newY>=0 && newY<m) && 
-                  (newX==0||newX==n-1||newY==0||newY==m-1)
-                  && grid[newX][newY]==1 && vis[newX][newY]==0)
-                  {
-                    vis[newX][newY]=1;
-                    qp.add(new Pair(newX,newY));
-                    flag=false;
-                    cnt++;
-                  }
-            }
-        }
-        if(flag==false)
-          return 0;
-        return cnt;
-    }
+public class Solution {
 
-    int numberOfEnclaves(int[][] grid) {
+	int dx[] = { 0, 1, -1, 0 };
+	int dy[] = { 1, 0, 0, -1 };
 
-        // Your code here
-        int n = grid.length;
-        int m = grid[0].length;
-        int vis[][] = new int[n][m];
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-             {
-                 vis[i][j]=0;
-             }
-        }
-        int ans =0;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                if(i!=0 && i!=n-1 && j!=0 && j!=m-1
-                  && grid[i][j]==1 && vis[i][j]==0)
-                  {
-                      ans+= bfs(i,j,grid,vis);
-                  }
-            }
-        }
-        
-        return ans;
-    }
+	int bfs(int x, int y, int[][] grid, int vis[][]) {
+		Queue<Pair> qp = new LinkedList<>();
+		vis[x][y] = 1;
+		qp.add(new Pair(x, y));
+		int cnt = 1;
+		boolean flag = true;
+		int n = grid.length;
+		int m = grid[0].length;
+		while (!qp.isEmpty()) {
+			Pair p = qp.poll();
+			for (int i = 0; i < 4; i++) {
+				int newX = p.x + dx[i];
+				int newY = p.y + dy[i];
+				if (newX > 0 && newX < n - 1 && newY > 0 && newY < m - 1 && grid[newX][newY] == 1
+						&& vis[newX][newY] == 0) {
+					vis[newX][newY] = 1;
+					qp.add(new Pair(newX, newY));
+					cnt++;
+				}
+				if ((newX >= 0 && newX < n && newY >= 0 && newY < m)
+						&& (newX == 0 || newX == n - 1 || newY == 0 || newY == m - 1) && grid[newX][newY] == 1
+						&& vis[newX][newY] == 0) {
+					vis[newX][newY] = 1;
+					qp.add(new Pair(newX, newY));
+					flag = false;
+					cnt++;
+				}
+			}
+		}
+		if (flag == false)
+			return 0;
+		return cnt;
+	}
+
+	int numberOfEnclaves(int[][] grid) {
+
+		// Your code here
+		int n = grid.length;
+		int m = grid[0].length;
+		int vis[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+			}
+		}
+		int ans = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (i != 0 && i != n - 1 && j != 0 && j != m - 1 && grid[i][j] == 1 && vis[i][j] == 0) {
+					ans += bfs(i, j, grid, vis);
+				}
+			}
+		}
+
+		return ans;
+	}
 }
 
 class Pair {
 
-  int x;
-  int y;
-  Pair(int x,int y) {
-   this.x = x;
-   this.y = y;
-  }
+	int x;
+	int y;
+
+	Pair(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 }
-
-
-
 
 16.  Number of Distinct Islands
 
-
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1
-
-
 
 Solution:: 
 
-class Solution {
-    
-    int dx[]={-1,0,1,0};
-    int dy[]={0,1,0,-1};
-    
-    public String toString(int x,int y)  {
-        return Integer.toString(x)+" "+Integer.toString(y);
-    }
-   public void dfs(int x,int y, int [][] grid, int [][] vis,List<String> lp,int r,int c) {
-          vis[x][y]=1;
-          lp.add(toString(x-r,y-c));
-          for(int i=0;i<4;i++)
-          {
-             Integer newX = x+dx[i];
-             Integer newY = y+dy[i];
-             if(newX>=0 && newX<grid.length && newY>=0 &&  newY<grid[0].length 
-              && vis[newX][newY]==0 && grid[newX][newY]==1)
-              {
-                  dfs(newX,newY,grid,vis,lp,r,c);
-              }
-          }
-    }
-    int countDistinctIslands(int[][] grid) {
-        
-        int n = grid.length;
-        int m = grid[0].length;
-        
-        int vis[][]=new int[n][m];
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-             {
-                 vis[i][j]=0;
-             }
-        }
-        
-        Set<List<String>> st = new HashSet<>();
-        for(int i = 0;i<n;i++)
-        {
-            for(int j=0;j<m;j++)
-            {
-                List<String> lp = new ArrayList<>();
-                if(grid[i][j]==1 && vis[i][j]==0)
-                {
-                    dfs(i,j,grid,vis,lp,i,j);
-                    st.add(lp);
-                }
-                
-                
-            }
-        }
-        return st.size();
-    }
+public class Solution {
+
+	int dx[] = { -1, 0, 1, 0 };
+	int dy[] = { 0, 1, 0, -1 };
+
+	public String toString(int x, int y) {
+		return Integer.toString(x) + " " + Integer.toString(y);
+	}
+
+	public void dfs(int x, int y, int[][] grid, int[][] vis, List<String> lp, int r, int c) {
+		vis[x][y] = 1;
+		lp.add(toString(x - r, y - c));
+		for (int i = 0; i < 4; i++) {
+			Integer newX = x + dx[i];
+			Integer newY = y + dy[i];
+			if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length && vis[newX][newY] == 0
+					&& grid[newX][newY] == 1) {
+				dfs(newX, newY, grid, vis, lp, r, c);
+			}
+		}
+	}
+
+	int countDistinctIslands(int[][] grid) {
+
+		int n = grid.length;
+		int m = grid[0].length;
+
+		int vis[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				vis[i][j] = 0;
+			}
+		}
+
+		Set<List<String>> st = new HashSet<>();
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				List<String> lp = new ArrayList<>();
+				if (grid[i][j] == 1 && vis[i][j] == 0) {
+					dfs(i, j, grid, vis, lp, i, j);
+					st.add(lp);
+				}
+
+			}
+		}
+		return st.size();
+	}
 }
 
 
 17. Bipartite Graph | BFS Implementation (https://takeuforward.org/graph/bipartite-graph-bfs-implementation/)
 
-
-
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
-
 
 Solution:: 
 
+public class Solution {
 
-class Solution {
+	public boolean bfs(int node, int V, ArrayList<ArrayList<Integer>> adj, int[] color) {
+		color[node] = 0;
+		Queue<Integer> q = new LinkedList<>();
+		q.add(node);
+		while (!q.isEmpty()) {
+			int n = q.poll();
 
-    public boolean bfs(int node, int V,ArrayList<ArrayList<Integer>>adj, int [] color ) {
-         color[node] = 0;
-         Queue<Integer> q = new LinkedList<>();
-         q.add(node);
-         while(!q.isEmpty())
-         {
-             int n = q.poll();
-             
-             for(int it:adj.get(n))
-             {
-                 if(color[it] == -1)
-                   {
-                       q.add(it);
-                       color[it] = 1 - color[n];
-                   }
-                 else if(color[it] == color[n])
-                   return false;
-             }
-         }
-         
-         return true;
-     }
-    public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj) {
-       int color[] = new int[V];
-       for(int i = 0; i<V; i++)
-       {
-          color[i]=-1;
-       }
-       
-       for(int i=0;i<V;i++)
-        {
-            if(color[i]==-1)
-              {
-                  if(bfs(i,V,adj,color)==false)
-                     return false;
-              }
-        }
-        
-      return true;
-    }
+			for (int it : adj.get(n)) {
+				if (color[it] == -1) {
+					q.add(it);
+					color[it] = 1 - color[n];
+				} else if (color[it] == color[n])
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	public boolean isBipartite(int V, ArrayList<ArrayList<Integer>> adj) {
+		int color[] = new int[V];
+		for (int i = 0; i < V; i++) {
+			color[i] = -1;
+		}
+
+		for (int i = 0; i < V; i++) {
+			if (color[i] == -1) {
+				if (bfs(i, V, adj, color) == false)
+					return false;
+			}
+		}
+
+		return true;
+	}
 }
