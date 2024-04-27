@@ -221,8 +221,8 @@ Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
 
 Solution::
 
-class Solution
-{
+class Solution {
+
     int dx[]={0,1,-1,0};
     int dy[]={1,0,0,-1};
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor)
@@ -295,8 +295,8 @@ Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 Solution::
 
 
-class Solution
-{
+class Solution {
+
     int cntFresh;
     public boolean isValid(int i ,int j, int n, int m)
     {
@@ -406,8 +406,7 @@ Solution::
 
 class Solution {
     
-   public boolean bfs(int src,ArrayList<ArrayList<Integer>> adj,boolean vis[])
-   {
+   public boolean bfs(int src,ArrayList<ArrayList<Integer>> adj,boolean vis[])  {
     
         Queue<Pair> qp = new LinkedList<>();
         vis[src] = true;
@@ -478,8 +477,7 @@ Solution::
 
 class Solution {
     
-    public boolean dfs(int node,ArrayList<ArrayList<Integer>> adj, int vis[],int parent)
-    {
+    public boolean dfs(int node,ArrayList<ArrayList<Integer>> adj, int vis[],int parent) {
         vis[node] = 1;
         for(Integer it:adj.get(node))
         {
