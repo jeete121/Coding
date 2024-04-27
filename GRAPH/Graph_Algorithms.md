@@ -267,6 +267,7 @@ class Solution {
     }
     
 }
+
 class Pair {
    
    int x;
