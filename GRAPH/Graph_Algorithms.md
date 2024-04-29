@@ -745,6 +745,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 Solution::
 
 public class Solution {
+	
 	public boolean dfs(int node, int col, ArrayList<ArrayList<Integer>> adj, int color[]) {
 
 		color[node] = col;
@@ -781,6 +782,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed
 Solution::
 
 public class Solution {
+
 	private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int pathVis[], int vis[]) {
 
 		pathVis[node] = 1;
@@ -873,6 +875,7 @@ Problem Link::  https://www.geeksforgeeks.org/problems/topological-sort/1
 Solution:: 
 
 public class Solution {
+
 	private static void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], Stack<Integer> st) {
 		vis[node] = 1;
 		for (int it : adj.get(node)) {
@@ -912,6 +915,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/topological-sort/1
 Solution::
 
 public class Solution {
+
 	// Function to return list containing vertices in Topological order.
 	static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) {
 		int indegree[] = new int[V];
@@ -951,6 +955,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed
 Solution::
 
 public class Solution {
+
 	// Function to detect cycle in a directed graph.
 	public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
 
@@ -994,6 +999,7 @@ Problem Link 1:: https://www.geeksforgeeks.org/problems/prerequisite-tasks/1
 Solution 1::
 
 public class Solution {
+
 	public boolean isPossible(int N, int P, int[][] prerequisites) {
 		int indegree[] = new int[N];
 
@@ -1036,6 +1042,7 @@ Problem Linl 2:: https://www.geeksforgeeks.org/problems/course-schedule/1ss
 Solution 2::
 
 public class Solution {
+
 	static int[] findOrder(int n, int m, ArrayList<ArrayList<Integer>> prerequisites) {
 		// add your code here
 		int order[] = new int[n];
@@ -1138,6 +1145,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/alien-dictionary/1
 Solution::
 
 public class Solution {
+
 	public String findOrder(String[] dict, int N, int K) {
 		int indegree[] = new int[K];
 		Arrays.fill(indegree, 0);
