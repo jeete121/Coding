@@ -736,3 +736,450 @@ public class Solution {
 		return true;
 	}
 }
+
+
+18. Bipartite Graph | DFS Implementation: https://takeuforward.org/graph/bipartite-graph-dfs-implementation/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
+
+Solution::
+
+public class Solution {
+	public boolean dfs(int node, int col, ArrayList<ArrayList<Integer>> adj, int color[]) {
+
+		color[node] = col;
+		for (int n : adj.get(node)) {
+			if (color[n] == -1) {
+				if (dfs(n, 1 - col, adj, color) == false)
+					return false;
+			} else if (color[n] == col)
+				return false;
+		}
+		return true;
+
+	}
+
+	public boolean isBipartite(int V, ArrayList<ArrayList<Integer>> adj) {
+		int color[] = new int[V];
+		Arrays.fill(color, -1);
+
+		for (int i = 0; i < V; i++) {
+			if (color[i] == -1) {
+				if (dfs(i, 0, adj, color) == false)
+					return false;
+			}
+		}
+		return true;
+	}
+}
+
+
+19. Detect cycle in a directed graph (using DFS): https://takeuforward.org/data-structure/detect-cycle-in-a-directed-graph-using-dfs-g-19/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+Solution::
+
+public class Solution {
+	private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int pathVis[], int vis[]) {
+
+		pathVis[node] = 1;
+		vis[node] = 1;
+
+		for (int n : adj.get(node)) {
+			if (vis[n] == 0) {
+				if (dfs(n, adj, pathVis, vis) == true)
+					return true;
+			} else if (pathVis[n] == 1)
+				return true;
+		}
+		pathVis[node] = 0;
+		return false;
+
+	}
+
+	// Function to detect cycle in a directed graph.
+	public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+
+		int pathVis[] = new int[V];
+		int vis[] = new int[V];
+		Arrays.fill(vis, 0);
+		Arrays.fill(pathVis, 0);
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				if (dfs(i, adj, pathVis, vis) == true)
+					return true;
+			}
+		}
+		return false;
+	}
+}
+
+
+20. Find Eventual Safe States - DFS: https://takeuforward.org/data-structure/find-eventual-safe-states-dfs-g-20/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
+
+Solution::
+
+public class Solution {
+
+	private boolean dfs(int node, List<List<Integer>> adj, int vis[], int check[], int pathVis[]) {
+		vis[node] = 1;
+		pathVis[node] = 1;
+		check[node] = 0;
+		for (int it : adj.get(node)) {
+
+			if (vis[it] == 0) {
+				if (dfs(it, adj, vis, check, pathVis) == true)
+					return true;
+
+			} else if (pathVis[it] == 1)
+				return true;
+		}
+		check[node] = 1;
+		pathVis[node] = 0;
+		return false;
+
+	}
+
+	List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
+
+		int vis[] = new int[V];
+		int pathVis[] = new int[V];
+		int check[] = new int[V];
+		Arrays.fill(pathVis, 0);
+		Arrays.fill(vis, 0);
+		List<Integer> res = new ArrayList<>();
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				dfs(i, adj, vis, check, pathVis);
+
+			}
+		}
+		for (int i = 0; i < V; i++) {
+			if (check[i] == 1)
+				res.add(i);
+		}
+		return res;
+	}
+}
+
+
+21. Topological Sort Algorithm | DFS: https://takeuforward.org/data-structure/topological-sort-algorithm-dfs-g-21/
+
+Problem Link::  https://www.geeksforgeeks.org/problems/topological-sort/1
+
+Solution:: 
+
+public class Solution {
+	private static void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], Stack<Integer> st) {
+		vis[node] = 1;
+		for (int it : adj.get(node)) {
+			if (vis[it] == 0) {
+				dfs(it, adj, vis, st);
+			}
+		}
+		st.push(node);
+	}
+
+	// Function to return list containing vertices in Topological order.
+	static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) {
+		Stack<Integer> st = new Stack<>();
+		int vis[] = new int[V];
+		Arrays.fill(vis, 0);
+
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				dfs(i, adj, vis, st);
+			}
+		}
+
+		int res[] = new int[V];
+		int k = 0;
+		while (!st.isEmpty()) {
+			res[k++] = st.pop();
+		}
+		return res;
+	}
+}
+
+
+22. Kahn's Algorithm | Topological Sort Algorithm | BFS: https://takeuforward.org/data-structure/kahns-algorithm-topological-sort-algorithm-bfs-g-22/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/topological-sort/1
+
+Solution::
+
+public class Solution {
+	// Function to return list containing vertices in Topological order.
+	static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) {
+		int indegree[] = new int[V];
+		for (int i = 0; i < V; i++) {
+			for (int it : adj.get(i)) {
+				indegree[it]++;
+			}
+		}
+
+		int topo[] = new int[V];
+		Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < V; i++) {
+			if (indegree[i] == 0)
+				q.add(i);
+		}
+		int i = 0;
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			topo[i++] = node;
+			for (int it : adj.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0)
+					q.add(it);
+			}
+
+		}
+
+		return topo;
+	}
+}
+
+
+23. Detect a Cycle in Directed Graph | Topological Sort | Kahn's Algorithm: https://takeuforward.org/data-structure/detect-a-cycle-in-directed-graph-topological-sort-kahns-algorithm-g-23/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+Solution::
+
+public class Solution {
+	// Function to detect cycle in a directed graph.
+	public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
+
+		int indegree[] = new int[V];
+		Arrays.fill(indegree, 0);
+		for (int i = 0; i < V; i++) {
+			for (int it : adj.get(i)) {
+				indegree[it]++;
+			}
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+
+		for (int i = 0; i < V; i++) {
+			if (indegree[i] == 0) {
+				q.add(i);
+			}
+		}
+
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			for (int it : adj.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0)
+					q.add(it);
+			}
+		}
+		for (int i = 0; i < V; i++) {
+			if (indegree[i] > 0)
+				return true;
+		}
+
+		return false;
+	}
+}
+
+24.  Course Schedule I and II | Pre-requisite Tasks | Topological Sort: https://takeuforward.org/data-structure/course-schedule-i-and-ii-pre-requisite-tasks-topological-sort-g-24/
+
+Problem Link 1:: https://www.geeksforgeeks.org/problems/prerequisite-tasks/1
+
+Solution 1::
+
+public class Solution {
+	public boolean isPossible(int N, int P, int[][] prerequisites) {
+		int indegree[] = new int[N];
+
+		ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+		for (int i = 0; i < N; i++) {
+			adj.add(i, new ArrayList<>());
+		}
+		for (int i = 0; i < P; i++) {
+			adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+		}
+		Arrays.fill(indegree, 0);
+		for (int i = 0; i < P; i++) {
+			indegree[prerequisites[i][0]]++;
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < N; i++) {
+			if (indegree[i] == 0)
+				q.add(i);
+		}
+		int cnt = 0;
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			cnt++;
+			for (int it : adj.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0)
+					q.add(it);
+			}
+		}
+		return cnt == N ? true : false;
+	}
+
+}
+
+
+Problem Linl 2:: https://www.geeksforgeeks.org/problems/course-schedule/1ss
+
+Solution 2::
+
+public class Solution {
+	static int[] findOrder(int n, int m, ArrayList<ArrayList<Integer>> prerequisites) {
+		// add your code here
+		int order[] = new int[n];
+		int indegree[] = new int[n];
+
+		Arrays.fill(indegree, 0);
+
+		ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+		}
+
+		for (int i = 0; i < m; i++) {
+			adj.get(prerequisites.get(i).get(1)).add(prerequisites.get(i).get(0));
+		}
+
+		for (int i = 0; i < m; i++) {
+			indegree[prerequisites.get(i).get(0)]++;
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+
+		for (int i = 0; i < n; i++) {
+			if (indegree[i] == 0)
+				q.add(i);
+		}
+
+		int i = 0;
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			order[i++] = node;
+			for (int it : adj.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0)
+					q.add(it);
+			}
+		}
+		if (i == n)
+			return order;
+		return new int[0];
+	}
+
+}
+
+
+25. Find Eventual Safe States - BFS - Topological Sort: https://takeuforward.org/data-structure/find-eventual-safe-states-bfs-topological-sort-g-25/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
+
+Solution:: 
+
+public class Solution {
+
+	List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
+
+		// Your code here
+		List<List<Integer>> reverse = new ArrayList<>();
+
+		for (int i = 0; i < V; i++) {
+			reverse.add(new ArrayList<>());
+		}
+
+		int indegree[] = new int[V];
+		Arrays.fill(indegree, 0);
+		for (int i = 0; i < V; i++) {
+
+			for (int it : adj.get(i)) {
+				reverse.get(it).add(i);
+				indegree[i]++;
+
+			}
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < V; i++) {
+			if (indegree[i] == 0)
+				q.add(i);
+		}
+		List<Integer> topo = new ArrayList<>();
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			topo.add(node);
+			for (int it : reverse.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0)
+					q.add(it);
+			}
+		}
+
+		Collections.sort(topo);
+		return topo;
+
+	}
+}
+
+26. Alien Dictionary - Topological Sort: https://takeuforward.org/data-structure/alien-dictionary-topological-sort-g-26/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/alien-dictionary/1
+
+Solution::
+
+public class Solution {
+	public String findOrder(String[] dict, int N, int K) {
+		int indegree[] = new int[K];
+		Arrays.fill(indegree, 0);
+		List<List<Integer>> adj = new ArrayList<>();
+		for (int i = 0; i < K; i++) {
+			adj.add(new ArrayList<>());
+		}
+		for (int i = 0; i < dict.length - 1; i++) {
+			String str1 = dict[i];
+			String str2 = dict[i + 1];
+			for (int j = 0; j < Math.min(str1.length(), str2.length()); j++) {
+				if (str1.charAt(j) != str2.charAt(j)) {
+					indegree[str2.charAt(j) - 'a']++;
+					adj.get(str1.charAt(j) - 'a').add(str2.charAt(j) - 'a');
+					break;
+				}
+			}
+		}
+		Queue<Integer> q = new LinkedList<>();
+		for (int i = 0; i < K; i++) {
+			if (indegree[i] == 0) {
+				q.add(i);
+			}
+		}
+
+		int cnt = 0;
+		StringBuilder res = new StringBuilder();
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			cnt++;
+			res.append(String.valueOf((char) (node + 'a')));
+			for (int it : adj.get(node)) {
+				indegree[it]--;
+				if (indegree[it] == 0) {
+					q.add(it);
+				}
+			}
+		}
+		if (cnt == K)
+			return res.toString();
+		return "";
+
+	}
+}
+
