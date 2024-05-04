@@ -745,7 +745,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 Solution::
 
 public class Solution {
-	
+
 	public boolean dfs(int node, int col, ArrayList<ArrayList<Integer>> adj, int color[]) {
 
 		color[node] = col;
@@ -1191,3 +1191,363 @@ public class Solution {
 	}
 }
 
+27. Shortest Path in Directed Acyclic Graph Topological Sort: https://takeuforward.org/data-structure/shortest-path-in-directed-acyclic-graph-topological-sort-g-27/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1
+
+Solution::
+
+public class Solution {
+
+	public int[] shortestPath(int N,int M, int[][] edges) {
+	    
+	    int dist[] = new int[N];
+	    for(int i =0;i<N;i++){
+	          dist[i] = (int)(1e9);
+	    }
+	    
+	    int indegree[] = new int[N];
+	    Arrays.fill(indegree,0);
+	    List<List<Pair>> adj = new ArrayList<>();
+	    for(int i =0;i<N;i++){
+	        adj.add(new ArrayList<>());
+	    }
+	    for(int i =0;i<edges.length;i++){
+	        int u = edges[i][0];
+	        int v = edges[i][1];
+	        int w = edges[i][2];
+	        adj.get(u).add(new Pair(v,w));
+	        indegree[v]++;
+	    }
+	    Queue<Integer> q = new LinkedList<>();
+	    for(int i =0;i<N;i++) {
+	        if(indegree[i]==0){
+	            q.add(i);
+	        }
+	    }
+	    
+	    dist[0] = 0;
+	    while(!q.isEmpty()) {
+	        int node = q.poll();
+	        for(Pair it: adj.get(node)){
+	          indegree[it.v]--;
+	          if(dist[node]+it.w<dist[it.v]) {
+	              dist[it.v] = dist[node] + it.w;
+	          }
+	          if(indegree[it.v] == 0){
+	              q.add(it.v);
+	          }
+	        }
+	    }
+	    for(int i =0;i<N;i++) {
+	        if(dist[i] == 1e9) {
+	            dist[i]=-1;
+	        }
+	    }
+	    return dist;
+	}
+}
+
+class Pair {
+
+    int v;
+    int w;
+    Pair(int v,int w){
+        this.v = v;
+        this.w = w;
+    }
+    
+}
+
+
+28. Shortest Path in Undirected Graph with unit distance: https://takeuforward.org/data-structure/shortest-path-in-undirected-graph-with-unit-distance-g-28/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
+
+Solution::
+
+public class Solution {
+
+	public int[] shortestPath(int[][] edges, int n, int m, int src) {
+
+		List<List<Integer>> adj = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+		}
+
+		for (int i = 0; i < m; i++) {
+			int u = edges[i][0];
+			int v = edges[i][1];
+			adj.get(u).add(v);
+			adj.get(v).add(u);
+		}
+		int dist[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			dist[i] = -1;
+		}
+
+		Queue<Integer> q = new LinkedList<>();
+		dist[src] = 0;
+		q.add(src);
+		while (!q.isEmpty()) {
+			int node = q.poll();
+			for (int it : adj.get(node)) {
+				if (dist[it] == -1) {
+					dist[it] = dist[node] + 1;
+					q.add(it);
+				}
+			}
+		}
+		return dist;
+
+	}
+}
+
+
+29. Word Ladder - I : https://takeuforward.org/graph/word-ladder-i-g-29/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder/1
+
+Solution::
+
+public class Solution {
+
+	public int wordLadderLength(String startWord, String targetWord, String[] wordList) {
+		Set<String> st = new HashSet<>();
+
+		for (int i = 0; i < wordList.length; i++) {
+			st.add(wordList[i]);
+		}
+
+		Queue<Pair> q = new LinkedList<>();
+		q.add(new Pair(startWord, 1));
+
+		int ans = 0;
+		while (!q.isEmpty()) {
+			Pair p = q.poll();
+			String str = p.word;
+			st.remove(str);
+			int level = p.level;
+			for (int i = 0; i < str.length(); i++) {
+				for (int j = 0; j < 26; j++) {
+					String str2 = "";
+					if (i != 0)
+						str2 += str.substring(0, i);
+					str2 += (char) (j + 'a');
+					if (i != str.length() - 1)
+						str2 += str.substring(i + 1);
+					if (st.remove(str2) == true) {
+						q.add(new Pair(str2, level + 1));
+						if (str2.equals(targetWord)) {
+							ans = level + 1;
+							break;
+						}
+					}
+				}
+			}
+		}
+		return ans;
+	}
+}
+
+class Pair {
+
+	String word;
+	int level;
+
+	Pair(String word, int level) {
+		this.word = word;
+		this.level = level;
+	}
+}
+
+30. Word Ladder-II: https://takeuforward.org/graph/g-30-word-ladder-ii/ 
+
+Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder-ii/1
+
+Solution::
+
+public class Solution {
+
+	public ArrayList<ArrayList<String>> findSequences(String startWord, String targetWord, String[] wordList) {
+		ArrayList<ArrayList<String>> sequences = new ArrayList<>();
+
+		Set<String> st = new HashSet<>();
+		for (int i = 0; i < wordList.length; i++) {
+			st.add(wordList[i]);
+		}
+
+		Queue<ArrayList<String>> q = new LinkedList<>();
+		ArrayList<String> ls = new ArrayList<>();
+		ls.add(startWord);
+		q.add(ls);
+		ArrayList<String> usedOnLevel = new ArrayList<>();
+		usedOnLevel.add(startWord);
+		int level = 0;
+		while (!q.isEmpty()) {
+
+			ArrayList<String> top = q.peek();
+			q.remove();
+			if (top.size() > level) {
+				level++;
+				for (String it : usedOnLevel) {
+					st.remove(it);
+				}
+			}
+
+			String str = top.get(top.size() - 1);
+			if (str.equals(targetWord)) {
+				if (sequences.size() == 0) {
+					sequences.add(top);
+				} else if (sequences.get(0).size() == top.size()) {
+					sequences.add(top);
+				}
+			}
+			for (int j = 0; j < str.length(); j++) {
+				for (int k = 0; k < 26; k++) {
+					String str2 = "";
+					if (j != 0)
+						str2 += str.substring(0, j);
+					str2 += (char) (k + 'a');
+					if (j != str.length() - 1)
+						str2 += str.substring(j + 1);
+					if (st.contains(str2) == true) {
+						top.add(str2);
+						ArrayList<String> temp = new ArrayList<>(top);
+						q.add(temp);
+						usedOnLevel.add(str2);
+						top.remove(top.size() - 1);
+					}
+
+				}
+			}
+
+		}
+		return sequences;
+	}
+}
+
+32. Dijkstra’s Algorithm - Using Priority Queue : https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
+
+Solution:: 
+
+public class Solution {
+
+	// Function to find the shortest distance of all the vertices
+	// from the source vertex S.
+	static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S) {
+		PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.distance - b.distance);
+
+		int dist[] = new int[V];
+		for (int i = 0; i < V; i++) {
+			dist[i] = (int) 1e9;
+		}
+		dist[S] = 0;
+		pq.add(new Pair(0, S));
+
+		while (!pq.isEmpty()) {
+			Pair p = pq.poll();
+			int d = p.distance;
+			int n = p.node;
+			for (int i = 0; i < adj.get(n).size(); i++) {
+				int node = adj.get(n).get(i).get(0);
+				int distance = adj.get(n).get(i).get(1);
+				if (dist[node] > d + distance) {
+					dist[node] = d + distance;
+					pq.add(new Pair(dist[node], node));
+				}
+			}
+		}
+		return dist;
+
+	}
+}
+
+class Pair {
+
+	int distance;
+	int node;
+
+	Pair(int distance, int node) {
+		this.distance = distance;
+		this.node = node;
+	}
+
+}
+
+35. Print Shortest Path - Dijkstra’s Algorithm: https://takeuforward.org/data-structure/g-35-print-shortest-path-dijkstras-algorithm/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1
+
+Solution::
+
+public class Solution {
+
+	public List<Integer> shortestPath(int n, int m, int edges[][]) {
+
+		List<Integer> path = new ArrayList<>();
+		ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+		for (int i = 0; i <= n; i++) {
+			adj.add(new ArrayList<>());
+		}
+
+		for (int i = 0; i < m; i++) {
+			adj.get(edges[i][0]).add(new Pair(edges[i][1], edges[i][2]));
+			adj.get(edges[i][1]).add(new Pair(edges[i][0], edges[i][2]));
+		}
+
+		PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.first - b.first);
+		int parent[] = new int[n + 1];
+		int dist[] = new int[n + 1];
+		for (int i = 1; i <= n; i++) {
+			dist[i] = (int) 1e9;
+			parent[i] = i;
+		}
+
+		pq.add(new Pair(0, 1));
+		dist[1] = 0;
+		while (!pq.isEmpty()) {
+			Pair p = pq.poll();
+			int d = p.first;
+			int node = p.second;
+			for (Pair it : adj.get(node)) {
+				int adjNode = it.first;
+				int adjDist = it.second;
+				if (d + adjDist < dist[adjNode]) {
+					parent[adjNode] = node;
+					dist[adjNode] = d + adjDist;
+					pq.add(new Pair(d + adjDist, adjNode));
+				}
+			}
+
+		}
+		if (dist[n] == 1e9) {
+			path.add(-1);
+			return path;
+		}
+
+		int node = n;
+		while (parent[node] != node) {
+			path.add(node);
+			node = parent[node];
+		}
+
+		path.add(1);
+		path.add(dist[n]);
+		Collections.reverse(path);
+		return path;
+
+	}
+}
+
+class Pair {
+	int first;
+	int second;
+
+	Pair(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
