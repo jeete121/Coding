@@ -1551,3 +1551,356 @@ class Pair {
 		this.second = second;
 	}
 }
+
+36. Shortest Distance in a Binary Maze: https://takeuforward.org/data-structure/g-36-shortest-distance-in-a-binary-maze/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1
+
+
+Solution:: 
+
+public class Solution {
+
+	int dx[] = { 0, 1, -1, 0 };
+	int dy[] = { 1, 0, 0, -1 };
+
+	int shortestPath(int[][] grid, int[] source, int[] destination) {
+
+		int n = grid.length;
+		int m = grid[0].length;
+
+		int dist[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				dist[i][j] = (int) 1e9;
+			}
+		}
+		dist[source[0]][source[1]] = 0;
+		Queue<Pair> q = new LinkedList<>();
+		q.add(new Pair(source[0], source[1]));
+
+		while (!q.isEmpty()) {
+			Pair p = q.poll();
+			int x = p.first;
+			int y = p.second;
+			for (int i = 0; i < 4; i++) {
+				int newX = x + dx[i];
+				int newY = y + dy[i];
+				if (newX >= 0 && newX < n && newY >= 0 && newY < m && grid[newX][newY] == 1) {
+					if (dist[newX][newY] > dist[x][y] + 1) {
+						dist[newX][newY] = dist[x][y] + 1;
+						q.add(new Pair(newX, newY));
+					}
+				}
+			}
+
+		}
+
+		if (dist[destination[0]][destination[1]] == 1e9)
+			return -1;
+		return dist[destination[0]][destination[1]];
+
+	}
+}
+
+class Pair {
+	int first;
+	int second;
+
+	Pair(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
+
+37. Path With Minimum Effort: https://takeuforward.org/data-structure/g-37-path-with-minimum-effort/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/path-with-minimum-effort/1
+
+Solution::
+
+public class Solution {
+
+	public static int MinimumEffort(int rows, int columns, int[][] heights) {
+
+		int n = heights.length;
+		int m = heights[0].length;
+
+		int dist[][] = new int[n][m];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				dist[i][j] = (int) 1e9;
+			}
+		}
+
+		int dx[] = { 1, 0, -1, 0 };
+		int dy[] = { 0, 1, 0, -1 };
+		PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> a.distance - b.distance);
+
+		pq.add(new Node(0, 0, 0));
+
+		while (!pq.isEmpty()) {
+			Node node = pq.poll();
+			int distance = node.distance;
+			int x = node.x;
+			int y = node.y;
+			if (x == n - 1 && y == m - 1)
+				return distance;
+			for (int i = 0; i < 4; i++) {
+				int newX = x + dx[i];
+				int newY = y + dy[i];
+				if (newX >= 0 && newX < n && newY >= 0 && newY < m) {
+					int effort = Math.abs(heights[newX][newY] - heights[x][y]);
+					if (dist[newX][newY] > Math.max(effort, distance)) {
+						dist[newX][newY] = Math.max(effort, distance);
+						pq.add(new Node(dist[newX][newY], newX, newY));
+					}
+				}
+			}
+
+		}
+		return 0;
+	}
+}
+
+class Node {
+	int distance;
+	int x;
+	int y;
+
+	Node(int distance, int x, int y) {
+		this.distance = distance;
+		this.x = x;
+		this.y = y;
+	}
+}
+
+38. Cheapest Flights Within K Stops: https://takeuforward.org/data-structure/g-38-cheapest-flights-within-k-stops/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1
+
+Solution::
+
+public class Solution {
+
+	public int CheapestFLight(int n, int flights[][], int src, int dst, int k) {
+
+		int dist[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			dist[i] = (int) 1e9;
+		}
+		ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+
+		}
+
+		for (int i = 0; i < flights.length; i++) {
+			adj.get(flights[i][0]).add(new Pair(flights[i][1], flights[i][2]));
+		}
+		Queue<Node> q = new LinkedList<>();
+		dist[src] = 0;
+		q.add(new Node(0, src, 0));
+		while (!q.isEmpty()) {
+			Node node = q.poll();
+			int distance = node.distance;
+			int source = node.source;
+			int stops = node.stops;
+			if (stops > k)
+				continue;
+			for (Pair p : adj.get(source)) {
+				int adjNode = p.first;
+				int adjDist = p.second;
+				if (dist[adjNode] > adjDist + distance && stops <= k) {
+
+					dist[adjNode] = distance + adjDist;
+					q.add(new Node(stops + 1, adjNode, adjDist + distance));
+				}
+			}
+
+		}
+
+		return dist[dst] == 1e9 ? -1 : dist[dst];
+	}
+}
+
+class Pair {
+	int first;
+	int second;
+
+	Pair(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
+
+class Node {
+	int stops;
+	int source;
+	int distance;
+
+	Node(int stops, int source, int distance) {
+		this.stops = stops;
+		this.source = source;
+		this.distance = distance;
+	}
+}
+
+
+39. Minimum Multiplications to Reach End: https://takeuforward.org/graph/g-39-minimum-multiplications-to-reach-end/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1
+
+Solution::
+
+public class Solution {
+
+	int mod = 100000;
+
+	int minimumMultiplications(int[] arr, int start, int end) {
+
+		if (start == end) {
+			return 0;
+		}
+		Queue<Pair> qp = new LinkedList<>();
+		qp.add(new Pair(start, 0));
+		int dist[] = new int[100000];
+		for (int i = 0; i < 100000; i++) {
+			dist[i] = (int) 1e9;
+		}
+		dist[start] = 0;
+		while (!qp.isEmpty()) {
+			Pair p = qp.poll();
+			int node = p.first;
+			int steps = p.second;
+			for (int i = 0; i < arr.length; i++) {
+				int x = (arr[i] * node) % mod;
+
+				if (dist[x] > steps + 1) {
+					dist[x] = steps + 1;
+					if (x == end) {
+						return steps + 1;
+					}
+					qp.add(new Pair(x, steps + 1));
+				}
+			}
+		}
+		return -1;
+
+	}
+}
+
+class Pair {
+
+	int first;
+	int second;
+
+	Pair(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
+
+
+40. Number of Ways to Arrive at Destination: https://takeuforward.org/data-structure/g-40-number-of-ways-to-arrive-at-destination/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1
+
+Solution::
+
+public class Solution {
+
+	static int countPaths(int n, List<List<Integer>> roads) {
+
+		ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+		}
+		for (int i = 0; i < roads.size(); i++) {
+			adj.get(roads.get(i).get(0)).add(new Pair(roads.get(i).get(1), roads.get(i).get(2)));
+
+			adj.get(roads.get(i).get(1)).add(new Pair(roads.get(i).get(0), roads.get(i).get(2)));
+		}
+
+		PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.first - b.first);
+		int ways[] = new int[n];
+		int dist[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			ways[i] = 0;
+			dist[i] = Integer.MAX_VALUE;
+		}
+
+		pq.add(new Pair(0, 0));
+		dist[0] = 0;
+		ways[0] = 1;
+		int mod = (int) (1e9 + 7);
+		while (!pq.isEmpty()) {
+			Pair p = pq.poll();
+			int dis = p.first;
+			int node = p.second;
+			for (Pair it : adj.get(node)) {
+				int adjNode = it.first;
+				int adjW = it.second;
+				if (dist[adjNode] > dis + adjW) {
+					dist[adjNode] = dis + adjW;
+					ways[adjNode] = ways[node];
+					pq.add(new Pair(dist[adjNode], adjNode));
+				} else if (dist[adjNode] == dis + adjW) {
+					ways[adjNode] = (ways[adjNode] + ways[node]) % mod;
+				}
+			}
+		}
+
+		return ways[n - 1] % mod;
+	}
+}
+
+class Pair {
+	int first;
+	int second;
+
+	Pair(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
+
+
+41. Bellman Ford Algorithm: https://takeuforward.org/data-structure/bellman-ford-algorithm-g-41/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1
+
+Solution::
+
+public class Solution {
+	static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+
+		int dist[] = new int[V];
+
+		for (int i = 0; i < V; i++) {
+			dist[i] = (int) 1e8;
+		}
+		dist[S] = 0;
+		for (int i = 0; i < V - 1; i++) {
+			for (int j = 0; j < edges.size(); j++) {
+				int u = edges.get(j).get(0);
+				int v = edges.get(j).get(1);
+				int w = edges.get(j).get(2);
+				if (dist[u] != 1e8 && dist[u] + w < dist[v]) {
+					dist[v] = dist[u] + w;
+				}
+			}
+		}
+		for (int j = 0; j < edges.size(); j++) {
+			int u = edges.get(j).get(0);
+			int v = edges.get(j).get(1);
+			int w = edges.get(j).get(2);
+			if (dist[u] != 1e8 && dist[u] + w < dist[v]) {
+				return new int[] { -1 };
+			}
+		}
+		return dist;
+
+	}
+}
+
