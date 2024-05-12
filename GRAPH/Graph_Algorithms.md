@@ -1904,3 +1904,146 @@ public class Solution {
 	}
 }
 
+42. Floyd Warshall Algorithm: https://takeuforward.org/data-structure/floyd-warshall-algorithm-g-42/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1
+
+Solution::
+
+public class Solution {
+
+	public void shortest_distance(int[][] matrix) {
+		int n = matrix.length;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (matrix[i][j] == -1) {
+					matrix[i][j] = (int) 1e9;
+
+				}
+				if (i == j) {
+					matrix[i][j] = 0;
+				}
+			}
+		}
+
+		for (int k = 0; k < n; k++) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					matrix[i][j] = Math.min(matrix[i][j], matrix[i][k] + matrix[k][j]);
+				}
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (matrix[i][j] == 1e9) {
+					matrix[i][j] = -1;
+
+				}
+
+			}
+
+		}
+	}
+}
+
+43. Find the City With the Smallest Number of Neighbours at a Threshold Distance: https://takeuforward.org/data-structure/find-the-city-with-the-smallest-number-of-neighbours-at-a-threshold-distance-g-43/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/1
+
+Solution::
+
+public class Solution {
+
+	int findCity(int n, int m, int[][] edges, int distanceThreshold) {
+		// code here
+		int matrix[][] = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (i == j)
+					matrix[i][j] = 0;
+				else
+					matrix[i][j] = (int) 1e9;
+			}
+		}
+		for (int i = 0; i < m; i++) {
+			int u = edges[i][0];
+			int v = edges[i][1];
+			int w = edges[i][2];
+			matrix[u][v] = w;
+			matrix[v][u] = w;
+		}
+
+		for (int k = 0; k < n; k++) {
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					matrix[i][j] = Math.min(matrix[i][j], matrix[i][k] + matrix[k][j]);
+				}
+			}
+		}
+
+		int cntCity = n;
+		int cityNo = -1;
+		for (int i = 0; i < n; i++) {
+			int cnt = 0;
+			for (int j = 0; j < n; j++) {
+				if (i != j && matrix[i][j] <= distanceThreshold) {
+					cnt++;
+				}
+			}
+			if (cnt <= cntCity) {
+				cntCity = cnt;
+				cityNo = i;
+			}
+		}
+		return cityNo;
+	}
+}
+
+
+45. Prim's Algorithm - Minimum Spanning Tree: https://takeuforward.org/data-structure/prims-algorithm-minimum-spanning-tree-c-and-java-g-45/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
+
+Solution::
+
+public class Solution {
+
+	static int spanningTree(int V, int E, List<List<int[]>> adj) {
+
+		PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.distance - b.distance);
+
+		int vis[] = new int[V];
+		Arrays.fill(vis, 0);
+		int sum = 0;
+		pq.add(new Pair(0, 0));
+		while (!pq.isEmpty()) {
+			Pair p = pq.poll();
+			int wt = p.distance;
+			int node = p.node;
+			if (vis[node] == 1)
+				continue;
+			sum += wt;
+			vis[node] = 1;
+			for (int i = 0; i < adj.get(node).size(); i++) {
+				int adjNode = adj.get(node).get(i)[0];
+				int adjWt = adj.get(node).get(i)[1];
+				if (vis[adjNode] == 0) {
+					pq.add(new Pair(adjWt, adjNode));
+				}
+			}
+
+		}
+		return sum;
+	}
+}
+
+class Pair {
+	int distance;
+	int node;
+
+	Pair(int distance, int node) {
+		this.distance = distance;
+		this.node = node;
+	}
+}
