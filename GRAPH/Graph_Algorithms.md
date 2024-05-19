@@ -2047,3 +2047,421 @@ class Pair {
 		this.node = node;
 	}
 }
+
+47. Kruskal's Algorithm - Minimum Spanning Tree : https://takeuforward.org/data-structure/kruskals-algorithm-minimum-spanning-tree-g-47/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
+
+Solution:: 
+
+public class Solution {
+	
+	// Function to find sum of weights of edges of the Minimum Spanning Tree.
+	static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) {
+		List<Edge> edges = new ArrayList<Edge>();
+		// O(N + E)
+		for (int i = 0; i < V; i++) {
+			for (int j = 0; j < adj.get(i).size(); j++) {
+				int adjNode = adj.get(i).get(j).get(0);
+				int wt = adj.get(i).get(j).get(1);
+				Edge temp = new Edge(i, adjNode, wt);
+				edges.add(temp);
+			}
+		}
+		DisjointSet ds = new DisjointSet(V);
+		// M log M
+		Collections.sort(edges);
+		int mstWt = 0;
+		// M x 4 x alpha x 2
+		for (int i = 0; i < edges.size(); i++) {
+			int wt = edges.get(i).weight;
+			int u = edges.get(i).src;
+			int v = edges.get(i).dest;
+
+			if (ds.findUPar(u) != ds.findUPar(v)) {
+				mstWt += wt;
+				ds.unionBySize(u, v);
+			}
+		}
+
+		return mstWt;
+	}
+}
+
+class DisjointSet {
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			rank.add(0);
+			parent.add(i);
+			size.add(1);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, rankU + 1);
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+		}
+	}
+}
+
+class Edge implements Comparable<Edge> {
+	int src, dest, weight;
+
+	Edge(int _src, int _dest, int _wt) {
+		this.src = _src;
+		this.dest = _dest;
+		this.weight = _wt;
+	}
+
+	// Comparator function used for
+	// sorting edgesbased on their weight
+	public int compareTo(Edge compareEdge) {
+		return this.weight - compareEdge.weight;
+	}
+};
+
+
+49. Number of Operations to Make Network Connected - DSU: https://takeuforward.org/data-structure/number-of-operations-to-make-network-connected-dsu-g-49/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/connecting-the-graph/1
+
+Solution::
+
+public class Solution {
+
+	public int Solve(int n, int[][] edge) {
+		
+		DisjointSet ds = new DisjointSet(n);
+		int m = edge.length;
+		int extraEdges = 0;
+		for (int i = 0; i < m; i++) {
+			int u = edge[i][0];
+			int v = edge[i][1];
+			if (ds.findUPar(u) == ds.findUPar(v)) {
+				extraEdges++;
+			} else {
+				ds.unionByRank(u, v);
+			}
+		}
+
+		int connectedComponent = 0;
+		for (int i = 0; i < n; i++) {
+			if (ds.findUPar(i) == i) {
+
+				connectedComponent++;
+			}
+		}
+		if (extraEdges >= connectedComponent - 1) {
+			return connectedComponent - 1;
+		}
+		return -1;
+	}
+}
+
+class DisjointSet {
+	
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			rank.add(0);
+			parent.add(i);
+			size.add(1);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, rankU + 1);
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+		}
+	}
+}
+
+
+50. Accounts Merge - DSU: https://takeuforward.org/data-structure/accounts-merge-dsu-g-50/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/account-merge/1
+
+Solution::
+
+public class Solution {
+
+	static List<List<String>> accountsMerge(List<List<String>> accounts) {
+
+		int n = accounts.size();
+		DisjointSet ds = new DisjointSet(n);
+		HashMap<String, Integer> mailMap = new HashMap<>();
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 1; j < accounts.get(i).size(); j++) {
+				String mail = accounts.get(i).get(j);
+				if (mailMap.containsKey(mail) == false) {
+					mailMap.put(mail, i);
+				} else {
+					ds.unionByRank(i, mailMap.get(mail));
+				}
+			}
+		}
+		ArrayList<String> mergeMail[] = new ArrayList[n];
+		for (int i = 0; i < n; i++) {
+			mergeMail[i] = new ArrayList<>();
+		}
+
+		for (Map.Entry<String, Integer> it : mailMap.entrySet()) {
+			String mail = it.getKey();
+			int node = ds.findUPar(it.getValue());
+			mergeMail[node].add(mail);
+		}
+
+		List<List<String>> res = new ArrayList<>();
+
+		for (int i = 0; i < n; i++) {
+			if (mergeMail[i].size() == 0)
+				continue;
+			Collections.sort(mergeMail[i]);
+			List<String> temp = new ArrayList<>();
+			temp.add(accounts.get(i).get(0));
+			for (String str : mergeMail[i]) {
+				temp.add(str);
+			}
+			res.add(temp);
+		}
+
+		return res;
+	}
+}
+
+class DisjointSet {
+
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			rank.add(0);
+			parent.add(i);
+			size.add(1);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, rankU + 1);
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+		}
+	}
+}
+
+
+51. Number of Islands - II - Online Queries - DSU: https://takeuforward.org/graph/number-of-islands-ii-online-queries-dsu-g-51/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/number-of-islands/1
+
+
+Solution::
+
+public class Solution {
+
+	int dx[] = { 1, 0, -1, 0 };
+	int dy[] = { 0, 1, 0, -1 };
+
+	public List<Integer> numOfIslands(int rows, int cols, int[][] operators) {
+		DisjointSet ds = new DisjointSet(rows * cols);
+		int m = operators.length;
+		int vis[][] = new int[rows][cols];
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				vis[i][j] = 0;
+			}
+		}
+
+		int cnt = 0;
+		List<Integer> ans = new ArrayList<>();
+		for (int i = 0; i < m; i++) {
+			int x = operators[i][0];
+			int y = operators[i][1];
+			if (vis[x][y] == 1) {
+				ans.add(cnt);
+				continue;
+			}
+
+			vis[x][y] = 1;
+			cnt++;
+			for (int j = 0; j < 4; j++) {
+				int newX = x + dx[j];
+				int newY = y + dy[j];
+				if (newX >= 0 && newX < rows && newY >= 0 && newY < cols && vis[newX][newY] == 1) {
+					int rowNo = x * cols + y;
+					int adjRowNo = newX * cols + newY;
+					if (ds.findUPar(rowNo) != ds.findUPar(adjRowNo)) {
+						cnt--;
+						ds.unionBySize(rowNo, adjRowNo);
+					}
+				}
+			}
+			ans.add(cnt);
+		}
+
+		return ans;
+	}
+
+}
+
+class DisjointSet {
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			rank.add(0);
+			parent.add(i);
+			size.add(1);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, rankU + 1);
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+		}
+	}
+}
