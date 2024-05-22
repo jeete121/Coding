@@ -2465,3 +2465,413 @@ class DisjointSet {
 		}
 	}
 }
+
+
+52. Making a Large Island - DSU: https://takeuforward.org/data-structure/making-a-large-island-dsu-g-52/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/maximum-connected-group/1
+
+Solution::
+
+public class Solution {
+
+	int dx[] = { 0, 1, 0, -1 };
+	int dy[] = { 1, 0, -1, 0 };
+
+	public int MaxConnection(int grid[][]) {
+		int n = grid.length;
+		int m = grid[0].length;
+		DisjointSet ds = new DisjointSet(n * m);
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (grid[i][j] == 0) {
+					continue;
+				}
+				for (int l = 0; l < 4; l++) {
+					int newX = i + dx[l];
+					int newY = j + dy[l];
+					if (newX >= 0 && newX < n && newY >= 0 && newY < m && grid[newX][newY] == 1) {
+						int nodeNo = i * m + j;
+						int adjNodeNo = newX * m + newY;
+						ds.unionBySize(nodeNo, adjNodeNo);
+					}
+				}
+			}
+		}
+
+		int ans = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (grid[i][j] == 1) {
+					continue;
+				}
+				HashSet<Integer> st = new HashSet<>();
+				for (int l = 0; l < 4; l++) {
+					int newX = i + dx[l];
+					int newY = j + dy[l];
+					if (newX >= 0 && newX < n && newY >= 0 && newY < m && grid[newX][newY] == 1) {
+						int adjNodeNo = newX * m + newY;
+						st.add(ds.findUPar(adjNodeNo));
+					}
+				}
+
+				int sizeTotal = 0;
+				for (Integer it : st) {
+					sizeTotal += ds.size.get(it);
+				}
+				ans = Math.max(ans, sizeTotal + 1);
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			ans = Math.max(ans, ds.size.get(ds.findUPar(i)));
+		}
+		return ans;
+	}
+
+}
+
+class DisjointSet {
+
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			parent.add(i);
+			size.add(1);
+			rank.add(0);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, rankU + 1);
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_u) + size.get(ulp_v));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
+		}
+	}
+}
+
+
+53. Most Stones Removed with Same Row or Column - DSU: https://takeuforward.org/data-structure/most-stones-removed-with-same-row-or-column-dsu-g-53/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/maximum-stone-removal-1662179442/1
+
+Solution::
+
+public class Solution {
+
+	int maxRemove(int[][] stones, int n) {
+		int maxRow = 0;
+		int maxCol = 0;
+		for (int i = 0; i < n; i++) {
+			maxRow = Math.max(maxRow, stones[i][0]);
+			maxCol = Math.max(maxCol, stones[i][1]);
+		}
+		DisjointSet ds = new DisjointSet(maxRow + maxCol + 1);
+		HashMap<Integer, Integer> stoneNodes = new HashMap<>();
+		for (int i = 0; i < n; i++) {
+			int nodeRow = stones[i][0];
+			int nodeCol = stones[i][1] + maxRow + 1;
+			ds.unionBySize(nodeRow, nodeCol);
+			stoneNodes.put(nodeRow, 1);
+			stoneNodes.put(nodeCol, 1);
+
+		}
+		int cnt = 0;
+
+		for (Map.Entry<Integer, Integer> mp : stoneNodes.entrySet()) {
+			if (ds.findUPar(mp.getKey()) == mp.getKey()) {
+				cnt++;
+			}
+		}
+
+		return n - cnt;
+	}
+};
+
+class DisjointSet {
+
+	List<Integer> rank = new ArrayList<>();
+	List<Integer> parent = new ArrayList<>();
+	List<Integer> size = new ArrayList<>();
+
+	public DisjointSet(int n) {
+		for (int i = 0; i <= n; i++) {
+			parent.add(i);
+			size.add(1);
+			rank.add(0);
+		}
+	}
+
+	public int findUPar(int node) {
+		if (node == parent.get(node)) {
+			return node;
+		}
+		int ulp = findUPar(parent.get(node));
+		parent.set(node, ulp);
+		return parent.get(node);
+	}
+
+	public void unionByRank(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (rank.get(ulp_u) < rank.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+		} else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+			parent.set(ulp_v, ulp_u);
+		} else {
+			parent.set(ulp_v, ulp_u);
+			int rankU = rank.get(ulp_u);
+			rank.set(ulp_u, 1 + rankU);
+
+		}
+	}
+
+	public void unionBySize(int u, int v) {
+		int ulp_u = findUPar(u);
+		int ulp_v = findUPar(v);
+		if (ulp_u == ulp_v)
+			return;
+		if (size.get(ulp_u) < size.get(ulp_v)) {
+			parent.set(ulp_u, ulp_v);
+			size.set(ulp_v, size.get(ulp_u) + size.get(ulp_v));
+		} else {
+			parent.set(ulp_v, ulp_u);
+			size.set(ulp_u, size.get(ulp_v) + size.get(ulp_u));
+		}
+	}
+
+}
+
+
+
+54. Strongly Connected Components - Kosaraju's Algorithm: https://takeuforward.org/graph/strongly-connected-components-kosarajus-algorithm-g-54/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1
+
+Solution::
+
+public class Solution {
+
+	private void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], Stack<Integer> st) {
+
+		vis[node] = 1;
+		for (int adjNode : adj.get(node)) {
+			if (vis[adjNode] == 0) {
+				dfs(adjNode, adj, vis, st);
+			}
+		}
+
+		st.push(node);
+
+	}
+
+	private void dfs2(int node, ArrayList<ArrayList<Integer>> adj, int vis[]) {
+
+		vis[node] = 1;
+		for (int adjNode : adj.get(node)) {
+			if (vis[adjNode] == 0) {
+				dfs2(adjNode, adj, vis);
+			}
+		}
+
+	}
+
+	// Function to find number of strongly connected components in the graph.
+	public int kosaraju(int V, ArrayList<ArrayList<Integer>> adj) {
+		int vis[] = new int[V];
+		Stack<Integer> st = new Stack<>();
+
+		for (int i = 0; i < V; i++) {
+			vis[i] = 0;
+		}
+
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				dfs(i, adj, vis, st);
+			}
+		}
+
+		ArrayList<ArrayList<Integer>> adjR = new ArrayList<>();
+		for (int i = 0; i < V; i++) {
+			adjR.add(new ArrayList<>());
+		}
+
+		for (int i = 0; i < V; i++) {
+			vis[i] = 0;
+			for (int it : adj.get(i)) {
+				adjR.get(it).add(i);
+			}
+		}
+
+		int scc = 0;
+		while (!st.isEmpty()) {
+			int node = st.pop();
+			if (vis[node] == 0) {
+				scc++;
+				dfs2(node, adjR, vis);
+			}
+		}
+
+		return scc;
+	}
+}
+
+
+55. Bridges in Graph - Using Tarjan's Algorithm of time in and low time: https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55/
+
+Problem Link:: https://leetcode.com/problems/critical-connections-in-a-network/description/
+
+Solution::
+
+public class Solution {
+	private int timer = 1;
+
+	private void dfs(int node, int parent, int vis[], ArrayList<ArrayList<Integer>> adj, int tin[], int low[],
+			List<List<Integer>> bridges) {
+
+		vis[node] = 1;
+		tin[node] = timer;
+		low[node] = timer;
+		timer++;
+		for (int it : adj.get(node)) {
+			if (it == parent)
+				continue;
+			if (vis[it] == 0) {
+				dfs(it, node, vis, adj, tin, low, bridges);
+				low[node] = Math.min(low[node], low[it]);
+				if (low[it] > tin[node]) {
+					bridges.add(Arrays.asList(it, node));
+				}
+			} else {
+				low[node] = Math.min(low[node], low[it]);
+			}
+
+		}
+	}
+
+	public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+
+		ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+		for (int i = 0; i < n; i++) {
+			adj.add(new ArrayList<>());
+		}
+		for (List<Integer> it : connections) {
+			int u = it.get(0);
+			int v = it.get(1);
+			adj.get(u).add(v);
+			adj.get(v).add(u);
+		}
+		int vis[] = new int[n];
+		int tin[] = new int[n];
+		int low[] = new int[n];
+		for (int i = 0; i < n; i++) {
+			vis[i] = 0;
+		}
+		List<List<Integer>> bridges = new ArrayList<>();
+		dfs(0, -1, vis, adj, tin, low, bridges);
+		return bridges;
+	}
+}
+
+
+56. Articulation Point in Graph: https://takeuforward.org/data-structure/articulation-point-in-graph-g-56/
+
+Problem Link:: https://www.geeksforgeeks.org/problems/articulation-point-1/1
+
+Solution::
+
+public class Solution {
+
+	private int timer = 1;
+	private void dfs(int node, int parent, int vis[], int tin[], int low[], int mark[],
+			ArrayList<ArrayList<Integer>> adj) {
+
+		vis[node] = 1;
+		tin[node] = low[node] = timer;
+		timer++;
+		int child = 0;
+		for (int it : adj.get(node)) {
+			if (it == parent)
+				continue;
+			if (vis[it] == 0) {
+				dfs(it, node, vis, tin, low, mark, adj);
+				low[node] = Math.min(low[node], low[it]);
+				if (low[it] >= tin[node] && parent != -1) {
+					mark[node] = 1;
+				}
+				child++;
+			} else {
+				low[node] = Math.min(low[node], tin[it]);
+			}
+		}
+		if (child > 1 && parent == -1) {
+			mark[node] = 1;
+		}
+
+	}
+
+	public ArrayList<Integer> articulationPoints(int V, ArrayList<ArrayList<Integer>> adj) {
+
+		int vis[] = new int[V];
+		int mark[] = new int[V];
+		int tin[] = new int[V];
+		int low[] = new int[V];
+
+		for (int i = 0; i < V; i++) {
+			if (vis[i] == 0) {
+				dfs(i, -1, vis, tin, low, mark, adj);
+			}
+		}
+
+		ArrayList<Integer> ans = new ArrayList<>();
+		for (int i = 0; i < V; i++) {
+			if (mark[i] == 1) {
+				ans.add(i);
+			}
+		}
+		if (ans.size() == 0) {
+			ans.add(-1);
+		}
+		return ans;
+	}
+}
