@@ -1,0 +1,165 @@
+1. Maximum Depth of Binary Tree (https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    public int maxDepth(TreeNode root) {
+
+        if(root==null)
+          return 0;
+        return 1+Math.max(maxDepth(root.left),maxDepth(root.right));
+        
+    }
+}
+
+
+
+2. Balanced Binary Tree (https://leetcode.com/problems/balanced-binary-tree/description/)
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+Approach:: 1
+
+class Solution {
+
+    int height(TreeNode root)
+    {
+        if(root==null)
+          return 0;
+        return 1+ Math.max(height(root.left),height(root.right));
+    }
+    public boolean isBalanced(TreeNode root) {
+
+        if(root==null)
+          return true;
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        return Math.abs(leftHeight-rightHeight)<=1
+              && isBalanced(root.left) && isBalanced(root.right);
+    }
+}
+
+
+
+Approach:: 2
+
+class Solution {
+
+    int height(TreeNode root)
+    {
+        if(root==null)
+          return 0;
+        int lH=height(root.left);
+        int rH=height(root.right);
+        if(lH==-1||rH==-1)
+          return -1;
+        if(Math.abs(lH-rH)>1) 
+          return -1;
+        return 1+ Math.max(height(root.left),height(root.right));
+    }
+    public boolean isBalanced(TreeNode root) {
+        
+        return height(root)==-1?false:true;
+    }
+}
+
+
+
+3. Diameter of Binary Tree (https://leetcode.com/problems/diameter-of-binary-tree/description/)
+
+
+
+Approach:: 1
+
+Find Left height, right height of every subtree.
+Time Complexity:: O(N^2)
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    int max=Integer.MIN_VALUE;
+    public int height(TreeNode root)
+    {
+        if(root==null)
+          return 0;
+        return Math.max(height(root.left),height(root.right))+1;
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+
+        if(root==null)
+          return 0;
+        int lh=height(root.left);
+        int rh=height(root.right);
+        max=Math.max(max,lh+rh);
+        diameterOfBinaryTree(root.left);
+        diameterOfBinaryTree(root.right);
+        return max;
+        
+    }
+}
+
+Approach:: 2
+
+Time Complexity:: O(N)
+
+class Solution {
+
+    public int max=Integer.MIN_VALUE;
+    public int height(TreeNode root)
+    {
+        if(root==null)
+          return 0;
+        int lh=height(root.left);
+        int rh=height(root.right);
+        max=Math.max(max,lh+rh);
+        return 1+Math.max(lh,rh);
+        
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        
+         height(root);
+         return max;
+    }
+}
