@@ -559,6 +559,10 @@ class Pair {
  *     }
  * }
  */
+
+Approach 1::
+
+
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         
@@ -591,6 +595,37 @@ class Solution {
         return ans;
     }
 }
+
+
+Approach 2::
+
+class Solution {
+    private void rightSideView(TreeNode root, int level, List<Integer> ans){
+        if(root == null){
+            return;
+        }
+
+        if(ans.size() == level){
+            ans.add(root.val);
+        }
+       rightSideView(root.right,level + 1, ans);
+       rightSideView(root.left,level + 1, ans);
+
+    }
+    public List<Integer> rightSideView(TreeNode root) {
+
+         List<Integer> ans = new ArrayList<>();
+         
+         if(root == null){
+            return ans;
+         }
+
+         rightSideView(root,0,ans);
+         return ans;
+        
+    }
+}
+
 
 
 
@@ -634,4 +669,667 @@ class Tree {
 		}
 		return ans;
 	}
+}
+
+
+
+13. Check for Symmetrical Binary Trees: https://leetcode.com/problems/symmetric-tree/description/
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    private boolean isSymmetric(TreeNode left, TreeNode right) {
+        if(left == null || right == null)
+           return left == right;
+        if(left.val != right.val)
+           return false;
+        return isSymmetric(left.left,right.right) 
+              && isSymmetric(left.right,right.left);
+     }
+    public boolean isSymmetric(TreeNode root) {
+        return root == null || isSymmetric(root,root);
+    }
+}
+
+
+14. Binary Tree Paths: (https://leetcode.com/problems/binary-tree-paths/description/)
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void dfs(TreeNode root, List<String> ans,String path){
+        if(root == null){
+            return;
+        }
+        if(root.left == null && root.right == null){
+            path += root.val;
+            ans.add(path);
+            path = "";
+            return;
+        }
+        path += root.val+"->";
+        dfs(root.left,ans,path);
+        dfs(root.right,ans,path);
+        
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+         List<String> ans = new ArrayList<>();
+         dfs(root,ans,"");
+         return ans;
+    }
+}
+
+
+
+15. Lowest Common Ancestor of a Binary Tree: (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        if(root == null || root == p ||root == q) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        if(left == null) {
+            return right;
+        } 
+       else if(right == null ) {
+        return left;
+       }
+       else {
+        return root;
+       }
+        
+    }
+}
+
+
+16. Maximum Width of Binary Tree: (https://leetcode.com/problems/maximum-width-of-binary-tree/description/)
+
+
+Approach 1:: 
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+
+        if(root == null) {
+            return 0;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(root,0,0));
+        int ans = 1;
+        while(!q.isEmpty()) {
+          int size = q.size();
+          int leftIndex = -1,rightIndex = -1;
+          for(int i = 0;i<size;i++) {
+            Node node = q.poll();
+
+            if(i == 0){
+                leftIndex = node.index;
+            }
+            else if(i == size - 1  && i != 0) {
+                rightIndex = node.index;
+            }
+            TreeNode n = node.node;
+
+            if(n.left != null) {
+               q.add(new Node(n.left, node.level + 1, 2*node.index + 1));
+            }
+            if(n.right != null){
+              q.add(new Node(n.right , node.level + 1, 2*node.index + 2));
+           }
+
+            if(leftIndex != -1 && rightIndex != -1){
+               ans = Math.max(rightIndex - leftIndex + 1,ans);
+            }
+        } 
+     }
+        
+      return ans;
+    }
+}
+
+class Node {
+    TreeNode node;
+    int level;
+    int index;
+
+    Node(TreeNode node, int level, int index) {
+        this.node = node;
+        this.level = level;
+        this.index = index;
+    }
+}
+
+
+Approach 2:: How to avoid overflow
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+
+        if(root == null) {
+            return 0;
+        }
+        Queue<Node> q = new LinkedList<>();
+        q.add(new Node(root,0));
+        int ans = 0;
+        while(!q.isEmpty()) {
+          int size = q.size();
+          int leftIndex = 0,rightIndex = 0;
+          int minx = q.peek().index;
+          for(int i = 0;i<size;i++) {
+            Node node = q.poll();
+            int x = node.index - minx;
+            if(i == 0){
+                leftIndex = node.index;
+            }
+            if(i == size - 1) {
+                rightIndex = node.index;
+            }
+            TreeNode n = node.node;
+
+            if(n.left != null) {
+               q.add(new Node(n.left, 2*x+ 1));
+            }
+            if(n.right != null){
+              q.add(new Node(n.right , 2*x+ 2));
+           }
+        } 
+         ans = Math.max(rightIndex - leftIndex + 1,ans);
+     }
+        
+      return ans;
+    }
+}
+
+class Node {
+    TreeNode node;
+    int index;
+
+    Node(TreeNode node, int index) {
+        this.node = node;
+        this.index = index;
+    }
+}
+
+
+17.
+a). Check for Children Sum Property in a Binary Tree: https://www.geeksforgeeks.org/problems/children-sum-parent/1
+
+
+public class Solution {
+
+	private static boolean dfs(Node root) {
+		if (root == null || root.left == null && root.right == null) {
+			return true;
+		}
+		if (root.left != null && root.right == null) {
+			if (root.left.data != root.data)
+				return false;
+			return dfs(root.left);
+		} else if (root.left == null && root.right != null) {
+			if (root.right.data != root.data) {
+				return false;
+			}
+			return dfs(root.right);
+		}
+		return (root.left.data + root.right.data == root.data) && dfs(root.left) && dfs(root.right);
+	}
+
+
+	public static int isSumProperty(Node root) {
+
+		if (root == null) {
+			return 1;
+		}
+
+		return dfs(root) == true ? 1 : 0;
+	}
+}
+
+
+
+b). Children Sum Property in Binary Tree
+
+public class Solution {
+	
+	public static void changeTree(TreeNode root) {
+
+		if (root == null)
+			return;
+		int child = 0;
+		if (root.left != null)
+			child += root.left.data;
+		if (root.right != null)
+			child += root.right.data;
+		if (child >= root.data)
+			root.data = child;
+		else {
+			if (root.left != null)
+				root.left.data = root.data;
+
+			if (root.right != null)
+				root.right.data = root.data;
+		}
+
+		changeTree(root.left);
+		changeTree(root.right);
+
+		int tot = 0;
+		if (root.left != null)
+			tot += root.left.data;
+		if (root.right != null)
+			tot += root.right.data;
+		if (root.left != null || root.right != null)
+			root.data = tot;
+
+	}
+}
+
+
+
+
+18. All Nodes Distance K in Binary Tree: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    private void markParent(TreeNode root, Map<TreeNode,TreeNode> parent) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while(!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if(node.left != null){
+                parent.put(node.left, node);
+                q.add(node.left);
+            }
+            if(node.right != null){
+                parent.put(node.right, node);
+                q.add(node.right);
+            }
+        }
+    }
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        Map<TreeNode,TreeNode> parent = new HashMap<>();
+        markParent(root, parent);
+
+        Map<TreeNode, Boolean> vis =  new HashMap<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(target);
+        vis.put(target, true);
+        int dis = 0;
+        List<Integer> ans = new ArrayList<>();
+        while(!q.isEmpty()) {
+
+           int size = q.size();
+           if(dis == k){
+            for(int i = 0;i<size;i++){
+                TreeNode n = q.poll();
+                ans.add(n.val);
+            }
+           }
+           else {
+            for(int i = 0;i<size;i++){
+              TreeNode n = q.poll();
+              if(!vis.containsKey(n.left) && n.left != null){
+                q.add(n.left);
+                vis.put(n.left, true);
+              }
+              if(!vis.containsKey(n.right) && n.right != null){
+                q.add(n.right);
+                vis.put(n.right, true);
+              }
+              if(parent.containsKey(n)){
+                TreeNode pn = parent.get(n);
+                if(vis.containsKey(pn) == false){
+                    q.add(pn);
+                    vis.put(pn, true);
+                }
+              }
+           }
+           dis++;
+         }
+        }
+
+        return ans;
+    }
+}
+
+
+19. Minimum time taken to BURN the Binary Tree from a Node :   
+
+https://www.geeksforgeeks.org/problems/burning-tree/1
+
+class Solution
+{
+    /*class Node {
+    	int data;
+    	Node left;
+    	Node right;
+    
+    	Node(int data) {
+    		this.data = data;
+    		left = null;
+    		right = null;
+    	}
+    }*/
+    
+    private static Node markParent(Node root, Map<Node,Node> parent, int target) {
+        
+        Queue<Node> q = new LinkedList<>();
+        Node targetNode = null;
+        q.add(root);
+        
+        while(!q.isEmpty()) {
+            Node n = q.poll();
+            
+            if(n.data == target){
+                targetNode = n;
+            }
+            
+            if(n.left != null){
+                q.add(n.left);
+                parent.put(n.left, n);
+            }
+            
+            if(n.right != null){
+                q.add(n.right);
+                parent.put(n.right, n);
+            }
+        }
+        
+        return targetNode;
+    }
+    
+    public static int minTime(Node root, int target) {
+       
+       Map<Node, Node> parent = new HashMap<>();
+       Node targetNode = markParent(root, parent, target);
+       Queue<Node> q = new LinkedList<>();
+       Map<Node, Boolean> vis = new HashMap<>();
+       
+       q.add(targetNode);
+       vis.put(targetNode, true);
+       
+       int time = 0;
+       while(!q.isEmpty()) {
+           
+           int size = q.size();
+           
+           for(int i = 0;i < size; i++) {
+               Node node = q.poll();
+               
+               if(node.left != null && vis.get(node.left) == null) {
+                   q.add(node.left);
+                   vis.put(node.left, true);
+               }
+               
+               if(node.right != null && vis.get(node.right) == null) {
+                   q.add(node.right);
+                   vis.put(node.right, true);
+               }
+               
+               if(parent.get(node) != null) {
+                   Node pn = parent.get(node);
+                   if(vis.get(pn) == null){
+                      q.add(pn);
+                      vis.put(pn, true);
+                   }
+               }
+           }
+           time++;
+       }
+       
+       return time - 1;
+    }
+}
+
+
+
+20. Count Complete Tree Nodes: 
+
+https://leetcode.com/problems/count-complete-tree-nodes/description/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private int leftHeight(TreeNode root){
+        int lh = 0;
+        while(root.left != null){
+            root = root.left;
+            lh++;
+        }
+        return lh;
+    }
+
+     private int rightHeight(TreeNode root){
+        int rh = 0;
+        while(root.right != null){
+            root = root.right;
+            rh++;
+        }
+        return rh;
+    }
+
+    public int countNodes(TreeNode root) {
+
+        if(root == null){
+            return 0;
+        }
+        int lh = leftHeight(root);
+        int rh = rightHeight(root);
+
+        if(lh == rh){
+            return ((2 << (lh)) - 1);
+        }
+        return 1 +  countNodes(root.left) + countNodes(root.right);
+        
+    }
+}
+
+
+
+21. Construct Binary Tree from Preorder and Inorder Traversal
+
+Problem Link::
+
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+
+
+Solution:: 
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private TreeNode buildTree(int[] preorder, int preL, int preR, int[] inorder, int inL, int inR,
+      Map<Integer,Integer> mp){
+        if(preL > preR || inL > inR)
+           return null;
+        TreeNode root = new TreeNode(preorder[preL]);
+        int inIndex = mp.get(preorder[preL]);
+        int numsLeft = inIndex - inL;
+
+        root.left = buildTree(preorder,preL + 1, preL + numsLeft, inorder, inL, inL + numsLeft, mp);
+
+        root.right = buildTree(preorder,preL + numsLeft + 1, preR, inorder, inIndex + 1 , inR, mp);
+
+        return root;
+    }
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+       Map<Integer,Integer> mp = new HashMap<>();
+
+       for(int i = 0; i < inorder.length; i++) {
+        mp.put(inorder[i], i);
+       }
+
+       return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1, mp); 
+    }
+}
+
+
+
+
+22. Construct Binary Tree from Inorder and Postorder Traversal
+
+Problem Link:: 
+
+https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+
+
+Solution::
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private TreeNode buildTree(int[] inorder ,int inL, int inR, int[] postorder, int postL, int postR,
+      Map<Integer,Integer> mp){
+
+        if(inL > inR || postL > postR)
+           return null;
+        TreeNode root = new TreeNode(postorder[postR]);
+
+        int inIndex = mp.get(postorder[postR]);
+        int leftNum = inIndex - inL;
+        int rightNum = inR - inIndex;
+
+        root.left = buildTree(inorder , inL, inIndex - 1, postorder, postL, postR - rightNum - 1, mp);
+
+        root.right = buildTree(inorder , inIndex + 1, inR, postorder, postR - rightNum, postR - 1, mp);
+
+        return root;
+      }
+
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+
+        Map<Integer,Integer> mp = new HashMap<>();
+
+        for(int i = 0;i < inorder.length; i++){
+            mp.put(inorder[i], i);
+        }
+
+        return buildTree(inorder ,0, inorder.length - 1, postorder, 0, postorder.length - 1, mp);
+        
+    }
 }

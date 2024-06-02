@@ -1,3 +1,5 @@
+Pattern::
+
 while(j<size)
  {
     calculation
@@ -13,3 +15,70 @@ while(j<size)
  }
 
 return ans
+
+
+
+Problems::
+
+Fixed Size::
+
+1. Maximum/Minimum Subarray of size k.
+
+2. First negative Number in every window of size k.
+
+3. Count occurrences of anagrams.
+
+4. Maximum of all subarray of size k.
+
+5. Max of minimum for every window size k.
+
+6. Permutation in String (https://leetcode.com/problems/permutation-in-string/description/)
+
+
+
+
+6. Permutation in String: https://leetcode.com/problems/permutation-in-string/description/
+
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+
+        int n = s1.length();
+        int m = s2.length();
+        int freq[] = new int[26];
+        int freq1[] = new int[26];
+        
+        if(m<n){
+            return false;
+        }
+        for(int i = 0;i<n;i++){
+            freq[s1.charAt(i)-'a']++;
+        }
+
+        int i = 0,j = 0;
+        while(j<m){
+              if(j-i+1<n){
+                freq1[s2.charAt(j)-'a']++;
+                j++;
+              }
+              else {
+                int flag = 0;
+                freq1[s2.charAt(j)-'a']++;
+                for(int k = 0;k<26;k++){
+                    if(freq[k] != freq1[k]){
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag == 0) {
+                    return true;
+                }
+                freq1[s2.charAt(i)-'a']--;
+                i++;
+                j++;
+              }
+        }
+
+        return false;
+    }
+
+}
