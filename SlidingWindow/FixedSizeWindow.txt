@@ -17,12 +17,17 @@ while(j<size)
 return ans
 
 
+All Problem Links for fixed size sliding window::
+
+
+https://leetcode.com/discuss/interview-question/3100856/Fixed-Size-Sliding-Window-(Important-Questions-with-Solutions)
+
 
 Problems::
 
 Fixed Size::
 
-1. Maximum/Minimum Subarray of size k.
+1. Maximum/Minimum Subarray of size k (https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1)
 
 2. First negative Number in every window of size k.
 
@@ -34,6 +39,33 @@ Fixed Size::
 
 6. Permutation in String (https://leetcode.com/problems/permutation-in-string/description/)
 
+
+1. Maximum/Minimum Subarray of size k (https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1)
+
+
+class Solution{   
+public:
+    long maximumSumSubarray(int K, vector<int> &Arr , int N){
+        // code here 
+        int i=0,j=0;
+        long sum=0;
+        long  mx=INT_MIN;
+        while(j<N)
+        {
+            sum+=Arr[j];
+            if(j-i+1<K)
+              j++;
+            else
+            {
+                mx=max(mx,sum);
+                sum-=Arr[i];
+                i++;
+                j++;
+            }
+        }
+        return mx;
+    }
+};
 
 
 
