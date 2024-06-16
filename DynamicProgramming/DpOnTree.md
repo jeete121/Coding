@@ -1,17 +1,16 @@
 General Format
 
-int solve(Node *root, int res)
-{
-   if(root==null)
-     return 0; 
-   int l = solve(root.left,res);
-   int r = solve(root.right,res);
-   int tempAns = calculate temp ans (1+Math.max(l,r));
-   int ans = Math.max(tempAns,relation);
-   res = Math.max(res,ans);
-   return tempAns;   
+int solve(Node root, int res) {
+    
+		if (root == null)
+			return 0;
+		int l = solve(root.left, res);
+		int r = solve(root.right, res);
+		int tempAns = calculate temp ans (1+Math.max(l,r));
+		int ans = Math.max(tempAns, relation);
+		res = Math.max(res, ans);
+		return tempAns;
 }
-
 
 1. Diameter of Binary Tree (https://www.geeksforgeeks.org/problems/diameter-of-binary-tree/1)
 
