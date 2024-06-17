@@ -490,53 +490,361 @@ The static synchronised methods of same class always block each other as 1 lock 
 No. The thread executing static synchronised method holds a lock on the class and the executing the non static synchronised method holds lock on the object on which the method has been called, these 2 locks are different and these threads dont block eachother.
 
 20. Can Constructors be synchronised?
+
+No, constructors in Java cannot be synchronized. Using the synchronized keyword with a constructor is a syntax error. Constructors also cannot be abstract, final, or static
+
+https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html
+
 21. What is DeadLock?
+
+https://www.geeksforgeeks.org/introduction-of-deadlock-in-operating-system/
+
+
 22. What is Inter thread communication?Explain wait(),notify() and notifyall()?
+
+Inter-thread communication in Java is a fundamental part of building multithreaded applications. The Object class methods wait(), notify(), and notifyAll() provide a way for threads to communicate and coordinate their activities. These methods are used for signaling and communication between threads.
+
+https://www.javatpoint.com/inter-thread-communication-example
+
+
 23. What is IllegalMonitorStateException?
+
+In Java, an IllegalMonitorStateException is a runtime exception that occurs in multithreaded applications when a thread tries to wait on or notify other threads waiting on an object's monitor without owning the monitor. This can happen if a thread calls the wait(), notify(), or notifyAll() methods of the Object class outside of a synchronized block
+
+https://www.baeldung.com/java-illegalmonitorstateexception
+
+
 24. Which class does wait(),notify() and notifyall() method belong?
+
+The wait(), notify(), and notifyAll() methods belong to the Object class in Java. These methods are used for thread synchronization. The wait() method causes the current thread to wait until another thread invokes the notify() method or the notifyAll() method on the same object. The notify() method wakes up a single thread that is waiting on the object. The notifyAll() method wakes up all threads that are waiting on the object.
+
+https://www.digitalocean.com/community/tutorials/java-thread-wait-notify-and-notifyall-example
+
+
 25. Explain few Thread class methods?is Sleep() a method in Thread class or Object class?
+
+The Sleep() method is a method in the Thread class. It is used to pause the execution of the current thread for a specified period of time. The sleep() method takes a single argument, which is the length of time to sleep in milliseconds.
+
+https://www.geeksforgeeks.org/thread-sleep-method-in-java-with-examples/
+
+
 26. Producer Consumer Problem in Java?
+
+https://www.geeksforgeeks.org/producer-consumer-solution-using-threads-java/
+
+
 27. Volatile vs Synchronised?
+
+Volatile and synchronized are two keywords in Java that are used to ensure the visibility and atomicity of shared variables in multithreaded applications. However, there are some key differences between the two keywords.
+
+Volatile
+Guarantees visibility: The volatile keyword ensures that the value of a shared variable is always visible to all threads. This means that if one thread changes the value of a volatile variable, other threads will immediately see the updated value.
+Does not guarantee atomicity: The volatile keyword does not guarantee the atomicity of shared variables. This means that it is possible for two threads to read or write to a volatile variable at the same time, which can lead to race conditions.
+
+Synchronized
+Guarantees visibility: The synchronized keyword ensures that the value of a shared variable is always visible to all threads. This means that if one thread changes the value of a synchronized variable, other threads will immediately see the updated value.
+Guarantees atomicity: The synchronized keyword also guarantees the atomicity of shared variables. This means that it is impossible for two threads to read or write to a synchronized variable at the same time, which prevents race conditions.
+
+When to use volatile: The volatile keyword should be used when you need to ensure that the value of a shared variable is always visible to all threads, but you do not need to guarantee atomicity. For example, you might use the volatile keyword to implement a flag that indicates whether a thread is still running.
+
+When to use synchronized: The synchronized keyword should be used when you need to ensure that the value of a shared variable is always visible to all threads and you also need to guarantee atomicity. For example, you might use the synchronized keyword to implement a counter that is shared by multiple threads.
+
+Performance: The synchronized keyword has a higher performance cost than the volatile keyword. This is because the synchronized keyword requires the JVM to acquire a lock on the shared variable before it can be accessed. The volatile keyword, on the other hand, does not require the JVM to acquire a lock.
+
+Conclusion: The volatile and synchronized keywords are two important tools for ensuring the visibility and atomicity of shared variables in multithreaded applications. The volatile keyword should be used when you need to ensure that the value of a shared variable is always visible to all threads, but you do not need to guarantee atomicity. The synchronized keyword should be used when you need to ensure that the value of a shared variable is always visible to all threads and you also need to guarantee atomicity.
+
+https://blog.knoldus.com/difference-between-synchronized-and-volatile-in-java/
+
 28. What are Atomic variables?
+
+Atomic variables are a way to perform atomic operations on primitive data types, such as integers, longs, and doubles, in a thread-safe and efficient manner. Atomic operations are operations that are fully executed without the possibility of being interrupted by another thread. This means that atomic operations either happen all at once or not at all, ensuring a consistent state of the variable being operated on
+
+https://medium.com/@erayaraz10/understanding-atomic-volatile-and-synchronized-variables-in-java-differences-and-use-cases-b12f519a4c4b
 
 
 
 ###########Concurrency########################
 
 1. runnable vs callable ?
+
+Runnable and Callable are both interfaces in Java that are used to represent tasks that can be run by multiple threads. However, there are some key differences between the two interfaces.
+
+runnable: Runnable is a simpler interface with a single method, run(), which does not return anything. This means that Runnable tasks cannot return a result. Runnable tasks are typically used for fire-and-forget tasks, such as updating a GUI or logging data.
+
+callable: Callable is a more powerful interface with a single method, call(), which returns a value. This means that Callable tasks can return a result, which can be useful for tasks such as processing data or performing calculations. Callable tasks are typically used when you need to get the result of a task back.
+
+https://www.geeksforgeeks.org/difference-between-callable-and-runnable-in-java/
+
 2. What is Future Object?
+
+A Future object represents the result of an asynchronous computation. It provides methods to check if the computation is complete, to wait for its completion, and to retrieve the result of the computation.
+In Java, the Future interface is defined in the java.util.concurrent package. It is used to represent the result of an asynchronous computation that is submitted to an ExecutorService.
+
+https://www.digitalocean.com/community/tutorials/java-callable-future-example
+
+
 3. What is CompletableFuture?
+
+CompletableFuture is a class in java. util. concurrent package that implements the Future and CompletionStage Interface. It represents a future result of an asynchronous computation. It can be thought of as a container that holds the result of an asynchronous operation that is being executed in a different thread.
+
+https://www.geeksforgeeks.org/completablefuture-in-java/
+
+
 4. Use of Done() , IsCancelled() and Cancel() method of Future Object?
+
+The Future interface in Java provides methods to check the status of an asynchronous task and to cancel it if necessary. The three methods you mentioned, Done(), IsCancelled(), and Cancel(), are all used for this purpose.
+
+Done(): The Done() method returns true if the task has completed, either normally or by being cancelled. If the task is still running, Done() will return false.
+
+IsCancelled(): The IsCancelled() method returns true if the task was cancelled before it completed normally. If the task is still running or has completed normally, IsCancelled() will return false.
+
+Cancel(): The Cancel() method attempts to cancel the task. If the task is still running, Cancel() will try to interrupt the thread that is running it. If the task has already completed, Cancel() will have no effect.
+
+
+https://connect2grp.medium.com/understating-java-future-and-callable-features-aec70d2aef6
+
+
 5. Explain ThreadLocal class
+
+ThreadLocal is a class in Java that allows you to create variables that can only be read and written by the same thread. This can be useful in situations where you have multiple threads accessing the same variable, but you want to ensure that each thread has its own isolated copy of the variable
+
+https://www.geeksforgeeks.org/java-lang-threadlocal-class-java/
+
+
 6. What is CountDownLatch?
+
+CountDownLatch is a synchronization aid in Java that allows one or more threads to wait until a set of operations being performed in other threads is complete. It is a class in the java.util.concurrent package.
+
+CountDownLatch is initialized with a count, representing the number of actions that must occur before the latch is released. Each action decrements this count. When the count reaches zero, all waiting threads are released.
+
+CountDownLatch can be used in a variety of situations where you need to wait for multiple threads to complete their tasks before proceeding. For example, you could use CountDownLatch to wait for all of the threads in a thread pool to finish their work before shutting down the pool.
+
+https://www.geeksforgeeks.org/countdownlatch-in-java/
+
 7. What is CyclicBarrier?
+
+A CyclicBarrier is a synchronization tool in Java that allows a group of threads to wait for each other to reach a common execution point, called a barrier. The barrier is initialized with a specific number of threads, and the threads wait until all of them reach the barrier using await methods.
+
+https://www.baeldung.com/java-cyclic-barrier
+
+
 8. What is ReEntrant lock?
+
+A reentrant lock is a mutual exclusion mechanism that allows multiple threads to access a shared resource without causing a deadlock. It is implemented as a class in the Java programming language and is part of the java.util.concurrent package.
+
+A reentrant lock can be acquired by a thread multiple times. When a thread acquires a reentrant lock for the first time, the lock's hold count is set to one. Each subsequent acquisition of the lock by the same thread increments the hold count by one. The lock is released when the thread calls the unlock() method the same number of times as it called the lock() method.
+
+Reentrant locks are useful for protecting shared resources from concurrent access. For example, a reentrant lock could be used to protect a shared database connection or a file.
+
+https://www.baeldung.com/java-binary-semaphore-vs-reentrant-lock
+
+
+
 9. ExecutorService.submit() vs Executor.execute()?
+
+The main difference between ExecutorService.submit() and Executor.execute() is that submit() returns a Future object, while execute() does not. This Future object can be used to check the status of the task, cancel it, or get its result.
+
+https://www.geeksforgeeks.org/difference-between-executorservice-execute-and-submit-method-in-java/
+
+
 10. Different types of ThreadExecutor Services?
+
+CachedThreadPool: This type of thread pool creates new threads as needed and reuses them when they become available. It doesn't have a fixed number of threads and can create new threads as needed. However, if a thread is idle for a certain period of time, it is terminated and removed from the pool.
+
+FixedThreadPool: This type of thread pool creates a fixed number of threads at the time of creation and reuses them for all tasks. It is useful when you want to limit the number of threads that are running simultaneously.
+
+SingleThreadExecutor: This type of thread pool creates only one thread and uses it to execute all tasks. It is useful when you want to ensure that tasks are executed in the order in which they are submitted.
+
+ScheduledThreadPoolExecutor: This type of thread pool creates a fixed number of threads and uses them to execute tasks that are scheduled to run at a specific time or with a specific frequency. It is useful for tasks that need to be executed periodically, such as sending emails or updating databases.
+
+ForkJoinPool: This type of thread pool is designed to work with recursive tasks. It creates a pool of threads and uses them to execute tasks in a work-stealing algorithm. This means that if a thread is idle, it will steal work from other threads that are busy. This can improve performance for recursive tasks.
+
+https://www.linkedin.com/pulse/types-thread-pool-executors-aniket-nandan/
+
 11. Explain how FixedThreadPool executor works?
 
+A FixedThreadPool executor is a type of thread pool that maintains a fixed number of threads to execute tasks. It is created using the Executors.newFixedThreadPool() method, which takes the number of threads to create as an argument.
+
+When a task is submitted to a FixedThreadPool executor, it is added to a queue. If there are any available threads, one of them will pick up the task and start executing it. If all of the threads are busy, the task will remain in the queue until a thread becomes available.
+
+FixedThreadPool executors are useful when you want to limit the number of threads that are used to execute tasks. This can be helpful for controlling resource usage or preventing your application from becoming overloaded.
+
+https://medium.com/@himani.prasad016/thread-pools-in-java-b19ea1af7c4c
 
 
 ############Java 8#####################
 
 1. Interface8 changes
+
+Java8 Interfaces also introduced a static method for the interface, this is similar to the static method of the class. We cannot override the static method in the implementation class. Static methods are useful to implement utility functionalities that do not belong to any particular implementation class.
+
+https://medium.com/javarevisited/java-8-interface-changes-functional-interface-interview-questions-67acecda534d
+
+
 2. What is Functional Interface? why do we need it?
+
+A functional interface in Java is an interface that has one abstract method. Introduced in Java 8, they're used to define new functions and manipulate existing ones. Functional interfaces are beneficial because they allow for more concise and expressive code.
+
+Benefits: Functional interfaces allow developers to write more modular and reusable code by defining functions as values and passing them around as arguments or return values. They also help make code more readable, clean, and straightforward.
+
+Implementation: Functional interfaces can be instantiated using lambda expressions, which avoids the need for bulky anonymous class implementation.
+
+Annotation: While not mandatory, it's considered best practice to mark an interface as functional using the @FunctionalInterface annotation. This prevents accidental addition of extra methods and throws a compiler error if more than one abstract method is added.
+
+Methods: While a functional interface can only have one abstract method, it can also have any number of static and default (non-abstract) methods.
+
+Examples: Some examples of functional interfaces include Function, Consumer, Predicate, and Supplier.
+
+https://www.geeksforgeeks.org/functional-interfaces-java/
+
+
 3. Difference between Collection and Stream
+
+Collections store data, while streams process data.
+Collections are designed to store and organize data, while streams are designed to process data in a sequential manner.
+Collections are eager, while streams are lazy.
+Collections eagerly evaluate all of their elements when they are created, while streams lazily evaluate their elements only when they are needed.
+Collections are mutable, while streams are immutable.
+Collections can be modified after they are created, while streams cannot be modified after they are created.
+Collections are finite, while streams can be infinite.
+Collections have a fixed size, while streams can have an infinite number of elements.
+Collections are thread-safe, while streams are not thread-safe.
+Collections can be safely accessed by multiple threads, while streams cannot be safely accessed by multiple threads.
+Here are some examples of how collections and streams can be used:
+Collections can be used to store a list of names, a set of numbers, or a map of key-value pairs.
+Streams can be used to filter a list of names, sort a set of numbers, or reduce a map of key-value pairs.
+
+https://www.geeksforgeeks.org/difference-between-streams-and-collections-in-java/
+
+
 4. What is Terminal Operator vs Intermediate operators?
+
+In Java streams, terminal operations produce the final output, while intermediate operations modify the objects in the pipeline:
+
+Terminal operations: These operations produce a result or side effect, and mark the end of stream processing. Once a terminal operation is executed, the stream can't be used further. Examples of terminal operations include toList(), forEach(), and reduce().
+
+Intermediate operations: These operations transform a stream into another stream, and are only executed once a terminal operation is invoked. Examples of intermediate operations include distinct(), sorted(), and flatMap().
+
+
+https://stackoverflow.com/questions/47688418/what-is-the-difference-between-intermediate-and-terminal-operations
+
+
 5. What is Optional?
+
+The Optional class in Java is a container object that may or may not contain a non-null value. It is intended to reduce the number of NullPointerExceptions in your code.
+There are a few things to keep in mind when using Optional:
+You can use the isPresent() method to check if a value is present.
+You can use the get() method to get the value of a present value.
+You can use the orElse() method to return a default value if the value is not present.
+You can use the ifPresent() method to execute a block of code if the value is present.
+You can use the map() method to transform values.
+
+https://medium.com/javarevisited/optional-class-in-java-8-making-your-code-more-clear-and-concise-62af0712910d
+
+
 6. Flatmap vs Map?
+
+https://www.geeksforgeeks.org/difference-between-map-and-flatmap-in-java-stream/
+
+
 7. Difference between Parallel sort vs sort
+
+The main difference between parallel sort and sort is that parallel sort uses multiple threads to sort the data, while sort uses a single thread. This can make parallel sort much faster than sort, especially for large datasets.
+Another difference is that parallel sort is a stable sorting algorithm, while sort is not. This means that parallel sort will preserve the original order of equal elements in the data, while sort may not.
+
+
+https://www.baeldung.com/java-arrays-sort-vs-parallelsort
+
+
 8. Difference between Predicate vs BiPredicate?
+
+BiPredicate is a functional interface in Java that accepts two inputs and can return a boolean value. It is similar to the Predicate interface. The only difference is that it takes two inputs instead of one
+
+https://ganeshkumarm1.medium.com/predicate-and-function-in-java-837b46c6dcf7
+
+
 9. How Diamond problem is solved in Java8?
+
+The diamond problem in Java can be solved in Java 8 and later versions by using virtual extension methods or interfaces. The diamond problem can occur when a class extends multiple classes that have the same name function, which can lead to ambiguity and program crashing.
+
+https://www.geeksforgeeks.org/diamond-problem-in-java/
 
 
 
 #########Other##############
 
 1. Difference between JDK,JRE and JVM
-2.What is Immutable class?
+
+JDK, JRE, and JVM are all part of Java development and execution:
+
+JDK: Java Development Kit is a software development kit used to develop Java applications. It contains tools for debugging, monitoring, and developing Java code. JDKs are platform-dependent, meaning you need a different JDK for each platform.
+
+JRE: Java Runtime Environment is a software package that provides the Java Virtual Machine (JVM), class libraries, and other components to run Java applications. JREs provide programming tools and deployment technologies. They are also platform-dependent, so you need a different JRE for each platform.
+
+JVM: Java Virtual Machine is the foundation of the Java programming language and ensures that a program's Java source code is platform-agnostic. It acts as an abstract layer between the program and the platform it's running on, making Java code portable. JVMs are included in both JDK and JRE, and Java programs won't run without them.
+
+https://www.geeksforgeeks.org/differences-jdk-jre-jvm/
+
+2. What is Immutable class?
+
+In Java, an immutable class is a class whose state cannot be changed after it has been created. Immutable classes are useful in situations where the state of an object needs to remain constant, such as in multi-threaded environments. They are also important for safety, as they prevent side effects and are safe from cloning
+
+https://www.digitalocean.com/community/tutorials/how-to-create-immutable-class-in-java
+
+
 3. What are solid principles?
+
+https://www.freecodecamp.org/news/solid-principles-explained-in-plain-english/
+
+https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design
+
+
 4. Difference between ClassNotFound vs NoClassDefError?
-5. What is Singleton Design pattern?Explain ThreadSafe Singleton and Bill Pugh Singleton ?
+
+The main difference between ClassNotFoundException and NoClassDefFoundError is that the ClassNotFoundException is thrown when the Java Virtual Machine (JVM) cannot find the class file, while the NoClassDefFoundError is thrown when the JVM can find the class file but cannot load it.
+
+Here are some specific cases when each exception is thrown:
+
+ClassNotFoundException
+When the class file is not in the classpath.
+When the class file is corrupted or invalid.
+When the class file is for a different version of Java than the one that is running.
+
+NoClassDefFoundError
+When the class file is in the classpath but the JVM cannot load it.
+When the class file depends on another class that is not in the classpath.
+When the class file is for a different version of Java than the one that is running.
+
+To resolve these errors, you can try the following:
+
+ClassNotFoundException
+Make sure that the class file is in the classpath.
+Make sure that the class file is not corrupted or invalid.
+Make sure that the class file is for the same version of Java as the one that is running.
+
+NoClassDefFoundError
+Make sure that the class file is in the classpath.
+Make sure that the class file does not depend on another class that is not in the classpath.
+Make sure that the class file is for the same version of Java as the one that is running.
+
+https://help.liferay.com/hc/en-us/articles/360029316331-Resolving-ClassNotFoundException-and-NoClassDefFoundError-in-OSGi-Bundles
+
+
+
+5. What is Singleton Design pattern? Explain ThreadSafe Singleton and Bill Pugh Singleton ?
+
+https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/
+
+A thread safe singleton works fine in multi-threaded environments but reduces performance because of the cost associated with the synchronized method. To overcome the issue of synchronization, Bill Pugh came up with his implementation using the static inner helper class.
+
+https://dzone.com/articles/singleton-bill-pugh-solution-or-enum
+
+
 6. How to break Singleton?
+
+https://dzone.com/articles/prevent-breaking-a-singleton-class-pattern
+
+
 7. Explain few features in each Java versions starting from Java8
+
+https://www.geeksforgeeks.org/java-8-features/
