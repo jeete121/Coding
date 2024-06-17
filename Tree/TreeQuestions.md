@@ -1326,3 +1326,198 @@ Solution::
 
 	}
 }
+
+23. Serialize and Deserialize Binary Tree: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
+
+public public class Codec {
+
+	public String serialize(TreeNode root) {
+		if (root == null) {
+			return "";
+		}
+		Queue<TreeNode> q = new LinkedList<>();
+		StringBuilder res = new StringBuilder();
+
+		q.add(root);
+
+		while (!q.isEmpty()) {
+			TreeNode node = q.poll();
+			if (node == null) {
+				res.append("# ");
+				continue;
+			}
+			res.append(node.val + " ");
+			q.add(node.left);
+			q.add(node.right);
+		}
+		return res.toString();
+
+	}
+
+	public TreeNode deserialize(String data) {
+
+		if (data == "") {
+			return null;
+		}
+		Queue<TreeNode> q = new LinkedList<>();
+		String[] values = data.split(" ");
+
+		TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+		q.add(root);
+
+		for (int i = 1; i < values.length; i++) {
+			TreeNode node = q.poll();
+			if (!values[i].equals("#")) {
+				TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+				node.left = left;
+				q.add(left);
+			}
+			if (!values[++i].equals("#")) {
+				TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+				node.right = right;
+				q.add(right);
+			}
+		}
+		return root;
+
+	}
+}
+
+24. Morris Traversal (Inorder) : (https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+
+public class Solution {
+	
+	public List<Integer> inorderTraversal(TreeNode root) {
+		List<Integer> inorder = new ArrayList<>();
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.left == null) {
+				inorder.add(cur.val);
+				cur = cur.right;
+			} else {
+				TreeNode prev = cur.left;
+				while (prev.right != null && prev.right != cur) {
+					prev = prev.right;
+				}
+				if (prev.right == null) {
+					prev.right = cur;
+					cur = cur.left;
+				} else {
+					prev.right = null;
+					inorder.add(cur.val);
+					cur = cur.right;
+				}
+			}
+		}
+		return inorder;
+
+	}
+}
+
+25. Morris Traversal (Preorder) : https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+
+public class Solution {
+	
+	public List<Integer> preorderTraversal(TreeNode root) {
+		List<Integer> preorder = new ArrayList<>();
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.left == null) {
+				preorder.add(cur.val);
+				cur = cur.right;
+			} else {
+				TreeNode prev = cur.left;
+				while (prev.right != null && prev.right != cur) {
+					prev = prev.right;
+				}
+				if (prev.right == null) {
+					prev.right = cur;
+					preorder.add(cur.val);
+					cur = cur.left;
+				} else {
+					prev.right = null;
+					cur = cur.right;
+				}
+			}
+		}
+		return preorder;
+
+	}
+}
+
+26. Flatten Binary Tree to Linked List: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
+
+
+Aproach 1::
+
+public class Solution {
+	
+	TreeNode prev = null;
+
+	public void flatten(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		flatten(root.right);
+		flatten(root.left);
+		root.right = prev;
+		root.left = null;
+		prev = root;
+	}
+}
+
+Approach 2:
+
+public class Solution {
+	
+	public void flatten(TreeNode root) {
+
+		if (root == null) {
+			return;
+		}
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+
+		TreeNode cur = root;
+		while (!st.isEmpty()) {
+			cur = st.pop();
+			if (cur.right != null) {
+				st.push(cur.right);
+			}
+			if (cur.left != null) {
+				st.push(cur.left);
+			}
+			if (!st.isEmpty())
+				cur.right = st.peek();
+			cur.left = null;
+		}
+
+	}
+}
+
+
+Approach 3:
+
+public class Solution {
+	
+	public void flatten(TreeNode root) {
+
+		if (root == null) {
+			return;
+		}
+		TreeNode cur = root;
+
+		while (cur != null) {
+			if (cur.left != null) {
+				TreeNode prev = cur.left;
+				while (prev.right != null)
+					prev = prev.right;
+				prev.right = cur.right;
+				cur.right = cur.left;
+				cur.left = null;
+			}
+			cur = cur.right;
+		}
+
+	}
+}
