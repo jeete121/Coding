@@ -1,4 +1,6 @@
-1. Search in a Binary Search Tree: https://leetcode.com/problems/search-in-a-binary-search-tree/description/
+**1. Search in a Binary Search Tree**
+
+https://leetcode.com/problems/search-in-a-binary-search-tree/description/
 
 You are given the root of a binary search tree (BST) and an integer val.
 Find the node in the BST that the node's value equals val and return the subtree rooted with that node. If such a node does not exist, return null.
@@ -17,7 +19,9 @@ public class Solution {
 	}
 }
 
-2. Ceil in BST : https://www.geeksforgeeks.org/problems/implementing-ceil-in-bst/1
+**2. Ceil in BST**
+
+https://www.geeksforgeeks.org/problems/implementing-ceil-in-bst/1
 
 Given a BST and a number X, find Ceil of X.
 Note: Ceil(X) is a number that is either equal to X or is immediately greater than X.
@@ -75,7 +79,9 @@ public class Tree {
 	}
 }
 
-3. Floor in BST: https://www.geeksforgeeks.org/problems/floor-in-bst/1
+**3. Floor in BST**
+
+https://www.geeksforgeeks.org/problems/floor-in-bst/1
 
 You are given a BST(Binary Search Tree) with n number of nodes and value x. your task is to find the greatest value node of the BST which is smaller than or equal to x.
 
@@ -104,7 +110,10 @@ public class Solution {
 
 
 
-4. Insert into a Binary Search Tree: https://leetcode.com/problems/insert-into-a-binary-search-tree/description/
+**4. Insert into a Binary Search Tree**
+
+
+https://leetcode.com/problems/insert-into-a-binary-search-tree/description/
 
 You are given the root node of a binary search tree (BST) and a value to insert into the tree. Return the root node of the BST after the insertion. It is guaranteed that the new value does not exist in the original BST.
 
@@ -143,7 +152,9 @@ public class Solution {
 }
 
 
-5. Delete Node in a BST: https://leetcode.com/problems/delete-node-in-a-bst/description/
+**5. Delete Node in a BST**
+
+https://leetcode.com/problems/delete-node-in-a-bst/description/
 
 Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
 
