@@ -1,5 +1,6 @@
-General Format
+# General Format
 
+```java
 int solve(Node root, int res) {
     
 		if (root == null)
@@ -12,8 +13,14 @@ int solve(Node root, int res) {
 		return tempAns;
 }
 
-1. Diameter of Binary Tree (https://www.geeksforgeeks.org/problems/diameter-of-binary-tree/1)
+```
 
+
+**1. Diameter of Binary Tree**
+
+https://www.geeksforgeeks.org/problems/diameter-of-binary-tree/1
+
+```java
 public class Solution {
 	
 	int res;
@@ -29,18 +36,19 @@ public class Solution {
 	}
 
 	int diameter(Node root) {
-
-		// Your code here
 		res = 0;
 		solve(root);
 		return res;
 	}
 }
+```
 
-2. Maximum path sum from any node to any/Binary Tree Maximum Path Sum
- (https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
+**2. Maximum path sum from any node to any/Binary Tree Maximum Path Sum**
+
+https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
 
 
+```java
 public class Solution {
 	
 	int res;
@@ -62,3 +70,4 @@ public class Solution {
 		return res;
 	}
 }
+```

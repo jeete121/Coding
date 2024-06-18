@@ -1,7 +1,8 @@
-Base Condition--> Think of its smallest valid input.
+**Base Condition--> Think of its smallest valid input.**
 
-Recursive Approach::
+**Recursive Approach::**
 
+```java
 public class Solution {
 
 	int knapsack(int wt[], int val[], int w, int n) {
@@ -15,12 +16,14 @@ public class Solution {
 		return knapsack(wt, val, w, n - 1);
 	}
 }
+```
 
-Memoization Approach::
+**Memoization Approach::**
 
 Create a global matrix of the size according to the constraints of n and w. and initialize it with -1.
 
 
+```java
 public class Solution {
 
 	int t[][] = new int[1000001][1000001];
@@ -39,12 +42,14 @@ public class Solution {
 
 	}
 }
+```
 
 
-Top Down Approach::
+**Top Down Approach**
 
 Base condition will be used to initilization
 
+```java
 public class Solution {
 
 	int t[][] = new int[1000001][100001];
@@ -67,11 +72,14 @@ public class Solution {
 		return t[n][w];
 	}
 }
+```
 
 
-0/1 KnapSack Problem Solution::
-(https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1)
+**0/1 KnapSack Problem Solution**
 
+https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1
+
+```java
 public class Solution {
 	
 	static int knapSack(int W, int wt[], int val[], int n, int[][] t) {
@@ -117,24 +125,17 @@ public class Solution {
 		// return t[n][W];
 	}
 }
+```
 
-Problems Related to KnapSack
-
-1. Subset sum problem (https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1)
- 
-2. Equal sum partition (https://www.geeksforgeeks.org/problems/subset-sum-problem2014/1)
-
-3. Count of subset sum (https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1)
-
-4. Minimum Subset sum Diff (https://www.geeksforgeeks.org/problems/minimum-sum-partition3317/1)
-
-5. Target Sum (https://leetcode.com/problems/target-sum/)
-
-6. Number of subset with given difference(https://practice.geeksforgeeks.org/problems/partitions-with-given-difference/1)
+# Problems Related to KnapSack
 
 
-1. Subset Sum Problem Solution::
+**1. Subset Sum Problem**
 
+https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1
+
+
+```java
 public class Solution {
 
 	static int isSubsetSum(int N, int arr[], int sum, int t[][]) {
@@ -161,11 +162,16 @@ public class Solution {
 
 	}
 }
+```
 
 
 
-2. Equal sum partition::
+**2. Equal sum partition**
 
+https://www.geeksforgeeks.org/problems/subset-sum-problem2014/1
+
+
+```java
 public class Solution {
 
 	static int equalPartition(int N, int arr[], int sum, int t[][]) {
@@ -198,10 +204,15 @@ public class Solution {
 		return equalPartition(N, arr, sum / 2, t);
 	}
 }
+```
 
 
-3. Count of subset sum 
+**3. Count of subset sum**
 
+https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1
+
+
+```java
 public class Solution {
 
 	public static final int mod = 1000000007;
@@ -232,10 +243,15 @@ public class Solution {
 
 	}
 }
+```
 
 
-4. Minimum Subset sum Diff
+**4. Minimum Subset sum Diff**
 
+https://www.geeksforgeeks.org/problems/minimum-sum-partition3317/1
+
+
+```java
 public class Solution {
 	
 	int minAns = Integer.MAX_VALUE;
@@ -274,10 +290,15 @@ public class Solution {
 
 	}
 }
+```
 
 
-5. Target Sum
+**5. Target Sum**
 
+https://leetcode.com/problems/target-sum/
+
+
+```java
 public class Solution {
 
 	public int findTargetSumWays(int nums[], int n, int sum, int[][] t) {
@@ -313,10 +334,14 @@ public class Solution {
 
 	}
 }
+```
+
+**6. Number of subset with given difference**
+
+https://practice.geeksforgeeks.org/problems/partitions-with-given-difference/1
 
 
-6. Number of subset with given difference
-
+```java
 public class Solution {
 
 	public static final int mod = 1000000007;
@@ -355,3 +380,4 @@ public class Solution {
 		return countPartitions(arr, n, sum, t) % mod;
 	}
 }
+```

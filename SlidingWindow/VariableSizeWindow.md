@@ -1,5 +1,6 @@
-Pattern::
+# Pattern
 
+```java
 public class Solution {
 
 	public int slideWindow(int arr[], int condition, int k) {
@@ -30,37 +31,25 @@ public class Solution {
 	}
 
 }
+```
 
 
-
-All Sliding Window Question::
+# All Sliding Window Question
 
 https://leetcode.com/discuss/study-guide/3630462/Top-20-Sliding-Window-Problems-for-beginners
 
+**Variable size::
+**
+**1. Largest/Smallest subarray of sum k.**
 
-Problems::
+**2. Largest substring of k distinct character**
 
-Variable size::
-
-1. Largest/Smallest subarray of sum k.
-
-2. Largest substring of k distinct character. (https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1)
-
-3. Length of longest substring of no repeating character. (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
-
-4. Pick toy
-
-5. Minimum Window subarray (https://leetcode.com/problems/minimum-window-substring/description/)
-
-
-
-
-
-2. Largest substring of k distinct character. (https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1)
+https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
 
 Solution::
 
 
+```java
 public class Solution {
 	
 	public int longestkSubstr(String s, int k) {
@@ -94,12 +83,16 @@ public class Solution {
 		return ans;
 	}
 }
+```
 
 
-3. Length of longest substring of no repeating character. (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+**3. Length of longest substring of no repeating character**
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
 Solution::
 
+```java
 public class Solution {
 	
 	public int lengthOfLongestSubstring(String s) {
@@ -130,11 +123,17 @@ public class Solution {
 		return ans;
 	}
 }
+```
 
-5. Minimum Window subarray (https://leetcode.com/problems/minimum-window-substring/description/)
+**4. Pick toy**
+
+**5. Minimum Window subarray**
+
+https://leetcode.com/problems/minimum-window-substring/description/
 
 Solution:: 
 
+```java
 public class Solution {
 	
 	public String minWindow(String s, String t) {
@@ -191,4 +190,5 @@ public class Solution {
 		return res;
 	}
 }
+```
 

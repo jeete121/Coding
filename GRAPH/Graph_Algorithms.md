@@ -1,15 +1,24 @@
-1. Introduction to Graph: https://takeuforward.org/graph/introduction-to-graph/
+**1. Introduction to Graph**
 
-2. Graph Representation: https://takeuforward.org/graph/graph-representation-in-c/
+https://takeuforward.org/graph/introduction-to-graph/
 
-3. Connected Components in Graphs: https://takeuforward.org/graph/connected-components-in-graphs/
+**2. Graph Representation**
 
-4. Breadth First Search (BFS): Level Order Traversal: https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
+https://takeuforward.org/graph/graph-representation-in-c/
+
+**3. Connected Components in Graphs**
+
+https://takeuforward.org/graph/connected-components-in-graphs/
+
+**4. Breadth First Search (BFS): Level Order Traversal**
+
+https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 
 Solution:: 
 
+```java
 public class Solution {
 
     public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
@@ -40,13 +49,17 @@ public class Solution {
         return res;
     }
 }
+```
 
-6. Depth First Search (DFS): https://takeuforward.org/data-structure/depth-first-search-dfs/
+**6. Depth First Search (DFS)**
+
+https://takeuforward.org/data-structure/depth-first-search-dfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	ArrayList<Integer> dfsArray;
@@ -76,13 +89,17 @@ public class Solution {
 		return dfsArray;
 	}
 }
+```
 
-7. Number of Provinces: https://takeuforward.org/data-structure/number-of-provinces/
+**7. Number of Provinces**
+
+https://takeuforward.org/data-structure/number-of-provinces/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-provinces/1
 
 Solution::
 
+```java
 public class Solution {
 
 	static void dfs(int start, ArrayList<ArrayList<Integer>> adj, int vis[]) {
@@ -122,13 +139,15 @@ public class Solution {
 		return cnt;
 	}
 }
+```
 
-8. Number of Islands | Number of Connected Components in Matrix
+**8. Number of Islands | Number of Connected Components in Matrix**
 
 Problem Link:: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, -1, 0, 1, -1, 1, -1 };
@@ -173,14 +192,18 @@ public class Solution {
 
 	}
 }
+```
 
 
-9. Flood Fill Algorithm - Graphs: https://takeuforward.org/graph/flood-fill-algorithm-graphs/
+**9. Flood Fill Algorithm - Graphs**
+
+https://takeuforward.org/graph/flood-fill-algorithm-graphs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, -1, 0 };
@@ -233,15 +256,19 @@ class Pair {
 		this.y = y;
 	}
 }
+```
 
 
 
-10. Rotten Oranges: https://takeuforward.org/data-structure/rotten-oranges/
+**10. Rotten Oranges**
+
+https://takeuforward.org/data-structure/rotten-oranges/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int cntFresh;
@@ -328,16 +355,19 @@ class Pair {
 		this.time = time;
 	}
 }
+```
 
 
 
+**11. Detect Cycle in an Undirected Graph (using BFS)**
 
-11. Detect Cycle in an Undirected Graph (using BFS): https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-bfs/
+https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-bfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public boolean bfs(int src, ArrayList<ArrayList<Integer>> adj, boolean vis[]) {
@@ -391,14 +421,18 @@ class Pair {
 	}
 
 }
+```
 
 
-12. Detect Cycle in an Undirected Graph (using DFS): https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-dfs/
+**12. Detect Cycle in an Undirected Graph (using DFS)**
+
+https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-using-dfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], int parent) {
@@ -435,14 +469,18 @@ public class Solution {
 		return false;
 	}
 }
+```
 
 
-13. Distance of Nearest Cell having 1: https://takeuforward.org/graph/distance-of-nearest-cell-having-1/
+**13. Distance of Nearest Cell having 1**
+
+https://takeuforward.org/graph/distance-of-nearest-cell-having-1/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, 0, -1 };
@@ -504,13 +542,17 @@ class Node {
 	}
 
 }
+```
 
-14. Surrounded Regions | Replace O’s with X’s: https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/
+**14. Surrounded Regions | Replace O’s with X’s:**
+
+https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/
 
 Problem Link :: https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1
 
 Solution::
 
+```java
 public class Solution {
 
 	static int dx[] = { 1, 0, -1, 0 };
@@ -555,14 +597,18 @@ public class Solution {
 		return a;
 	}
 }
+```
 
 
-15. Number of Enclaves: https://takeuforward.org/graph/number-of-enclaves/
+**15. Number of Enclaves**
+
+https://takeuforward.org/graph/number-of-enclaves/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-enclaves/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, -1, 0 };
@@ -636,13 +682,15 @@ class Pair {
 		this.y = y;
 	}
 }
+```
 
-16.  Number of Distinct Islands
+**16.  Number of Distinct Islands**
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	int dx[] = { -1, 0, 1, 0 };
@@ -691,14 +739,18 @@ public class Solution {
 		return st.size();
 	}
 }
+```
 
 
-17. Bipartite Graph | BFS Implementation: https://takeuforward.org/graph/bipartite-graph-bfs-implementation/
+**17. Bipartite Graph | BFS Implementation**
+
+https://takeuforward.org/graph/bipartite-graph-bfs-implementation/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	public boolean bfs(int node, int V, ArrayList<ArrayList<Integer>> adj, int[] color) {
@@ -736,14 +788,18 @@ public class Solution {
 		return true;
 	}
 }
+```
 
 
-18. Bipartite Graph | DFS Implementation: https://takeuforward.org/graph/bipartite-graph-dfs-implementation/
+**18. Bipartite Graph | DFS Implementation**
+
+https://takeuforward.org/graph/bipartite-graph-dfs-implementation/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public boolean dfs(int node, int col, ArrayList<ArrayList<Integer>> adj, int color[]) {
@@ -773,14 +829,18 @@ public class Solution {
 		return true;
 	}
 }
+```
 
 
-19. Detect cycle in a directed graph (using DFS): https://takeuforward.org/data-structure/detect-cycle-in-a-directed-graph-using-dfs-g-19/
+**19. Detect cycle in a directed graph (using DFS)**
+
+https://takeuforward.org/data-structure/detect-cycle-in-a-directed-graph-using-dfs-g-19/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	private boolean dfs(int node, ArrayList<ArrayList<Integer>> adj, int pathVis[], int vis[]) {
@@ -816,14 +876,17 @@ public class Solution {
 		return false;
 	}
 }
+```
 
+**20. Find Eventual Safe States - DFS**
 
-20. Find Eventual Safe States - DFS: https://takeuforward.org/data-structure/find-eventual-safe-states-dfs-g-20/
+https://takeuforward.org/data-structure/find-eventual-safe-states-dfs-g-20/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
 
 Solution::
 
+```java
 public class Solution {
 
 	private boolean dfs(int node, List<List<Integer>> adj, int vis[], int check[], int pathVis[]) {
@@ -866,14 +929,18 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
-21. Topological Sort Algorithm | DFS: https://takeuforward.org/data-structure/topological-sort-algorithm-dfs-g-21/
+**21. Topological Sort Algorithm | DFS**
+
+https://takeuforward.org/data-structure/topological-sort-algorithm-dfs-g-21/
 
 Problem Link::  https://www.geeksforgeeks.org/problems/topological-sort/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	private static void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], Stack<Integer> st) {
@@ -906,14 +973,18 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
-22. Kahn's Algorithm | Topological Sort Algorithm | BFS: https://takeuforward.org/data-structure/kahns-algorithm-topological-sort-algorithm-bfs-g-22/
+**22. Kahn's Algorithm | Topological Sort Algorithm | BFS**
+
+https://takeuforward.org/data-structure/kahns-algorithm-topological-sort-algorithm-bfs-g-22/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/topological-sort/1
 
 Solution::
 
+```java
 public class Solution {
 
 	// Function to return list containing vertices in Topological order.
@@ -946,14 +1017,18 @@ public class Solution {
 		return topo;
 	}
 }
+```
 
 
-23. Detect a Cycle in Directed Graph | Topological Sort | Kahn's Algorithm: https://takeuforward.org/data-structure/detect-a-cycle-in-directed-graph-topological-sort-kahns-algorithm-g-23/
+**23. Detect a Cycle in Directed Graph | Topological Sort | Kahn's Algorithm**
+
+https://takeuforward.org/data-structure/detect-a-cycle-in-directed-graph-topological-sort-kahns-algorithm-g-23/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	// Function to detect cycle in a directed graph.
@@ -991,13 +1066,17 @@ public class Solution {
 		return false;
 	}
 }
+```
 
-24.  Course Schedule I and II | Pre-requisite Tasks | Topological Sort: https://takeuforward.org/data-structure/course-schedule-i-and-ii-pre-requisite-tasks-topological-sort-g-24/
+**24.  Course Schedule I and II | Pre-requisite Tasks | Topological Sort**
+
+https://takeuforward.org/data-structure/course-schedule-i-and-ii-pre-requisite-tasks-topological-sort-g-24/
 
 Problem Link 1:: https://www.geeksforgeeks.org/problems/prerequisite-tasks/1
 
 Solution 1::
 
+```java
 public class Solution {
 
 	public boolean isPossible(int N, int P, int[][] prerequisites) {
@@ -1035,12 +1114,14 @@ public class Solution {
 	}
 
 }
+```
 
 
-Problem Linl 2:: https://www.geeksforgeeks.org/problems/course-schedule/1ss
+Problem Link 2:: https://www.geeksforgeeks.org/problems/course-schedule/1ss
 
 Solution 2::
 
+```java
 public class Solution {
 
 	static int[] findOrder(int n, int m, ArrayList<ArrayList<Integer>> prerequisites) {
@@ -1086,14 +1167,18 @@ public class Solution {
 	}
 
 }
+```
 
 
-25. Find Eventual Safe States - BFS - Topological Sort: https://takeuforward.org/data-structure/find-eventual-safe-states-bfs-topological-sort-g-25/
+**25. Find Eventual Safe States - BFS - Topological Sort**
+
+https://takeuforward.org/data-structure/find-eventual-safe-states-bfs-topological-sort-g-25/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
@@ -1137,13 +1222,17 @@ public class Solution {
 
 	}
 }
+```
 
-26. Alien Dictionary - Topological Sort: https://takeuforward.org/data-structure/alien-dictionary-topological-sort-g-26/
+**26. Alien Dictionary - Topological Sort**
+
+https://takeuforward.org/data-structure/alien-dictionary-topological-sort-g-26/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/alien-dictionary/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public String findOrder(String[] dict, int N, int K) {
@@ -1190,13 +1279,17 @@ public class Solution {
 
 	}
 }
+```
 
-27. Shortest Path in Directed Acyclic Graph Topological Sort: https://takeuforward.org/data-structure/shortest-path-in-directed-acyclic-graph-topological-sort-g-27/
+**27. Shortest Path in Directed Acyclic Graph Topological Sort**
+
+https://takeuforward.org/data-structure/shortest-path-in-directed-acyclic-graph-topological-sort-g-27/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public int[] shortestPath(int N,int M, int[][] edges) {
@@ -1258,14 +1351,18 @@ class Pair {
     }
     
 }
+```
 
 
-28. Shortest Path in Undirected Graph with unit distance: https://takeuforward.org/data-structure/shortest-path-in-undirected-graph-with-unit-distance-g-28/
+**28. Shortest Path in Undirected Graph with unit distance**
+
+https://takeuforward.org/data-structure/shortest-path-in-undirected-graph-with-unit-distance-g-28/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public int[] shortestPath(int[][] edges, int n, int m, int src) {
@@ -1302,14 +1399,18 @@ public class Solution {
 
 	}
 }
+```
 
 
-29. Word Ladder - I : https://takeuforward.org/graph/word-ladder-i-g-29/
+**29. Word Ladder - I**
+
+https://takeuforward.org/graph/word-ladder-i-g-29/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public int wordLadderLength(String startWord, String targetWord, String[] wordList) {
@@ -1360,13 +1461,17 @@ class Pair {
 		this.level = level;
 	}
 }
+```
 
-30. Word Ladder-II: https://takeuforward.org/graph/g-30-word-ladder-ii/ 
+**30. Word Ladder-II**
+
+https://takeuforward.org/graph/g-30-word-ladder-ii/ 
 
 Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder-ii/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public ArrayList<ArrayList<String>> findSequences(String startWord, String targetWord, String[] wordList) {
@@ -1426,13 +1531,18 @@ public class Solution {
 		return sequences;
 	}
 }
+```
 
-32. Dijkstra’s Algorithm - Using Priority Queue : https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
+
+**32. Dijkstra’s Algorithm - Using Priority Queue**
+
+https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
 
 Solution:: 
 
+```java
 public class Solution {
 
 	// Function to find the shortest distance of all the vertices
@@ -1476,13 +1586,17 @@ class Pair {
 	}
 
 }
+```
 
-35. Print Shortest Path - Dijkstra’s Algorithm: https://takeuforward.org/data-structure/g-35-print-shortest-path-dijkstras-algorithm/
+**35. Print Shortest Path - Dijkstra’s Algorithm**
+
+https://takeuforward.org/data-structure/g-35-print-shortest-path-dijkstras-algorithm/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public List<Integer> shortestPath(int n, int m, int edges[][]) {
@@ -1551,14 +1665,18 @@ class Pair {
 		this.second = second;
 	}
 }
+```
 
-36. Shortest Distance in a Binary Maze: https://takeuforward.org/data-structure/g-36-shortest-distance-in-a-binary-maze/
+**36. Shortest Distance in a Binary Maze**
+
+https://takeuforward.org/data-structure/g-36-shortest-distance-in-a-binary-maze/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1
 
 
 Solution:: 
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, -1, 0 };
@@ -1612,13 +1730,17 @@ class Pair {
 		this.second = second;
 	}
 }
+```
 
-37. Path With Minimum Effort: https://takeuforward.org/data-structure/g-37-path-with-minimum-effort/
+**37. Path With Minimum Effort**
+
+https://takeuforward.org/data-structure/g-37-path-with-minimum-effort/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/path-with-minimum-effort/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public static int MinimumEffort(int rows, int columns, int[][] heights) {
@@ -1674,13 +1796,17 @@ class Node {
 		this.y = y;
 	}
 }
+```
 
-38. Cheapest Flights Within K Stops: https://takeuforward.org/data-structure/g-38-cheapest-flights-within-k-stops/
+**38. Cheapest Flights Within K Stops**
+
+https://takeuforward.org/data-structure/g-38-cheapest-flights-within-k-stops/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public int CheapestFLight(int n, int flights[][], int src, int dst, int k) {
@@ -1745,14 +1871,18 @@ class Node {
 		this.distance = distance;
 	}
 }
+```
 
 
-39. Minimum Multiplications to Reach End: https://takeuforward.org/graph/g-39-minimum-multiplications-to-reach-end/
+**39. Minimum Multiplications to Reach End**
+
+https://takeuforward.org/graph/g-39-minimum-multiplications-to-reach-end/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int mod = 100000;
@@ -1800,14 +1930,18 @@ class Pair {
 		this.second = second;
 	}
 }
+```
 
 
-40. Number of Ways to Arrive at Destination: https://takeuforward.org/data-structure/g-40-number-of-ways-to-arrive-at-destination/
+**40. Number of Ways to Arrive at Destination**
+
+https://takeuforward.org/data-structure/g-40-number-of-ways-to-arrive-at-destination/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1
 
 Solution::
 
+```java
 public class Solution {
 
 	static int countPaths(int n, List<List<Integer>> roads) {
@@ -1864,14 +1998,18 @@ class Pair {
 		this.second = second;
 	}
 }
+```
 
 
-41. Bellman Ford Algorithm: https://takeuforward.org/data-structure/bellman-ford-algorithm-g-41/
+**41. Bellman Ford Algorithm**
+
+https://takeuforward.org/data-structure/bellman-ford-algorithm-g-41/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1
 
 Solution::
 
+```java
 public class Solution {
 	static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
 
@@ -1903,13 +2041,17 @@ public class Solution {
 
 	}
 }
+```
 
-42. Floyd Warshall Algorithm: https://takeuforward.org/data-structure/floyd-warshall-algorithm-g-42/
+**42. Floyd Warshall Algorithm**
+
+https://takeuforward.org/data-structure/floyd-warshall-algorithm-g-42/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public void shortest_distance(int[][] matrix) {
@@ -1946,13 +2088,17 @@ public class Solution {
 		}
 	}
 }
+```
 
-43. Find the City With the Smallest Number of Neighbours at a Threshold Distance: https://takeuforward.org/data-structure/find-the-city-with-the-smallest-number-of-neighbours-at-a-threshold-distance-g-43/
+**43. Find the City With the Smallest Number of Neighbours at a Threshold Distance**
+
+https://takeuforward.org/data-structure/find-the-city-with-the-smallest-number-of-neighbours-at-a-threshold-distance-g-43/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int findCity(int n, int m, int[][] edges, int distanceThreshold) {
@@ -1999,14 +2145,18 @@ public class Solution {
 		return cityNo;
 	}
 }
+```
 
 
-45. Prim's Algorithm - Minimum Spanning Tree: https://takeuforward.org/data-structure/prims-algorithm-minimum-spanning-tree-c-and-java-g-45/
+**45. Prim's Algorithm - Minimum Spanning Tree**
+
+https://takeuforward.org/data-structure/prims-algorithm-minimum-spanning-tree-c-and-java-g-45/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
 
 Solution::
 
+```java
 public class Solution {
 
 	static int spanningTree(int V, int E, List<List<int[]>> adj) {
@@ -2047,13 +2197,17 @@ class Pair {
 		this.node = node;
 	}
 }
+```
 
-47. Kruskal's Algorithm - Minimum Spanning Tree : https://takeuforward.org/data-structure/kruskals-algorithm-minimum-spanning-tree-g-47/
+**47. Kruskal's Algorithm - Minimum Spanning Tree**
+
+https://takeuforward.org/data-structure/kruskals-algorithm-minimum-spanning-tree-g-47/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
 
 Solution:: 
 
+```java
 public class Solution {
 	
 	// Function to find sum of weights of edges of the Minimum Spanning Tree.
@@ -2156,14 +2310,18 @@ class Edge implements Comparable<Edge> {
 		return this.weight - compareEdge.weight;
 	}
 };
+```
 
 
-49. Number of Operations to Make Network Connected - DSU: https://takeuforward.org/data-structure/number-of-operations-to-make-network-connected-dsu-g-49/
+**49. Number of Operations to Make Network Connected - DSU**
+
+https://takeuforward.org/data-structure/number-of-operations-to-make-network-connected-dsu-g-49/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/connecting-the-graph/1
 
 Solution::
 
+```java
 public class Solution {
 
 	public int Solve(int n, int[][] edge) {
@@ -2248,14 +2406,17 @@ class DisjointSet {
 		}
 	}
 }
+```
 
+**50. Accounts Merge - DSU**
 
-50. Accounts Merge - DSU: https://takeuforward.org/data-structure/accounts-merge-dsu-g-50/
+https://takeuforward.org/data-structure/accounts-merge-dsu-g-50/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/account-merge/1
 
 Solution::
 
+```java
 public class Solution {
 
 	static List<List<String>> accountsMerge(List<List<String>> accounts) {
@@ -2356,15 +2517,19 @@ class DisjointSet {
 		}
 	}
 }
+```
 
 
-51. Number of Islands - II - Online Queries - DSU: https://takeuforward.org/graph/number-of-islands-ii-online-queries-dsu-g-51/
+**51. Number of Islands - II - Online Queries - DSU**
+
+https://takeuforward.org/graph/number-of-islands-ii-online-queries-dsu-g-51/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-islands/1
 
 
 Solution::
 
+```java
 public class Solution {
 
 	int dx[] = { 1, 0, -1, 0 };
@@ -2465,14 +2630,17 @@ class DisjointSet {
 		}
 	}
 }
+```
 
+**52. Making a Large Island - DSU**
 
-52. Making a Large Island - DSU: https://takeuforward.org/data-structure/making-a-large-island-dsu-g-52/
+https://takeuforward.org/data-structure/making-a-large-island-dsu-g-52/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/maximum-connected-group/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int dx[] = { 0, 1, 0, -1 };
@@ -2586,14 +2754,18 @@ class DisjointSet {
 		}
 	}
 }
+```
 
 
-53. Most Stones Removed with Same Row or Column - DSU: https://takeuforward.org/data-structure/most-stones-removed-with-same-row-or-column-dsu-g-53/
+**53. Most Stones Removed with Same Row or Column - DSU**
+
+https://takeuforward.org/data-structure/most-stones-removed-with-same-row-or-column-dsu-g-53/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/maximum-stone-removal-1662179442/1
 
 Solution::
 
+```java
 public class Solution {
 
 	int maxRemove(int[][] stones, int n) {
@@ -2680,15 +2852,19 @@ class DisjointSet {
 	}
 
 }
+```
 
 
 
-54. Strongly Connected Components - Kosaraju's Algorithm: https://takeuforward.org/graph/strongly-connected-components-kosarajus-algorithm-g-54/
+**54. Strongly Connected Components - Kosaraju's Algorithm**
+
+https://takeuforward.org/graph/strongly-connected-components-kosarajus-algorithm-g-54/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1
 
 Solution::
 
+```java
 public class Solution {
 
 	private void dfs(int node, ArrayList<ArrayList<Integer>> adj, int vis[], Stack<Integer> st) {
@@ -2754,14 +2930,18 @@ public class Solution {
 		return scc;
 	}
 }
+```
 
 
-55. Bridges in Graph - Using Tarjan's Algorithm of time in and low time: https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55/
+**55. Bridges in Graph - Using Tarjan's Algorithm of time in and low time**
+
+https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55/
 
 Problem Link:: https://leetcode.com/problems/critical-connections-in-a-network/description/
 
 Solution::
 
+```java
 public class Solution {
 	private int timer = 1;
 
@@ -2812,14 +2992,18 @@ public class Solution {
 		return bridges;
 	}
 }
+```
 
 
-56. Articulation Point in Graph: https://takeuforward.org/data-structure/articulation-point-in-graph-g-56/
+**56. Articulation Point in Graph**
+
+https://takeuforward.org/data-structure/articulation-point-in-graph-g-56/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/articulation-point-1/1
 
 Solution::
 
+```java
 public class Solution {
 
 	private int timer = 1;
@@ -2875,3 +3059,4 @@ public class Solution {
 		return ans;
 	}
 }
+```

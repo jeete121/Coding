@@ -1,5 +1,6 @@
-Pattern::
+# Pattern
 
+```java
 public class Solution {
 
 	public int slideWindow(int arr[], int k) {
@@ -21,33 +22,22 @@ public class Solution {
 		return ans;
 	}
 }
+```
 
 
-All Problem Links for fixed size sliding window::
+# All Problem Links for fixed size sliding window::
 
 
 https://leetcode.com/discuss/interview-question/3100856/Fixed-Size-Sliding-Window-(Important-Questions-with-Solutions)
 
 
-Problems::
+# Fixed Size::
 
-Fixed Size::
+**1. Maximum/Minimum Subarray of size k**
 
-1. Maximum/Minimum Subarray of size k (https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1)
+https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
 
-2. First negative Number in every window of size k.
-
-3. Count occurrences of anagrams.
-
-4. Maximum of all subarray of size k.
-
-5. Max of minimum for every window size k.
-
-6. Permutation in String (https://leetcode.com/problems/permutation-in-string/description/)
-
-
-1. Maximum/Minimum Subarray of size k (https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1)
-
+```java
 public class Solution {
 
 	long maximumSumSubarray(int K, List<Integer> arr, int N) {
@@ -69,10 +59,22 @@ public class Solution {
 		return mx;
 	}
 }
+```
+
+**2. First negative Number in every window of size k.**
+
+**3. Count occurrences of anagrams.**
+
+**4. Maximum of all subarray of size k.**
+
+**5. Max of minimum for every window size k.**
+
+**6. Permutation in String**
+
+https://leetcode.com/problems/permutation-in-string/description/
 
 
-6. Permutation in String: https://leetcode.com/problems/permutation-in-string/description/
-
+```java
 public class Solution {
 
 	public boolean checkInclusion(String s1, String s2) {
@@ -116,3 +118,4 @@ public class Solution {
 	}
 
 }
+```

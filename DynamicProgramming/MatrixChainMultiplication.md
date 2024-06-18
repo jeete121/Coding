@@ -1,5 +1,6 @@
-General Format::
+# General Format
 
+```java
 public class Solution {
 
 	int ans = 0;
@@ -20,27 +21,18 @@ public class Solution {
 	}
 
 }
+```
+
+# Matrix Chain Multiplication Related Problems
 
 
-1. Matrix Chain Multiplication (MCM)(https://www.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1)
+**1. Matrix Chain Multiplication (MCM)**
 
-2. Printing MCM
+https://www.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1
 
-3. Evaluate Expression to True/Boolean Parenthesis (https://www.geeksforgeeks.org/problems/boolean-parenthesization5610/1)
+Recursion
 
-4. Min/Mac Value of an Expression
-
-5. Palindrome Partitioning (https://www.geeksforgeeks.org/problems/palindromic-patitioning4845/1)
-
-6. Scramble String (https://leetcode.com/problems/scramble-string/)
-
-7. Egg Dropping Problem (https://www.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1)
-
-
-1. Matrix Chain Multiplication (MCM)
-
-Recursion::
-
+```java
 public class Solution {
 
 	static int solve(int arr[], int i, int j) {
@@ -58,10 +50,12 @@ public class Solution {
 		return solve(arr, 1, N - 1);
 	}
 }
+```
 
 
-Memoization::
+Memoization
 
+```java
 public class Solution {
 
 	static int t[][];
@@ -89,12 +83,18 @@ public class Solution {
 		return solve(arr, 1, N - 1);
 	}
 }
+```
 
 
-3. Evaluate Expression to True/Boolean Parenthesis
+**2. Printing MCM**
 
-Recurssive
+**3. Evaluate Expression to True/Boolean Parenthesis**
 
+https://www.geeksforgeeks.org/problems/boolean-parenthesization5610/1
+
+Recursive
+
+```java
 public class Solution {
 
 	static int solve(String s, int i, int j, boolean isTrue) {
@@ -138,10 +138,12 @@ public class Solution {
 
 	}
 }
+```
 
 
 Memoization
 
+```java
 public class Solution {
 
 	static int t[][][];
@@ -202,11 +204,18 @@ public class Solution {
 
 	}
 }
+```
 
-5. Palindrome Partitioning
+**4. Min/Mac Value of an Expression**
 
-Recursion::
 
+**5. Palindrome Partitioning**
+
+https://www.geeksforgeeks.org/problems/palindromic-patitioning4845/1
+
+Recursion
+
+```java
 public class Solution {
 
 	static boolean isPalindrome(String str, int i, int j) {
@@ -238,9 +247,13 @@ public class Solution {
 		return solve(str, 0, n - 1);
 	}
 }
+```
 
-Memoization::
 
+Memoization
+
+
+```java
 public class Solution {
 
 	static int t[][];
@@ -282,10 +295,12 @@ public class Solution {
 		return solve(str, 0, n - 1);
 	}
 }
+```
 
 
-Optimized Code::
+Optimized Code
 
+```java
 public class Solution {
 
 	static int t[][];
@@ -340,12 +355,16 @@ public class Solution {
 		return solve(str, 0, n - 1);
 	}
 }
+```
 
 
-6. Scramble String
+**6. Scramble String**
 
-Recursion::
+https://leetcode.com/problems/scramble-string/
 
+Recursion
+
+```java
 public class Solution {
 	
 	public boolean solve(String a, String b) {
@@ -372,9 +391,11 @@ public class Solution {
 
 	}
 }
+```
 
-Memoization::
+Memoization
 
+```java
 public class Solution {
 
 	Map<String, Integer> mp;
@@ -407,9 +428,13 @@ public class Solution {
 
 	}
 }
+```
 
-7. Egg Dropping Problem
+**7. Egg Dropping Problem**
 
+https://www.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1
+
+```java
 public class Solution {
 
 	static int t[][];
@@ -439,3 +464,4 @@ public class Solution {
 
 	}
 }
+```

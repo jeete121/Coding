@@ -1,7 +1,8 @@
-Multiple occurrences allowed
+**Multiple occurrences allowed**
 
-Recursive Approach::
+**Recursive Approach**
 
+```java
 public class Solution {
 
 	int knapsack(int wt[], int val[], int w, int n) {
@@ -14,12 +15,14 @@ public class Solution {
 			return knapsack(wt, val, w, n - 1);
 	}
 }
+```
 
 
-Memoization Approach::
+**Memoization Approach**
 
 Create a global matrix of the size according to the constraints of n and w. and initialize it with -1.
 
+```java
 public class Solution {
 
 	int t[][] = new int[100001][100001];
@@ -37,12 +40,14 @@ public class Solution {
 	}
 
 }
+```
 
 
-Top Down Approach::
+**Top Down Approach**
 
-base condition will be used to initilization
+Base condition will be used to initilization
 
+```java
 public class Solution {
 
 	int knapsack(int wt[], int val[], int w, int n) {
@@ -69,10 +74,14 @@ public class Solution {
 
 }
 
+```
 
 
-Unbounded KnapSack Problem( https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1)
+**Unbounded KnapSack Problem**
 
+https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1
+
+```java
 public class Solution {
 	
 	static int knapSack(int N, int W, int val[], int wt[], int t[][]) {
@@ -98,20 +107,17 @@ public class Solution {
 
 	}
 }
+```
 
-Related Problems::
-
-1. Rod Cutting (https://www.geeksforgeeks.org/problems/rod-cutting0840/1)
-
-2. Coin Change I (https://www.geeksforgeeks.org/problems/coin-change2448/1)
-
-3. Coin Change II (https://www.geeksforgeeks.org/problems/number-of-coins1824/1)
-
-4. Maximum Ribbon Cut (https://www.geeksforgeeks.org/problems/max-rope-cutting1312/1)
+# Related Problems
 
 
-1. Rod Cutting
+**1. Rod Cutting**
 
+https://www.geeksforgeeks.org/problems/rod-cutting0840/1
+
+
+```java
 public class Solution {
 
 	public int cutRod(int val[], int wt[], int n, int w, int t[][]) {
@@ -138,9 +144,14 @@ public class Solution {
 		return cutRod(price, length, n, n, t);
 	}
 }
+```
 
-2. Coin Change::
+**2. Coin Change I**
 
+https://www.geeksforgeeks.org/problems/coin-change2448/1
+
+
+```java
 public class Solution {
 
 	public long count(int coins[], int N, int sum, long t[][]) {
@@ -166,9 +177,13 @@ public class Solution {
 		return count(coins, N, sum, t);
 	}
 }
+```
 
-3.  Coin Change II
+**3. Coin Change II**
 
+https://www.geeksforgeeks.org/problems/number-of-coins1824/1
+
+```java
 public class Solution {
 
 	public int minCoins(int coins[], int M, int V, int t[][]) {
@@ -196,9 +211,13 @@ public class Solution {
 
 	}
 }
+```
 
-4. Maximum Ribbon Cut
+**4. Maximum Ribbon Cut**
 
+https://www.geeksforgeeks.org/problems/max-rope-cutting1312/1
+
+```java
 public class Solution {
 
 	long maxProduct(int n, int arr[], int w, long t[][]) {
@@ -229,3 +248,4 @@ public class Solution {
 		return maxProduct(n, arr, n, t);
 	}
 }
+```

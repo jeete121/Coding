@@ -1,7 +1,8 @@
-Longest Common Subsequence
+# Longest Common Subsequence
 
-Recursive Approach::
+**Recursive Approach**
 
+```java
 public class Solution {
 
 	int LCS(String X, String Y, int n, int m) {
@@ -13,10 +14,12 @@ public class Solution {
 
 	}
 }
+```
 
 
-Memoized Approach::
+**Memoized Approach**
 
+```java
 public class Solution {
 
 	int t[][] = new int[1001][1001];
@@ -32,10 +35,12 @@ public class Solution {
 
 	}
 }
+```
 
 
-Top Down Approach::
+**Top Down Approach**
 
+```java
 public class Solution {
 
 	int LCS(String X, String Y, int n, int m) {
@@ -57,45 +62,17 @@ public class Solution {
 		return t[n][m];
 	}
 }
+```
+
+# Related Problems
 
 
+**1. Longest Common Substring**
 
-Related Problems::
-1. Longest Common Substring (https://www.geeksforgeeks.org/problems/longest-common-substring1452/1)
-
-2. Print LCS
-
-3. Shortest Common SuperSequence (https://www.geeksforgeeks.org/problems/shortest-common-supersequence0322/1)
-
-4. Print SCS (https://leetcode.com/problems/shortest-common-supersequence/description/)
-
-5. Minimum no. of insertion and deletion a-> b
-(https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1)
-
-6. Longest Repeating subsequence (https://www.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1)
-
-7. Length of Longest subsequence of a which is a substring of b.
-
-8. Subsequence pattern matching (https://leetcode.com/problems/is-subsequence/description/)
-
-9. Count how many times a appear as subsequence in b
-
-10. Longest Palindromic Subsequence (https://www.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1)
-
-11. Longest Palindromic substring
-
-12. Count of Palindromic substring
-
-13. Minimum no. of deletion in a string to make it a palindrome.
-(https://www.geeksforgeeks.org/problems/minimum-number-of-deletions4610/1)
-
-14. Minimum no. of insertion in a string to make it a palindrome. (https://www.geeksforgeeks.org/problems/form-a-palindrome2544/1)
+https://www.geeksforgeeks.org/problems/longest-common-substring1452/1
 
 
-
-
-1. Longest Common Substring 
-
+```java
 public class Solution {
 
 	int t[][] = new int[1001][1001];
@@ -124,9 +101,14 @@ public class Solution {
 		return ans;
 	}
 }
+```
 
-2. Print LCS
 
+**2. Print LCS**
+
+Approach 1: Tablular Approach
+
+```java
 public class Solution {
 
 	public String printLCS(String X, String Y, int n, int m) {
@@ -162,7 +144,13 @@ public class Solution {
 		return res;
 	}
 }
+```
 
+
+Approach 2: Memoization Approach
+
+
+```java
 public class Solution {
 
 	public int t[][] = new int[1001][1001];
@@ -213,10 +201,15 @@ public class Solution {
 	}
 
 }
+```
 
 
-3. Shortest Common SuperSequence
+**3. Shortest Common SuperSequence**
 
+https://www.geeksforgeeks.org/problems/shortest-common-supersequence0322/1
+
+
+```java
 public class Solution {
 
 	public static int t[][];
@@ -243,10 +236,15 @@ public class Solution {
 		return m + n - LCS(X, Y, m, n);
 	}
 }
+```
 
 
-4. Print SCS
+**4. Print SCS**
 
+https://leetcode.com/problems/shortest-common-supersequence/description/
+
+
+```java
 public class Solution {
 
 	int t[][];
@@ -305,9 +303,12 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
-5. Minimum no. of insertion and deletion a-> b
+**5. Minimum no. of insertion and deletion a-> b**
+
+https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1
 
 a--> b
  
@@ -322,6 +323,7 @@ LCS--> ea (deletes hp from heap)--> add p to ea-->(pea)
 
 return m-LCS+n-LCS;==> m+n-2*LCS;
 
+```java
 public class Solution {
 	
 	int t[][];
@@ -350,9 +352,14 @@ public class Solution {
 
 	}
 }
+```
 
-6. Longest Repeating subsequence
+**6. Longest Repeating subsequence**
 
+https://www.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1
+
+
+```java
 public class Solution {
 
 	int t[][];
@@ -379,10 +386,17 @@ public class Solution {
 		return LRS(str, str, n, n);
 	}
 }
+```
+
+**7. Length of Longest subsequence of a which is a substring of b.**
 
 
-8. Subsequence pattern matching
+**8. Subsequence pattern matching**
 
+https://leetcode.com/problems/is-subsequence/description/
+
+
+```java
 public class Solution {
 
 	int arr[][];
@@ -410,12 +424,18 @@ public class Solution {
 
 	}
 }
+```
+
+**9. Count how many times a appear as subsequence in b**
 
 
-10. Longest Palindromic Subsequence
+**10. Longest Palindromic Subsequence**
+
+https://www.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1
 
 LPS(a)==> LCS(a,reverse(a))
 
+```java
 public class Solution {
 
 	int t[][];
@@ -444,11 +464,20 @@ public class Solution {
 		return longestPalinSubseq(S, rev, n, n);
 	}
 }
+```
 
 
+**11. Longest Palindromic substring**
 
-13. Minimum no. of deletion in a string to make it a palindrome.
 
+**12. Count of Palindromic substring**
+
+
+**13. Minimum no. of deletion in a string to make it a palindrome.**
+
+https://www.geeksforgeeks.org/problems/minimum-number-of-deletions4610/1
+
+```java
 public class Solution {
 	
 	int t[][];
@@ -476,10 +505,14 @@ public class Solution {
 		return n - LCS(str, rev, n, n);
 	}
 }
+```
 
 
-14. Minimum no. of insertion in a string to make it a palindrome.
+**14. Minimum no. of insertion in a string to make it a palindrome.**
 
+https://www.geeksforgeeks.org/problems/form-a-palindrome2544/1
+
+```java
 public class Solution {
 
 	int t[][];
@@ -507,4 +540,5 @@ public class Solution {
 		return n - LCS(S, rev, n, n);
 	}
 }
+```
 

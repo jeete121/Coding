@@ -1,4 +1,5 @@
 
+```java
 public class Solution {
 	
 	int[] computeLPS(String pat, int m) {
@@ -48,3 +49,4 @@ public class Solution {
 
 	}
 }
+```
