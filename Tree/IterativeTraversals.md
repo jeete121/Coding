@@ -2,6 +2,7 @@
 
 https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
+```java
 public class Solution {
 
 	public List<Integer> inorderTraversal(TreeNode root) {
@@ -25,12 +26,14 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
 **2. Preorder Traversal**
 
 https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
+```java
 public class Solution {
 	
 	public List<Integer> preorderTraversal(TreeNode root) {
@@ -54,8 +57,7 @@ public class Solution {
 
 	}
 }
-
-
+```
 
 
 **3. Postorder Traversal**
@@ -64,6 +66,7 @@ https://leetcode.com/problems/binary-tree-postorder-traversal/description/
 
 Approach 1: Using 2 Stacks
 
+```java
 public class Solution {
 	
 	public List<Integer> postorderTraversal(TreeNode root) {
@@ -87,9 +90,11 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 Approach 2:: Using 1 Stack
 
+```java
 public class Solution {
 	
 	public List<Integer> postorderTraversal(TreeNode root) {
@@ -119,12 +124,14 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
 **4. Level Order Traversal**
 
 https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 
+```java
 public class Solution {
 	
 	public List<List<Integer>> levelOrder(TreeNode root) {
@@ -152,10 +159,12 @@ public class Solution {
 
 	}
 }
+```
 
 
 **Preorder Inorder Postorder in One Iteration**
 
+```java
 public class Solution {
 
 	public List<Integer> inorderTraversal(TreeNode root) {
@@ -200,3 +209,4 @@ class Pair {
 		this.num = num;
 	}
 }
+```

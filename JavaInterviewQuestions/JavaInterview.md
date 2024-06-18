@@ -1,4 +1,4 @@
-# ##############STRING ################
+# STRING Interview Questions
 
 **1. Why are strings immutable in java?**
 
@@ -45,7 +45,7 @@ https://www.digitalocean.com/community/tutorials/string-vs-stringbuffer-vs-strin
 
 
 
-# ##################OBJECT #####################
+# OBJECT Interview Questions
 
 **1. Why is wrapper class required?**
 
@@ -100,7 +100,7 @@ However, it is important to note that the object itself can be changed. This is 
 
 
 
-# ##################OOPS################
+# OOPS Interview Questions
 
 **1. Composition vs Aggregation vs Association?**
 
@@ -157,8 +157,7 @@ https://cs-fundamentals.com/tech-interview/java/can-we-run-abstract-class-in-jav
 
 
 
-
-# #################Serialization###################
+# Serialization Interview Questions
 
 **1. What is Serialisation and Deserialisation?**
 
@@ -183,7 +182,7 @@ Yes
 During serialization, we need to handle IOException ; during deserialization, we need to handle IOException and ClassNotFoundException . So the deserialized class type must be in the classpath. Uninitialized non-serializable, non-transient instance fields are tolerated
 
 
-**##########Cloning###################**
+# Cloning Interview Questions
 
 **1. What is marker interface?**
 
@@ -201,7 +200,7 @@ Deep copy: Creates a new object that is completely independent of the original o
 https://www.geeksforgeeks.org/difference-between-shallow-and-deep-copy-of-a-class/
 
 
-# ##################Exception###################
+# Exception Interview Questions
 
 **1. Difference between Error and Exception?**
 
@@ -273,14 +272,14 @@ https://www.geeksforgeeks.org/difference-between-throw-and-throws-in-java/
 
 
 
-# ###############Usage of Enum##############
+# Usage of Enum
 
 **1. Why to use Enum?**
 
 Enums are used to give names to constants, which makes the code easier to read and maintain.
 
 
-# #################Garbage collection##################
+# Garbage collection Interview Questions
 
 **1. How does Garbage collection in Java works?**
 
@@ -290,7 +289,7 @@ The garbage collector works by using a mark-and-sweep algorithm. The mark phase 
 https://newrelic.com/blog/best-practices/java-garbage-collection
 
 
-# #############Collection################
+# Collection Interview Questions
 
 **1. Array vs ArrayList?**
 
@@ -390,7 +389,7 @@ https://www.javatpoint.com/when-to-use-vector-in-java
 
 
 
-# ###############MultiThreading################
+# MultiThreading Interview Questions
 
 **1. MultiThreading vs MultiProcessing vs MultiProgramming vs MultiTasking?**
 
@@ -578,7 +577,7 @@ https://medium.com/@erayaraz10/understanding-atomic-volatile-and-synchronized-va
 
 
 
-# ###########Concurrency########################
+# Concurrency Interview Questions
 
 **1. runnable vs callable ?**
 
@@ -687,7 +686,7 @@ FixedThreadPool executors are useful when you want to limit the number of thread
 https://medium.com/@himani.prasad016/thread-pools-in-java-b19ea1af7c4c
 
 
-# ############Java 8#####################
+# Java 8 Interview Questions
 
 **1. Interface8 changes**
 
@@ -785,8 +784,7 @@ The diamond problem in Java can be solved in Java 8 and later versions by using 
 https://www.geeksforgeeks.org/diamond-problem-in-java/
 
 
-
-# #########Other##############
+# Other Interview Questions
 
 **1. Difference between JDK,JRE and JVM**
 

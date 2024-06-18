@@ -4,6 +4,7 @@ https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
 Left, Root, Right
 
+```java
 public class Solution {
 	
 	public void inorderTraversal(TreeNode root, List<Integer> res) {
@@ -23,6 +24,7 @@ public class Solution {
 
 	}
 }
+```
 
 
 **2. Preorder Traversal**
@@ -31,6 +33,7 @@ https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
 Root, Left, Right
 
+```java
 public class Solution {
 	
 	public void preorderTraversal(TreeNode root, List<Integer> res) {
@@ -48,6 +51,7 @@ public class Solution {
 		return res;
 	}
 }
+```
 
 
 **3. Postorder Traversal**
@@ -56,6 +60,7 @@ https://leetcode.com/problems/binary-tree-postorder-traversal/description/
 
 Left,Right,Root
 
+```java
 public class Solution {
 	
 	public void postorderTraversal(TreeNode root, List<Integer> res) {
@@ -72,3 +77,4 @@ public class Solution {
 		return res;
 	}
 }
+```
