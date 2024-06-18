@@ -50,24 +50,41 @@ https://www.digitalocean.com/community/tutorials/string-vs-stringbuffer-vs-strin
 **1. Why is wrapper class required?**
 
 Wrapper classes are objects that wrap around primitive data types in programming languages. They can be useful in a variety of situations, including:
+
 a. Converting between primitives and objects: Wrapper classes make it easier for developers to use objects instead of primitives when coding.
+
 b. Displaying related data: In Salesforce, wrapper classes can be used to encapsulate related records, such as parent and child records, in a single Visualforce page. This allows developers to easily manage and display the data in a structured format.
+
 c. Working with collections: Wrapper classes are essential for working with collections, which are collections of objects that are dealt with using pre-defined methods.
+
 d. Calling methods on primitive data types: Wrapper classes can be used to call methods on primitive data types.
+
 e. Representing the absence of a value: Wrapper classes can be used to represent the absence of a value.
+
 f. Synchronization in multithreading: Objects are needed to support synchronization in multithreading, and wrapper classes can help in this case
 
 **2. Methods of Object class?**
 
-The Object class is the root of all classes in Java. It provides several methods that are common to all objects. These methods are:
+The Object class is the root of all classes in Java. It provides several methods that are common to all objects.
+
+These methods are:
+
 equals(): - Compares two objects for equality.
+
 toString(): - Returns a string representation of the object.
+
 hashCode(): - Returns a hash code for the object.
+
 getClass(): - Returns the class of the object.
+
 clone(): - Creates a copy of the object.
+
 finalize(): - Called by the garbage collector before destroying the object.
+
 wait(): - Causes the current thread to wait until another thread notifies it.
+
 notify(): - Notifies a waiting thread.
+
 notifyAll(): - Notifies all waiting threads.
 
 https://www.slainstitute.com/object-methods-in-java
@@ -80,6 +97,7 @@ Primitive data types are the basic data types that are built into the Java langu
 byte, short, int, long, float, double, char, and boolean.
 
 Primitive data types are important because they are the most efficient way to store data in Java. They are also the most widely used data types in Java programs.
+
 In addition to primitive data types, Java also has reference data types. Reference data types are objects that are created by the programmer. They are not as efficient as primitive data types, but they are more flexible.
 Here are some of the reasons why Java gives importance to primitive data types:
 
@@ -95,7 +113,9 @@ Overall, primitive data types are very important in Java. They are the most effi
 **4. Is Java pass by value or pass by reference?**
 
 Java is always pass by value. This means that when you pass an argument to a method, a copy of that argument is made and passed to the method. The original argument is not changed.
+
 This is true for both primitive types (such as int and boolean) and object types. When you pass an object to a method, a copy of the object reference is passed to the method. The original object reference is not changed.
+
 However, it is important to note that the object itself can be changed. This is because the object reference that is passed to the method points to the original object. If the method changes the state of the object, the original object will also be changed.
 
 
@@ -120,18 +140,20 @@ https://www.geeksforgeeks.org/difference-between-abstract-class-and-interface-in
 **4. Can private method or static methods be overridden in Java?**
 
 No, private methods and static methods cannot be overridden in Java. Here's why:
-Private methods
-Private methods are accessible only within the class in which they are declared.
+
+Private methods: Private methods are accessible only within the class in which they are declared.
+
 Subclasses cannot access private methods of their superclasses.
 Therefore, subclasses cannot override private methods.
-Static methods
-Static methods are associated with the class itself, rather than with an instance of the class.
+
+Static methods: Static methods are associated with the class itself, rather than with an instance of the class.
 When a subclass inherits a static method from its superclass, it is not possible to override the behavior of that static method. 
 
 
 Instead, the static method of the superclass will be called.
-Final methods
-Final methods cannot be overridden in Java.
+
+Final methods: Final methods cannot be overridden in Java.
+
 If a method is declared as final in a superclass, then it cannot be overridden in any of its subclasses.
 This is because final methods are intended to be the final implementation of a method.
 
@@ -148,9 +170,13 @@ https://www.scaler.com/topics/can-we-overload-main-method-in-java/
 **6. Can Abstract class have main method?**
 
 Yes, an abstract class in Java can have a main method and can be run like any other class. Abstract classes can also have other types of methods, including:
+
 Abstract methods: Can't have bodies, but can be declared with the abstract keyword
+
 Non-abstract methods: Can be included in an abstract class
+
 Final methods: Can prevent child classes from changing the method's body
+
 Static methods: Can be defined in an abstract class
 
 https://cs-fundamentals.com/tech-interview/java/can-we-run-abstract-class-in-java-that-has-main-method
@@ -237,7 +263,10 @@ In Java, the Throwable class is the superclass of all exceptions and errors. It 
 
 **8. Is throwable an interface?**
 
-Yes, Throwable is an interface in Java. It is the root of the Java class hierarchy and is the superclass of all errors and exceptions. Throwable has two direct subclasses: Error and Exception.
+Yes, Throwable is an interface in Java. It is the root of the Java class hierarchy and is the superclass of all errors and exceptions. 
+
+Throwable has two direct subclasses: Error and Exception.
+
 Throwable is the base interface for any object that can be thrown via a throw statement, including Error and Exception. 
 
 https://www.geeksforgeeks.org/throwable-class-in-java-with-examples/
@@ -284,6 +313,7 @@ Enums are used to give names to constants, which makes the code easier to read a
 **1. How does Garbage collection in Java works?**
 
 Garbage collection in Java is a process of automatic memory management. It automatically reclaims memory that is no longer in use by the program.
+
 The garbage collector works by using a mark-and-sweep algorithm. The mark phase traverses the object graph starting from the roots. The roots are objects that are known to be in use, such as global variables and objects referenced by local variables. The mark phase marks all objects that are reachable from the roots. The sweep phase then reclaims all objects that are not marked.
 
 https://newrelic.com/blog/best-practices/java-garbage-collection
@@ -321,12 +351,18 @@ https://www.geeksforgeeks.org/internal-working-of-hashmap-java/
 Java 8 made significant changes to the HashMap class, primarily focused on improving performance in the presence of hash collisions. These changes include:
 
 Removal of the alternative String hash function:
-Java 7 introduced an alternative hash function for Strings, but it was found to be less effective than the original function in many cases. Java 8 removed this alternative function, restoring the original behavior.
+
+Java 7 introduced an alternative hash function for Strings, but it was found to be less effective than the original function in many cases.
+
+Java 8 removed this alternative function, restoring the original behavior.
+
 Storing entries in a balanced tree instead of a linked list:
+
 When a bucket in a HashMap contains a large number of colliding entries, Java 8 will automatically store those entries in a balanced tree instead of a linked list. This change improves the performance of get() and put() operations in these cases, from O(n) to O(log n).
 Improved performance for key collisions:
 
 Java 8 also made a number of other changes to the internal implementation of HashMap to improve its performance in the presence of hash collisions. These changes include using a more efficient algorithm for finding empty buckets, and using a more compact data structure for storing entries in linked lists.
+
 Overall, the changes to HashMap in Java 8 result in a significant performance improvement for applications that use HashMaps heavily, especially in cases where there are a large number of hash collisions.
 
 
@@ -336,9 +372,11 @@ HashMap allows one null key and multiple null values. This is because HashMap is
 There are a few reasons why HashMap allows null keys. First, it allows for more flexibility in how HashMaps are used. For example, a 
 
 HashMap could be used to store a list of objects, where the key is the object's ID and the value is the object itself. If an object is deleted, its ID can be set to null to indicate that it is no longer in the list.
+
 Second, allowing null keys can improve the performance of HashMaps in some cases. For example, if a HashMap is used to store a cache of data, and the data is frequently updated, it can be more efficient to simply set the key to null when the data is updated, rather than removing the key from the HashMap.
 
 Finally, allowing null keys makes HashMaps more consistent with other Java collections, such as HashSet and ArrayList. These collections all allow null values, so it makes sense for HashMap to allow null keys as well.
+
 However, there are also some potential drawbacks to using null keys in HashMaps. First, it can be easy to accidentally introduce null keys into a HashMap, which can lead to unexpected behavior. For example, if a HashMap is used to store a list of objects, and a null key is inserted into the HashMap, the list will no longer be ordered correctly.
 
 Second, using null keys can make it more difficult to debug problems with HashMaps. For example, if a HashMap is used to store a cache of data, and the data is not being updated correctly, it can be difficult to track down the problem if the key is null.
@@ -420,6 +458,7 @@ https://medium.com/@reetesh043/understanding-the-difference-between-wait-and-sle
 
 The join() method is used to wait for a thread to finish its execution. When a thread calls join() on another thread, it will block until the other thread finishes executing. This can be useful for ensuring that a thread has completed a task before another thread starts.
 For example, you might have a thread that is responsible for reading data from a file. You could use the join() method to wait for the thread to finish reading the file before starting another thread that processes the data. This would ensure that the second thread does not start processing the data before it has all been read.
+
 The join() method can also be used to synchronize threads. For example, you might have two threads that are both writing to the same file. You could use the join() method to ensure that one thread finishes writing to the file before the other thread starts. This would prevent the two threads from overwriting each other's data.
 
 https://www.geeksforgeeks.org/joining-threads-in-java/
@@ -435,6 +474,7 @@ https://www.geeksforgeeks.org/overriding-thread-class-start-method/
 **8. Can we Override run() method?**
 
 Yes, we can override the run() method in Java. The run() method is declared in the Thread class and is responsible for executing the code of the thread. When a thread is started, the run() method is called.
+
 To override the run() method, we need to create a subclass of the Thread class and implement the run() method in the subclass. The run() method in the subclass will replace the run() method in the Thread class.
 
 https://www.geeksforgeeks.org/overriding-thread-class-start-method/
@@ -552,10 +592,12 @@ https://www.geeksforgeeks.org/producer-consumer-solution-using-threads-java/
 Volatile and synchronized are two keywords in Java that are used to ensure the visibility and atomicity of shared variables in multithreaded applications. However, there are some key differences between the two keywords.
 
 Volatile
+
 Guarantees visibility: The volatile keyword ensures that the value of a shared variable is always visible to all threads. This means that if one thread changes the value of a volatile variable, other threads will immediately see the updated value.
 Does not guarantee atomicity: The volatile keyword does not guarantee the atomicity of shared variables. This means that it is possible for two threads to read or write to a volatile variable at the same time, which can lead to race conditions.
 
 Synchronized
+
 Guarantees visibility: The synchronized keyword ensures that the value of a shared variable is always visible to all threads. This means that if one thread changes the value of a synchronized variable, other threads will immediately see the updated value.
 Guarantees atomicity: The synchronized keyword also guarantees the atomicity of shared variables. This means that it is impossible for two threads to read or write to a synchronized variable at the same time, which prevents race conditions.
 
@@ -715,17 +757,29 @@ https://www.geeksforgeeks.org/functional-interfaces-java/
 **3. Difference between Collection and Stream**
 
 Collections store data, while streams process data.
+
 Collections are designed to store and organize data, while streams are designed to process data in a sequential manner.
+
 Collections are eager, while streams are lazy.
+
 Collections eagerly evaluate all of their elements when they are created, while streams lazily evaluate their elements only when they are needed.
+
 Collections are mutable, while streams are immutable.
+
 Collections can be modified after they are created, while streams cannot be modified after they are created.
+
 Collections are finite, while streams can be infinite.
+
 Collections have a fixed size, while streams can have an infinite number of elements.
+
 Collections are thread-safe, while streams are not thread-safe.
+
 Collections can be safely accessed by multiple threads, while streams cannot be safely accessed by multiple threads.
+
 Here are some examples of how collections and streams can be used:
+
 Collections can be used to store a list of names, a set of numbers, or a map of key-value pairs.
+
 Streams can be used to filter a list of names, sort a set of numbers, or reduce a map of key-value pairs.
 
 https://www.geeksforgeeks.org/difference-between-streams-and-collections-in-java/
@@ -746,11 +800,17 @@ https://stackoverflow.com/questions/47688418/what-is-the-difference-between-inte
 **5. What is Optional?**
 
 The Optional class in Java is a container object that may or may not contain a non-null value. It is intended to reduce the number of NullPointerExceptions in your code.
+
 There are a few things to keep in mind when using Optional:
+
 You can use the isPresent() method to check if a value is present.
+
 You can use the get() method to get the value of a present value.
+
 You can use the orElse() method to return a default value if the value is not present.
+
 You can use the ifPresent() method to execute a block of code if the value is present.
+
 You can use the map() method to transform values.
 
 https://medium.com/javarevisited/optional-class-in-java-8-making-your-code-more-clear-and-concise-62af0712910d
@@ -764,6 +824,7 @@ https://www.geeksforgeeks.org/difference-between-map-and-flatmap-in-java-stream/
 **7. Difference between Parallel sort vs sort**
 
 The main difference between parallel sort and sort is that parallel sort uses multiple threads to sort the data, while sort uses a single thread. This can make parallel sort much faster than sort, especially for large datasets.
+
 Another difference is that parallel sort is a stable sorting algorithm, while sort is not. This means that parallel sort will preserve the original order of equal elements in the data, while sort may not.
 
 
@@ -819,25 +880,37 @@ The main difference between ClassNotFoundException and NoClassDefFoundError is t
 Here are some specific cases when each exception is thrown:
 
 ClassNotFoundException
+
 When the class file is not in the classpath.
+
 When the class file is corrupted or invalid.
+
 When the class file is for a different version of Java than the one that is running.
 
 NoClassDefFoundError
+
 When the class file is in the classpath but the JVM cannot load it.
+
 When the class file depends on another class that is not in the classpath.
+
 When the class file is for a different version of Java than the one that is running.
 
 To resolve these errors, you can try the following:
 
 ClassNotFoundException
+
 Make sure that the class file is in the classpath.
+
 Make sure that the class file is not corrupted or invalid.
+
 Make sure that the class file is for the same version of Java as the one that is running.
 
 NoClassDefFoundError
+
 Make sure that the class file is in the classpath.
+
 Make sure that the class file does not depend on another class that is not in the classpath.
+
 Make sure that the class file is for the same version of Java as the one that is running.
 
 https://help.liferay.com/hc/en-us/articles/360029316331-Resolving-ClassNotFoundException-and-NoClassDefFoundError-in-OSGi-Bundles
