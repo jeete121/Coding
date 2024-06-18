@@ -25,15 +25,18 @@ https://www.scaler.com/topics/java/string-pool-in-java/
 5. Difference between equals and == operator?
 
 The equals() method and the == operator are used to compare two objects in Java. However, there is a subtle difference between the two.
-The equals() method compares the content of two objects, while the == operator compares their memory addresses. This means that if two objects have the same content but are stored in different memory locations, the equals() method will return false, while the == operator will return true.
+The equals() method compares the content of two objects, while the == operator compares their memory addresses. This means that if two objects have the same content but are stored in different memory locations, the equals() method will return true, while the == operator will return false.
 
 https://unacademy.com/content/gate-cse-it/difference-between-operator-and-equals-method-in-java
 
 6. Difference between string , string buffer and string builder.
 
 In Java, String, StringBuffer, and StringBuilder are all classes used to handle strings, but they differ in mutability and thread safety:
+
 String: Immutable, meaning the object can't be changed after creation.
+
 StringBuffer: Mutable, meaning the object can be modified without creating a new object. It's thread-safe, so multiple threads can use it simultaneously.
+
 StringBuilder: Mutable, meaning the object can be modified without creating a new object. It's not thread-safe, so it shouldn't be used in multi-threaded environments
 
 https://www.digitalocean.com/community/tutorials/string-vs-stringbuffer-vs-stringbuilder
