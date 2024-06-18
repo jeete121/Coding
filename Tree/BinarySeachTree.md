@@ -6,6 +6,7 @@ You are given the root of a binary search tree (BST) and an integer val.
 Find the node in the BST that the node's value equals val and return the subtree rooted with that node. If such a node does not exist, return null.
 
 
+```java
 public class Solution {
 	
 	public TreeNode searchBST(TreeNode root, int val) {
@@ -18,6 +19,7 @@ public class Solution {
 		return searchBST(root.left, val);
 	}
 }
+```
 
 **2. Ceil in BST**
 
@@ -30,6 +32,7 @@ If Ceil could not be found, return -1.
 
 Approach 1: Recursive
 
+```java
 public class Tree {
 
 	int ceil = -1;
@@ -53,10 +56,11 @@ public class Tree {
 
 	}
 }
-
+```
 
 Approach 2: Iterative
 
+```java
 public class Tree {
 
 	int findCeil(Node root, int key) {
@@ -78,6 +82,7 @@ public class Tree {
 		return ceil;
 	}
 }
+```
 
 **3. Floor in BST**
 
@@ -87,6 +92,7 @@ You are given a BST(Binary Search Tree) with n number of nodes and value x. your
 
 Note: when x is smaller than the smallest node of BST then returns -1.
 
+```java
 public class Solution {
 
 	public static int floor(Node root, int x) {
@@ -107,6 +113,7 @@ public class Solution {
 		return floor;
 	}
 }
+```
 
 
 
@@ -119,6 +126,7 @@ You are given the root node of a binary search tree (BST) and a value to insert 
 
 Notice that there may exist multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return any of them.
 
+```java
 public class Solution {
 	
 	public TreeNode insertIntoBST(TreeNode root, int val) {
@@ -150,7 +158,7 @@ public class Solution {
 
 	}
 }
-
+```
 
 **5. Delete Node in a BST**
 
@@ -163,6 +171,7 @@ Basically, the deletion can be divided into two stages:
 1. Search for a node to remove.
 2. If the node is found, delete the node.
 
+```java
 public class Solution {
 	
 	public TreeNode deleteNode(TreeNode root, int key) {
@@ -215,3 +224,4 @@ public class Solution {
 		return findLastRight(root.right);
 	}
 }
+```
