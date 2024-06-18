@@ -1,4 +1,6 @@
-1. Inorder Traversal (https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+**1. Inorder Traversal**
+
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
 Left, Root, Right
 
@@ -23,7 +25,9 @@ public class Solution {
 }
 
 
-2. Preorder Traversal (https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+**2. Preorder Traversal**
+
+https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
 Root, Left, Right
 
@@ -46,7 +50,9 @@ public class Solution {
 }
 
 
-3. Postorder Traversal (https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+**3. Postorder Traversal**
+
+https://leetcode.com/problems/binary-tree-postorder-traversal/description/
 
 Left,Right,Root
 

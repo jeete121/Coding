@@ -1,4 +1,6 @@
-1. Maximum Depth of Binary Tree (https://leetcode.com/problems/maximum-depth-of-binary-tree/description/)
+**1. Maximum Depth of Binary Tree**
+
+https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
 
 public class Solution {
 
@@ -32,7 +34,9 @@ class TreeNode {
 
 
 
-2. Balanced Binary Tree (https://leetcode.com/problems/balanced-binary-tree/description/)
+**2. Balanced Binary Tree**
+
+https://leetcode.com/problems/balanced-binary-tree/description/
 
 
 /**
@@ -98,7 +102,9 @@ public class Solution {
 
 
 
-3. Diameter of Binary Tree (https://leetcode.com/problems/diameter-of-binary-tree/description/)
+**3. Diameter of Binary Tree**
+
+https://leetcode.com/problems/diameter-of-binary-tree/description/
 
 
 
@@ -172,7 +178,9 @@ public class Solution {
 }
 
 
-4. Binary Tree Maximum Path Sum (https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
+**4. Binary Tree Maximum Path Sum**
+
+https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
 
 /**
  * Definition for a binary tree node.
@@ -210,7 +218,9 @@ public class Solution {
 	}
 }
 
-5. Check it two trees are Identical or Not (Same Tree) (https://leetcode.com/problems/same-tree/description/)
+**5. Check it two trees are Identical or Not (Same Tree)**
+
+https://leetcode.com/problems/same-tree/description/
 
 
 /**
@@ -243,7 +253,9 @@ public class Solution {
 }
 
 
-6. Binary Tree Zigzag Level Order Traversal : (https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/)
+**6. Binary Tree Zigzag Level Order Traversal**
+
+https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/
 
 
 /**
@@ -299,7 +311,9 @@ public class Solution {
 
 
 
-7. Boundary Traversal of binary tree : (https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1)
+**7. Boundary Traversal of binary tree**
+
+https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1
 
 public class Solution {
 
@@ -366,7 +380,9 @@ public class Solution {
 }
 
 
-8. Vertical Order Traversal of a Binary Tree:: (https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/description/)
+**8. Vertical Order Traversal of a Binary Tree**
+
+https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/description/
 
 
 
@@ -447,7 +463,9 @@ class Node {
 }
 
 
-9. Top View of Binary Tree:: (https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1)
+**9. Top View of Binary Tree**
+
+https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1
 
 public class Solution {
 
@@ -498,7 +516,9 @@ class Pair {
 	}
 }
 
-10. Bottom View of Binary Tree : (https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1)
+**10. Bottom View of Binary Tree**
+
+https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1
 
 
 public class Solution {
@@ -545,7 +565,9 @@ class Pair {
 	}
 }
 
-11. Binary Tree Right Side View: (https://leetcode.com/problems/binary-tree-right-side-view/description/)
+**11. Binary Tree Right Side View**
+
+https://leetcode.com/problems/binary-tree-right-side-view/description/
 
 
 
@@ -633,7 +655,9 @@ public class Solution {
 	}
 }
 
-12. Left View of Binary Tree: (https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1)
+**12. Left View of Binary Tree**
+
+https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1
 
 public class Tree {
 
@@ -674,7 +698,9 @@ public class Tree {
 }
 
 
-13. Check for Symmetrical Binary Trees: https://leetcode.com/problems/symmetric-tree/description/
+**13. Check for Symmetrical Binary Trees**
+
+https://leetcode.com/problems/symmetric-tree/description/
 
 
 /**
@@ -709,7 +735,9 @@ public class Solution {
 }
 
 
-14. Binary Tree Paths: (https://leetcode.com/problems/binary-tree-paths/description/)
+**14. Binary Tree Paths**
+
+https://leetcode.com/problems/binary-tree-paths/description/
 
 
 /**
@@ -754,7 +782,9 @@ public class Solution {
 }
 
 
-15. Lowest Common Ancestor of a Binary Tree: (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+**15. Lowest Common Ancestor of a Binary Tree**
+
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
 
 
 /**
@@ -789,7 +819,9 @@ public class Solution {
 	}
 }
 
-16. Maximum Width of Binary Tree: (https://leetcode.com/problems/maximum-width-of-binary-tree/description/)
+**16. Maximum Width of Binary Tree**
+
+https://leetcode.com/problems/maximum-width-of-binary-tree/description/
 
 
 Approach 1:: 
@@ -931,9 +963,9 @@ class Node {
 	}
 }
 
-17.
-a). Check for Children Sum Property in a Binary Tree: https://www.geeksforgeeks.org/problems/children-sum-parent/1
+**17.1 Check for Children Sum Property in a Binary Tree**
 
+https://www.geeksforgeeks.org/problems/children-sum-parent/1
 
 
 public class Solution {
@@ -966,7 +998,7 @@ public class Solution {
 }
 
 
-b). Children Sum Property in Binary Tree
+**17.2 Children Sum Property in Binary Tree**
 
 public class Solution {
 
@@ -1004,7 +1036,9 @@ public class Solution {
 }
 
 
-18. All Nodes Distance K in Binary Tree: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/
+**18. All Nodes Distance K in Binary Tree**
+
+https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/
 
 /**
  * Definition for a binary tree node.
@@ -1081,7 +1115,9 @@ public class Solution {
 }
 
 
-19. Minimum time taken to BURN the Binary Tree from a Node : https://www.geeksforgeeks.org/problems/burning-tree/1
+**19. Minimum time taken to BURN the Binary Tree from a Node**
+
+https://www.geeksforgeeks.org/problems/burning-tree/1
 
 public class Solution {
 
@@ -1155,7 +1191,8 @@ public class Solution {
 	}
 }
 
-20. Count Complete Tree Nodes: 
+
+**20. Count Complete Tree Nodes**
 
 https://leetcode.com/problems/count-complete-tree-nodes/description/
 
@@ -1212,7 +1249,7 @@ public class Solution {
 }
 
 
-21. Construct Binary Tree from Preorder and Inorder Traversal
+**21. Construct Binary Tree from Preorder and Inorder Traversal**
 
 Problem Link::
 
@@ -1268,7 +1305,7 @@ public class Solution {
 
 
 
-22. Construct Binary Tree from Inorder and Postorder Traversal
+**22. Construct Binary Tree from Inorder and Postorder Traversal**
 
 Problem Link:: 
 
@@ -1327,7 +1364,9 @@ Solution::
 	}
 }
 
-23. Serialize and Deserialize Binary Tree: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
+**23. Serialize and Deserialize Binary Tree**
+
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
 
 public public class Codec {
 
@@ -1383,7 +1422,9 @@ public public class Codec {
 	}
 }
 
-24. Morris Traversal (Inorder) : (https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+**24. Morris Traversal (Inorder)**
+
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
 public class Solution {
 	
@@ -1414,7 +1455,9 @@ public class Solution {
 	}
 }
 
-25. Morris Traversal (Preorder) : https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+**25. Morris Traversal (Preorder)**
+
+https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
 public class Solution {
 	
@@ -1445,7 +1488,9 @@ public class Solution {
 	}
 }
 
-26. Flatten Binary Tree to Linked List: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
+**26. Flatten Binary Tree to Linked List**
+
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
 
 
 Aproach 1::

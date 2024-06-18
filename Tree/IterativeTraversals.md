@@ -1,4 +1,6 @@
-1. Inorder Traversal (https://leetcode.com/problems/binary-tree-inorder-traversal/description/)
+**1. Inorder Traversal**
+
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
 public class Solution {
 
@@ -25,7 +27,9 @@ public class Solution {
 }
 
 
-2. Preorder Traversal 9https://leetcode.com/problems/binary-tree-preorder-traversal/description/)
+**2. Preorder Traversal**
+
+https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
 public class Solution {
 	
@@ -54,7 +58,9 @@ public class Solution {
 
 
 
-3. Postorder Traversal (https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+**3. Postorder Traversal**
+
+https://leetcode.com/problems/binary-tree-postorder-traversal/description/
 
 Approach 1: Using 2 Stacks
 
@@ -115,7 +121,9 @@ public class Solution {
 }
 
 
-4. Level Order Traversal (https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+**4. Level Order Traversal**
+
+https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 
 public class Solution {
 	
@@ -146,7 +154,7 @@ public class Solution {
 }
 
 
-Preorder Inorder Postorder in One Iteration
+**Preorder Inorder Postorder in One Iteration**
 
 public class Solution {
 
