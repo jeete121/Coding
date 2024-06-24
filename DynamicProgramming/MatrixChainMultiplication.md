@@ -30,6 +30,21 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1
 
+Given a sequence of matrices, find the most efficient way to multiply these matrices together. The efficient way is the one that involves the least number of multiplications.
+
+The dimensions of the matrices are given in an array arr[] of size N (such that N = number of matrices + 1) where the ith matrix has the dimensions (arr[i-1] x arr[i]).
+
+
+Input: N = 5
+arr = {40, 20, 30, 10, 30}
+Output: 26000
+Explanation: There are 4 matrices of dimension 
+40x20, 20x30, 30x10, 10x30. Say the matrices are 
+named as A, B, C, D. Out of all possible combinations,
+the most efficient way is (A*(B*C))*D. 
+The number of operations are -
+20*30*10 + 40*20*10 + 40*10*30 = 26000.
+
 Recursion
 
 ```java
@@ -91,6 +106,27 @@ public class Solution {
 **3. Evaluate Expression to True/Boolean Parenthesis**
 
 https://www.geeksforgeeks.org/problems/boolean-parenthesization5610/1
+
+Given a boolean expression s of length n with following symbols.
+Symbols
+    'T' ---> true
+    'F' ---> false
+and following operators filled between symbols
+Operators
+    &   ---> boolean AND
+    |   ---> boolean OR
+    ^   ---> boolean XOR
+Count the number of ways we can parenthesize the expression so that the value of expression evaluates to true.
+
+Note: The answer can be large, so return it with modulo 1003
+
+Input: 
+n = 7
+s = T|T&F^T
+Output: 
+4
+Explaination: 
+The expression evaluates to true in 4 ways ((T|T)&(F^T)), (T|(T&(F^T))), (((T|T)&F)^T) and (T|((T&F)^T)).
 
 Recursive
 
@@ -206,12 +242,20 @@ public class Solution {
 }
 ```
 
-**4. Min/Mac Value of an Expression**
+**4. Min/Max Value of an Expression**
 
 
 **5. Palindrome Partitioning**
 
 https://www.geeksforgeeks.org/problems/palindromic-patitioning4845/1
+
+Given a string str, a partitioning of the string is a palindrome partitioning if every sub-string of the partition is a palindrome. Determine the fewest cuts needed for palindrome partitioning of the given string.
+
+Input: str = "ababbbabbababa"
+Output: 3
+
+Explaination: After 3 partitioning substrings 
+are "a", "babbbab", "b", "ababa".
 
 Recursion
 
@@ -362,6 +406,27 @@ public class Solution {
 
 https://leetcode.com/problems/scramble-string/
 
+We can scramble a string s to get a string t using the following algorithm:
+
+If the length of the string is 1, stop.
+If the length of the string is > 1, do the following:
+Split the string into two non-empty substrings at a random index, i.e., if the string is s, divide it to x and y where s = x + y.
+Randomly decide to swap the two substrings or to keep them in the same order. i.e., after this step, s may become s = x + y or s = y + x.
+Apply step 1 recursively on each of the two substrings x and y.
+Given two strings s1 and s2 of the same length, return true if s2 is a scrambled string of s1, otherwise, return false.
+
+Input: s1 = "great", s2 = "rgeat"
+Output: true
+Explanation: One possible scenario applied on s1 is:
+"great" --> "gr/eat" // divide at random index.
+"gr/eat" --> "gr/eat" // random decision is not to swap the two substrings and keep them in order.
+"gr/eat" --> "g/r / e/at" // apply the same algorithm recursively on both substrings. divide at random index each of them.
+"g/r / e/at" --> "r/g / e/at" // random decision was to swap the first substring and to keep the second substring in the same order.
+"r/g / e/at" --> "r/g / e/ a/t" // again apply the algorithm recursively, divide "at" to "a/t".
+"r/g / e/ a/t" --> "r/g / e/ a/t" // random decision is to keep both substrings in the same order.
+The algorithm stops now, and the result string is "rgeat" which is s2.
+As one possible scenario led s1 to be scrambled to s2, we return true.
+
 Recursion
 
 ```java
@@ -433,6 +498,21 @@ public class Solution {
 **7. Egg Dropping Problem**
 
 https://www.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1
+
+You are given N identical eggs and you have access to a K-floored building from 1 to K.
+
+There exists a floor f where 0 <= f <= K such that any egg dropped from a floor higher than f will break, and any egg dropped from or below floor f will not break.
+There are few rules given below. 
+
+An egg that survives a fall can be used again.
+A broken egg must be discarded.
+The effect of a fall is the same for all eggs.
+If the egg doesn't break at a certain floor, it will not break at any floor below.
+If the eggs breaks at a certain floor, it will break at any floor above.
+Return the minimum number of moves that you need to determine with certainty what the value of f is.
+
+Input: N = 2, K = 10
+Output: 4
 
 ```java
 public class Solution {

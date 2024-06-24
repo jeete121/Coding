@@ -81,6 +81,22 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1
 
+Given a set of N items, each with a weight and a value, represented by the array w and val respectively. Also, a knapsack with weight limit W.
+The task is to fill the knapsack in such a way that we can get the maximum profit. Return the maximum profit.
+Note: Each item can be taken any number of times.
+
+Input: 
+N = 2
+W = 3
+val = {1, 1}
+wt = {2, 1}
+Output: 
+3
+
+Explanation: 
+1.Pick the 2nd element thrice.
+2.Total profit = 1 + 1 + 1 = 3. Also the total weight = 1 + 1 + 1  = 3 which is <= 3.
+
 ```java
 public class Solution {
 	
@@ -111,10 +127,23 @@ public class Solution {
 
 # Related Problems
 
-
 **1. Rod Cutting**
 
 https://www.geeksforgeeks.org/problems/rod-cutting0840/1
+
+Given a rod of length N inches and an array of prices, price[]. price[i] denotes the value of a piece of length i. Determine the maximum value obtainable by cutting up the rod and selling the pieces.
+
+Note: Consider 1-based indexing.
+
+Input:
+N = 8
+Price[] = {1, 5, 8, 9, 10, 17, 17, 20}
+Output: 22
+
+Explanation:
+The maximum obtainable value is 22 by 
+cutting in two pieces of lengths 2 and 
+6, i.e., 5+17=22.
 
 
 ```java
@@ -150,6 +179,16 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/coin-change2448/1
 
+Given an integer array coins[ ] of size N representing different denominations of currency and an integer sum, find the number of ways you can make sum by using different combinations from coins[ ].  
+Note: Assume that you have an infinite supply of each type of coin. And you can use any coin as many times as you want.
+
+Input:
+N = 3, sum = 4
+coins = {1,2,3}
+Output: 4
+
+Explanation: Four Possible ways are: {1,1,1,1},{1,1,2},{2,2},{1,3}.
+
 
 ```java
 public class Solution {
@@ -182,6 +221,14 @@ public class Solution {
 **3. Coin Change II**
 
 https://www.geeksforgeeks.org/problems/number-of-coins1824/1
+
+Given a value V and array coins[] of size M, the task is to make the change for V cents, given that you have an infinite supply of each of coins{coins1, coins2, ..., coinsm} valued coins. Find the minimum number of coins to make the change. If not possible to make change then return -1.
+
+Input: V = 30, M = 3, coins[] = {25, 10, 5}
+Output: 2
+
+Explanation: Use one 25 cent coin
+and one 5 cent coin
 
 ```java
 public class Solution {
@@ -216,6 +263,26 @@ public class Solution {
 **4. Maximum Ribbon Cut**
 
 https://www.geeksforgeeks.org/problems/max-rope-cutting1312/1
+
+Given a rope of length N meters, cut the rope into several ropes of varying lengths in a way that maximizes product of lengths of all resulting ropes. You must make at least one cut.
+
+Example 1:
+
+Input:
+N = 2
+Output: 1
+
+Explanation: Since 1 cut is mandatory.
+Maximum obtainable product is 1*1 = 1.
+
+Example 2:
+
+Input:
+N = 5
+Output: 6
+
+Explanation: 
+Maximum obtainable product is 2*3 = 6.
 
 ```java
 public class Solution {
