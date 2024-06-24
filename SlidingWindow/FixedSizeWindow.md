@@ -37,6 +37,21 @@ https://leetcode.com/discuss/interview-question/3100856/Fixed-Size-Sliding-Windo
 
 https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
 
+Given an array of integers Arr of size N and a number K. Return the maximum sum of a subarray of size K.
+
+NOTE*: A subarray is a contiguous part of any given array.
+
+
+Input:
+N = 4, K = 2
+Arr = [100, 200, 300, 400]
+
+Output: 700
+
+Explanation:
+Arr3  + Arr4 =700,
+which is maximum.
+
 ```java
 public class Solution {
 
@@ -64,6 +79,24 @@ public class Solution {
 **2. First negative Number in every window of size k.**
 
 https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1
+
+Given an array A[] of size N and a positive integer K, find the first negative integer for each and every window(contiguous subarray) of size K.
+
+
+Input : 
+N = 5
+A[] = {-8, 2, 3, -6, 10}
+K = 2
+
+Output : -8 0 -6 -6
+
+Explanation :
+First negative integer for each window of size k
+{-8, 2} = -8
+{2, 3} = 0 (does not contain a negative integer)
+{3, -6} = -6
+{-6, 10} = -6
+
 
 ```java
 public class Compute {
@@ -104,6 +137,19 @@ public class Compute {
 **3. Count occurrences of anagrams.**
 
 https://www.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1
+
+Given a word pat and a text txt. Return the count of the occurrences of anagrams of the word in the text.
+
+
+Input:
+txt = forxxorfxdofr
+pat = for
+
+Output: 3
+
+Explanation: for, orf and ofr appears
+in the txt, hence answer is 3.
+
 
 ```java
 public class Solution {
@@ -149,6 +195,25 @@ public class Solution {
 
 https://leetcode.com/problems/sliding-window-maximum/description/
 
+You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+
+Return the max sliding window.
+
+
+Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+
+Output: [3,3,5,5,6,7]
+
+Explanation: 
+Window position                Max
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+
 
 ```java
 import java.util.Deque;
@@ -185,11 +250,62 @@ public class Solution {
 ```
 
 
-**5. Max of minimum for every window size k.**
+**5. Max of minimum for every window size**
+
+https://www.geeksforgeeks.org/problems/maximum-of-minimum-for-every-window-size3453/1
+
+Given an integer array. The task is to find the maximum of the minimum of every window size in the array.
+Note: Window size varies from 1 to the size of the Array.
+
+Input:
+N = 7
+arr[] = {10,20,30,50,10,70,30}
+
+Output: 70 30 20 10 10 10 10 
+
+Explanation: 
+
+1. First element in output
+indicates maximum of minimums of all
+windows of size 1.
+
+2. Minimums of windows of size 1 are {10},
+ {20}, {30}, {50},{10}, {70} and {30}. 
+ Maximum of these minimums is 70. 
+
+3. Second element in output indicates
+maximum of minimums of all windows of
+size 2. 
+
+4. Minimums of windows of size 2
+are {10}, {20}, {30}, {10}, {10}, and
+{30}.
+
+5. Maximum of these minimums is 30 
+Third element in output indicates
+maximum of minimums of all windows of
+size 3. 
+
+6. Minimums of windows of size 3
+are {10}, {20}, {10}, {10} and {10}.
+
+7. Maximum of these minimums is 20. 
+Similarly other elements of output are
+computed.
 
 **6. Permutation in String**
 
 https://leetcode.com/problems/permutation-in-string/description/
+
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+In other words, return true if one of s1's permutations is the substring of s2.
+
+Input: s1 = "ab", s2 = "eidbaooo"
+
+Output: true
+
+Explanation: s2 contains one permutation of s1 ("ba").
 
 
 ```java

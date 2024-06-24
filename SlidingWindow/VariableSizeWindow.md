@@ -38,13 +38,26 @@ public class Solution {
 
 https://leetcode.com/discuss/study-guide/3630462/Top-20-Sliding-Window-Problems-for-beginners
 
-**Variable size::
-**
+**Variable size::**
+
+
 **1. Largest/Smallest subarray of sum k.**
+
 
 **2. Largest substring of k distinct character**
 
 https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1
+
+Given a string you need to print the size of the longest possible substring that has exactly K unique characters. If there is no possible substring then print -1.
+
+
+Input:
+S = "aabacbebebe", K = 3
+
+Output: 7
+
+Explanation: 
+"cbebebe" is the longest substring with 3 distinct characters.
 
 Solution::
 
@@ -90,6 +103,14 @@ public class Solution {
 
 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
+Given a string s, find the length of the longest substring without repeating characters.
+
+Input: s = "abcabcbb"
+
+Output: 3
+
+Explanation: The answer is "abc", with the length of 3.
+
 Solution::
 
 ```java
@@ -130,6 +151,15 @@ public class Solution {
 **5. Minimum Window subarray**
 
 https://leetcode.com/problems/minimum-window-substring/description/
+
+Given two strings s and t of lengths m and n respectively, return the minimum window 
+substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+
+Output: "BANC"
+
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 
 Solution:: 
 
