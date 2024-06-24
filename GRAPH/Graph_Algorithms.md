@@ -16,6 +16,10 @@ https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 
+Given a directed graph. The task is to do Breadth First Traversal of this graph starting from 0.
+
+Note: One can move from node u to node v only if there's an edge from u to v. Find the BFS traversal of the graph starting from the 0th vertex, from left to right according to the input graph. Also, you should only take nodes directly or indirectly connected from Node 0 in consideration.
+
 Solution:: 
 
 ```java
@@ -57,6 +61,10 @@ https://takeuforward.org/data-structure/depth-first-search-dfs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
 
+You are given a connected undirected graph. Perform a Depth First Traversal of the graph.
+
+Note: Use the recursive approach to find the DFS traversal of the graph starting from the 0th vertex from left to right according to the graph.
+
 Solution:: 
 
 ```java
@@ -96,6 +104,10 @@ public class Solution {
 https://takeuforward.org/data-structure/number-of-provinces/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-provinces/1
+
+Given an undirected graph with V vertices. We say two vertices u and v belong to a single province if there is a path from u to v or v to u. Your task is to find the number of provinces.
+
+Note: A province is a group of directly or indirectly connected cities and no other cities outside of the group.
 
 Solution::
 
@@ -144,6 +156,23 @@ public class Solution {
 **8. Number of Islands | Number of Connected Components in Matrix**
 
 Problem Link:: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
+
+Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water) and '1's(Land). Find the number of islands.
+
+Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.
+
+
+Input:
+grid = {{0,1},{1,0},{1,1},{1,0}}
+Output: 1
+
+Explanation:
+The grid is-
+0 1
+1 0
+1 1
+1 0
+All lands are connected.
 
 Solution::
 
@@ -200,6 +229,19 @@ public class Solution {
 https://takeuforward.org/graph/flood-fill-algorithm-graphs/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/flood-fill-algorithm1856/1
+
+An image is represented by a 2-D array of integers, each integer representing the pixel value of the image.
+
+Given a coordinate (sr, sc) representing the starting pixel (row and column) of the flood fill, and a pixel value newColor, "flood fill" the image.
+
+To perform a "flood fill", consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.
+
+
+Input: image = {{1,1,1},{1,1,0},{1,0,1}},
+sr = 1, sc = 1, newColor = 2.
+Output: {{2,2,2},{2,2,0},{2,0,1}}
+
+Explanation: From the center of the image (with position (sr, sc) = (1, 1)), all pixels connected by a path of the same color as the starting pixel are colored with the new color.Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
 
 Solution::
 
@@ -265,6 +307,25 @@ class Pair {
 https://takeuforward.org/data-structure/rotten-oranges/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
+
+Given a grid of dimension nxm where each cell in the grid can have values 0, 1 or 2 which has the following meaning:
+0 : Empty cell
+1 : Cells have fresh oranges
+2 : Cells have rotten oranges
+
+We have to determine what is the earliest time after which all the oranges are rotten. A rotten orange at index [i,j] can rot other fresh orange at indexes [i-1,j], [i+1,j], [i,j-1], [i,j+1] (up, down, left and right) in unit time. 
+
+
+Input: grid = {{0,1,2},{0,1,2},{2,1,1}}
+Output: 1
+
+Explanation: The grid is-
+0 1 2
+0 1 2
+2 1 1
+Oranges at positions (0,2), (1,2), (2,0)
+will rot oranges at (0,1), (1,1), (2,2) and 
+(2,1) in unit time.
 
 Solution::
 
@@ -365,6 +426,8 @@ https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-usin
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
+Given an undirected graph with V vertices labelled from 0 to V-1 and E edges, check whether it contains any cycle or not. Graph is in the form of adjacency list where adj[i] contains all the nodes ith node is having edge with.
+
 Solution::
 
 ```java
@@ -430,6 +493,8 @@ https://takeuforward.org/data-structure/detect-cycle-in-an-undirected-graph-usin
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1
 
+Given an undirected graph with V vertices labelled from 0 to V-1 and E edges, check whether it contains any cycle or not. Graph is in the form of adjacency list where adj[i] contains all the nodes ith node is having edge with.
+
 Solution::
 
 ```java
@@ -477,6 +542,22 @@ public class Solution {
 https://takeuforward.org/graph/distance-of-nearest-cell-having-1/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/distance-of-nearest-cell-having-1-1587115620/1
+
+Given a binary grid of n*m. Find the distance of the nearest 1 in the grid for each cell.
+The distance is calculated as |i1  - i2| + |j1 - j2|, where i1, j1 are the row number and column number of the current cell, and i2, j2 are the row number and column number of the nearest cell having value 1. There should be atleast one 1 in the grid.
+
+
+Input: grid = {{0,1,1,0},{1,1,0,0},{0,0,1,1}}
+Output: {{1,0,0,1},{0,0,1,1},{1,1,0,0}}
+
+Explanation: The grid is-
+0 1 1 0 
+1 1 0 0 
+0 0 1 1 
+0's at (0,0), (0,3), (1,2), (1,3), (2,0) and
+(2,1) are at a distance of 1 from 1's at (0,1),
+(0,2), (0,2), (2,3), (1,0) and (1,1)
+respectively.
 
 Solution::
 
@@ -550,6 +631,29 @@ https://takeuforward.org/graph/surrounded-regions-replace-os-with-xs/
 
 Problem Link :: https://www.geeksforgeeks.org/problems/replace-os-with-xs0052/1
 
+Given a matrix mat of size N x M where every element is either 'O' or 'X'. Replace all 'O' or a group of 'O' with 'X' that are surrounded by 'X'.
+
+A 'O' (or a set of 'O') is considered to be surrounded by 'X' if there are 'X' at locations just below, just above, just left and just right of it.
+
+
+Input: 
+n = 5, m = 4
+mat = {{'X', 'X', 'X', 'X'}, 
+       {'X', 'O', 'X', 'X'}, 
+       {'X', 'O', 'O', 'X'}, 
+       {'X', 'O', 'X', 'X'}, 
+       {'X', 'X', 'O', 'O'}}
+
+Output: 
+ans = {{'X', 'X', 'X', 'X'}, 
+       {'X', 'X', 'X', 'X'}, 
+       {'X', 'X', 'X', 'X'}, 
+       {'X', 'X', 'X', 'X'}, 
+       {'X', 'X', 'O', 'O'}}
+
+Explanation: 
+Following the rule the above matrix is the resultant matrix. 
+
 Solution::
 
 ```java
@@ -605,6 +709,28 @@ public class Solution {
 https://takeuforward.org/graph/number-of-enclaves/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-enclaves/1
+
+You are given an n x m binary matrix grid, where 0 represents a sea cell and 1 represents a land cell.
+
+A move consists of walking from one land cell to another adjacent (4-directionally) land cell or walking off the boundary of the grid.
+
+Find the number of land cells in grid for which we cannot walk off the boundary of the grid in any number of moves.
+
+Input:
+grid[][] = {{0, 0, 0, 0},
+            {1, 0, 1, 0},
+            {0, 1, 1, 0},
+            {0, 0, 0, 0}}
+
+Output:
+3
+
+Explanation:
+0 0 0 0
+1 0 1 0
+0 1 1 0
+0 0 0 0
+The highlighted cells represents the land cells.
 
 Solution:: 
 
@@ -688,6 +814,28 @@ class Pair {
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1
 
+Given a boolean 2D matrix grid of size n * m. You have to find the number of distinct islands where a group of connected 1s (horizontally or vertically) forms an island. Two islands are considered to be distinct if and only if one island is not equal to another (not rotated or reflected).
+
+Example 1:
+
+Input:
+grid[][] = {{1, 1, 0, 0, 0},
+            {1, 1, 0, 0, 0},
+            {0, 0, 0, 1, 1},
+            {0, 0, 0, 1, 1}}
+
+Output:
+1
+
+Explanation:
+grid[][] = {{1, 1, 0, 0, 0}, 
+            {1, 1, 0, 0, 0}, 
+            {0, 0, 0, 1, 1}, 
+            {0, 0, 0, 1, 1}}
+Same colored islands are equal.
+We have 2 equal islands, so we 
+have only 1 distinct island.
+
 Solution:: 
 
 ```java
@@ -748,6 +896,8 @@ https://takeuforward.org/graph/bipartite-graph-bfs-implementation/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 
+Given an adjacency list of a graph adj of V no. of vertices having 0 based index. Check whether the graph is bipartite or not.
+
 Solution:: 
 
 ```java
@@ -797,6 +947,8 @@ https://takeuforward.org/graph/bipartite-graph-dfs-implementation/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/bipartite-graph/1
 
+Given an adjacency list of a graph adj of V no. of vertices having 0 based index. Check whether the graph is bipartite or not.
+
 Solution::
 
 ```java
@@ -837,6 +989,8 @@ public class Solution {
 https://takeuforward.org/data-structure/detect-cycle-in-a-directed-graph-using-dfs-g-19/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
 
 Solution::
 
@@ -883,6 +1037,12 @@ public class Solution {
 https://takeuforward.org/data-structure/find-eventual-safe-states-dfs-g-20/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
+
+A directed graph of V vertices and E edges is given in the form of an adjacency list adj. Each node of the graph is labelled with a distinct integer in the range 0 to V - 1.
+
+A node is a terminal node if there are no outgoing edges. A node is a safe node if every possible path starting from that node leads to a terminal node.
+
+You have to return an array containing all the safe nodes of the graph. The answer should be sorted in ascending order.
 
 Solution::
 
@@ -938,6 +1098,11 @@ https://takeuforward.org/data-structure/topological-sort-algorithm-dfs-g-21/
 
 Problem Link::  https://www.geeksforgeeks.org/problems/topological-sort/1
 
+Given an adjacency list for a Directed Acyclic Graph (DAG) where adj_list[i] contains a list of all vertices j such that there is a directed edge from vertex i to vertex j, with  V  vertices and E  edges, your task is to find any valid topological sorting of the graph.
+
+
+In a topological sort, for every directed edge u -> v,  u must come before v in the ordering.
+
 Solution:: 
 
 ```java
@@ -982,6 +1147,11 @@ https://takeuforward.org/data-structure/kahns-algorithm-topological-sort-algorit
 
 Problem Link:: https://www.geeksforgeeks.org/problems/topological-sort/1
 
+Given an adjacency list for a Directed Acyclic Graph (DAG) where adj_list[i] contains a list of all vertices j such that there is a directed edge from vertex i to vertex j, with  V  vertices and E  edges, your task is to find any valid topological sorting of the graph.
+
+
+In a topological sort, for every directed edge u -> v,  u must come before v in the ordering.
+
 Solution::
 
 ```java
@@ -1025,6 +1195,8 @@ public class Solution {
 https://takeuforward.org/data-structure/detect-a-cycle-in-directed-graph-topological-sort-kahns-algorithm-g-23/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
 
 Solution::
 
@@ -1074,6 +1246,22 @@ https://takeuforward.org/data-structure/course-schedule-i-and-ii-pre-requisite-t
 
 Problem Link 1:: https://www.geeksforgeeks.org/problems/prerequisite-tasks/1
 
+There are a total of N tasks, labeled from 0 to N-1. Some tasks may have prerequisites, for example to do task 0 you have to first complete task 1, which is expressed as a pair: [0, 1]
+Given the total number of tasks N and a list of prerequisite pairs P, find if it is possible to finish all tasks.
+
+
+Input: 
+N = 4, P = 3
+prerequisites = {{1,0},{2,1},{3,2}}
+
+Output: Yes
+
+Explanation:
+To do task 1 you should have completed
+task 0, and to do task 2 you should 
+have finished task 1, and to do task 3 you 
+should have finished task 2. So it is possible.
+
 Solution 1::
 
 ```java
@@ -1118,6 +1306,20 @@ public class Solution {
 
 
 Problem Link 2:: https://www.geeksforgeeks.org/problems/course-schedule/1ss
+
+There are a total of n tasks you have to pick, labelled from 0 to n-1. Some tasks may have prerequisite tasks, for example to pick task 0 you have to first finish tasks 1, which is expressed as a pair: [0, 1]
+Given the total number of n tasks and a list of prerequisite pairs of size m. Find a ordering of tasks you should pick to finish all tasks.
+Note: There may be multiple correct orders, you just need to return any one of them. If it is impossible to finish all tasks, return an empty array. Driver code will print "No Ordering Possible", on returning an empty array. Returning any correct order will give the output as 1, whereas any invalid order will give the output 0. 
+
+
+Input:
+n = 2, m = 1
+prerequisites = {{1, 0}}
+
+Output: 1
+
+Explanation:
+The output 1 denotes that the order is valid. So, if you have, implemented your function correctly, then output would be 1 for all test cases. One possible order is [0, 1].
 
 Solution 2::
 
@@ -1176,6 +1378,12 @@ https://takeuforward.org/data-structure/find-eventual-safe-states-bfs-topologica
 
 Problem Link:: https://www.geeksforgeeks.org/problems/eventual-safe-states/1
 
+A directed graph of V vertices and E edges is given in the form of an adjacency list adj. Each node of the graph is labelled with a distinct integer in the range 0 to V - 1.
+
+A node is a terminal node if there are no outgoing edges. A node is a safe node if every possible path starting from that node leads to a terminal node.
+
+You have to return an array containing all the safe nodes of the graph. The answer should be sorted in ascending order.
+
 Solution:: 
 
 ```java
@@ -1229,6 +1437,23 @@ public class Solution {
 https://takeuforward.org/data-structure/alien-dictionary-topological-sort-g-26/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/alien-dictionary/1
+
+Given a sorted dictionary of an alien language having N words and k starting alphabets of standard dictionary. Find the order of characters in the alien language.
+Note: Many orders may be possible for a particular test case, thus you may return any valid order and output will be 1 if the order of string returned by the function is correct else 0 denoting incorrect string returned.
+
+
+Input: 
+N = 5, K = 4
+dict = {"baa","abcd","abca","cab","cad"}
+
+Output: 1
+
+Explanation:
+Here order of characters is 
+'b', 'd', 'a', 'c' Note that words are sorted 
+and in the given language "baa" comes before 
+"abcd", therefore 'b' is before 'a' in output.
+Similarly we can find other orders.
 
 Solution::
 
@@ -1286,6 +1511,24 @@ public class Solution {
 https://takeuforward.org/data-structure/shortest-path-in-directed-acyclic-graph-topological-sort-g-27/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1
+
+Given a Directed Acyclic Graph of N vertices from 0 to N-1 and a 2D Integer array(or vector) edges[ ][ ] of length M, where there is a directed edge from edge[i][0] to edge[i][1] with a distance of edge[i][2] for all i.
+
+Find the shortest path from src(0) vertex to all the vertices and if it is impossible to reach any vertex, then return -1 for that vertex.
+
+Input:
+N = 4, M = 2
+edge = [[0,1,2],[0,2,1]]
+
+Output: 0 2 1 -1
+
+Explanation:
+
+Shortest path from 0 to 1 is 0->1 with edge weight 2. 
+
+Shortest path from 0 to 2 is 0->2 with edge weight 1.
+
+There is no way we can reach 3, so it's -1 for 3.
 
 Solution::
 
@@ -1360,6 +1603,8 @@ https://takeuforward.org/data-structure/shortest-path-in-undirected-graph-with-u
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
 
+You are given an Undirected Graph having unit weight of the edges, find the shortest path from src to all the vertex and if it is unreachable to reach any vertex, then return -1 for that vertex.
+
 Solution::
 
 ```java
@@ -1407,6 +1652,31 @@ public class Solution {
 https://takeuforward.org/graph/word-ladder-i-g-29/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder/1
+
+Given two distinct words startWord and targetWord, and a list denoting wordList of unique words of equal lengths. Find the length of the shortest transformation sequence from startWord to targetWord.
+Keep the following conditions in mind:
+
+A word can only consist of lowercase characters.
+
+Only one letter can be changed in each transformation.
+
+Each transformed word must exist in the wordList including the targetWord.
+
+startWord may or may not be part of the wordList
+
+
+Note: If no possible way to transform sequence from startWord to targetWord return 0
+
+Input:
+wordList = {"des","der","dfr","dgt","dfs"}
+startWord = "der", targetWord= "dfs",
+
+Output: 3
+
+Explanation:
+The length of the smallest transformation
+sequence from "der" to "dfs" is 3
+i,e "der" -> "dfr" -> "dfs".
 
 Solution::
 
@@ -1468,6 +1738,36 @@ class Pair {
 https://takeuforward.org/graph/g-30-word-ladder-ii/ 
 
 Problem Link:: https://www.geeksforgeeks.org/problems/word-ladder-ii/1
+
+Given two distinct words startWord and targetWord, and a list denoting wordList of unique words of equal lengths. Find all shortest transformation sequence(s) from startWord to targetWord. You can return them in any order possible.
+Keep the following conditions in mind:
+
+A word can only consist of lowercase characters.
+
+Only one letter can be changed in each transformation.
+
+Each transformed word must exist in the wordList including the targetWord.
+
+startWord may or may not be part of the wordList.
+
+Return an empty list if there is no such transformation sequence.
+
+
+
+Input:
+startWord = "der", targetWord = "dfs",
+wordList = {"des","der","dfr","dgt","dfs"}
+
+Output:
+der dfr dfs
+der des dfs
+
+Explanation:
+The length of the smallest transformation is 3.
+And the following are the only two ways to get
+to targetWord:-
+"der" -> "des" -> "dfs".
+"der" -> "dfr" -> "dfs".
 
 Solution::
 
@@ -1540,6 +1840,19 @@ https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue
 
 Problem Link:: https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1
 
+Given a weighted, undirected and connected graph of V vertices and an adjacency list adj where adj[i] is a list of lists containing two integers where the first integer of each list j denotes there is edge between i and j , second integers corresponds to the weight of that  edge . You are given the source vertex S and You to Find the shortest distance of all the vertex's from the source vertex S. You have to return a list of integers denoting shortest distance between each node and Source vertex S.
+
+
+Note: The Graph doesn't contain any negative weight cycle.
+
+Input:
+V = 2
+adj [] = {{{1, 9}}, {{0, 9}}}
+S = 0
+
+Output:
+0 9
+
 Solution:: 
 
 ```java
@@ -1593,6 +1906,18 @@ class Pair {
 https://takeuforward.org/data-structure/g-35-print-shortest-path-dijkstras-algorithm/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1
+
+You are given a weighted undirected graph having n vertices numbered from 1 to n and m edges describing there are edges between a to b with some weight, find the shortest path between the vertex 1 and the vertex n,  if there exists a path then return a list whose first element is the weight of the path. If no path exists then return a list containing a single element -1.
+
+
+Input:
+n = 5, m= 6
+edges = [[1,2,2], [2,5,5], [2,3,4], [1,4,1],[4,3,3],[3,5,1]]
+
+Output: 5 1 4 3 5
+
+Explaination:
+Shortest path from 1 to n is by the path 1 4 3 5 whose weight is 5. 
 
 Solution::
 
@@ -1673,6 +1998,33 @@ https://takeuforward.org/data-structure/g-36-shortest-distance-in-a-binary-maze/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1
 
+Given a n * m matrix grid where each element can either be 0 or 1. You need to find the shortest distance between a given source cell to a destination cell. The path can only be created out of a cell if its value is 1. 
+
+If the path is not possible between source cell and destination cell, then return -1.
+
+Note : You can move into an adjacent cell if that adjacent cell is filled with element 1. Two cells are adjacent if they share a side. In other words, you can move in one of the four directions, Up, Down, Left and Right. The source and destination cell are based on the zero based indexing. The destination cell should be 1.
+
+
+Input:
+grid[][] = {{1, 1, 1, 1},
+            {1, 1, 0, 1},
+            {1, 1, 1, 1},
+            {1, 1, 0, 0},
+            {1, 0, 0, 1}}
+source = {0, 1}
+destination = {2, 2}
+
+Output: 3
+
+Explanation:
+1 1 1 1
+1 1 0 1
+1 1 1 1
+1 1 0 0
+1 0 0 1
+The highlighted part in the matrix denotes the 
+shortest path from source to destination cell.
+
 
 Solution:: 
 
@@ -1737,6 +2089,21 @@ class Pair {
 https://takeuforward.org/data-structure/g-37-path-with-minimum-effort/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/path-with-minimum-effort/1
+
+You are a hiker preparing for an upcoming hike. You are given heights[][], a 2D array of size rows x columns, where heights[row][col] represents the height of cell (row, col). You are situated in the top-left cell, (0, 0), and you hope to travel to the bottom-right cell, (rows-1, columns-1) (i.e., 0-indexed). You can move up, down, left, or right, and you wish to find the route with minimum effort.
+
+Note: A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.
+
+
+Input:
+row = 3
+columns = 3 
+heights = [[1,2,2],[3,8,2],[5,3,5]]
+
+Output: 2
+
+Explaination: 
+The route 1->3->5->3->5 has a maximum absolute difference of 2 in consecutive cells. This is better than the route 1->2->2->2->5, where the maximum absolute difference is 3.
 
 Solution::
 
@@ -1803,6 +2170,27 @@ class Node {
 https://takeuforward.org/data-structure/g-38-cheapest-flights-within-k-stops/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1
+
+There are n cities and m edges connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from the city fromi to city toi with cost pricei.
+
+You are also given three integers src, dst, and k, return the cheapest price from src to dst with at most k stops. If there is no such route, return -1.
+
+Note: The price from city A to B may be different From the price from city B to A.
+
+Input:
+n = 4
+flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]]
+src = 0
+dst = 3
+k = 1
+
+Output: 700
+
+Explanation:
+The optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.
+
+Note that the path through cities [0,1,2,3] is cheaper but is invalid because it uses 2 stops.
+
 
 Solution::
 
@@ -1880,6 +2268,23 @@ https://takeuforward.org/graph/g-39-minimum-multiplications-to-reach-end/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1
 
+Given start, end and an array arr of n numbers. At each step, start is multiplied with any number in the array and then mod operation with 100000 is done to get the new start.
+
+Your task is to find the minimum steps in which end can be achieved starting from start. If it is not possible to reach end, then return -1.
+
+
+Input:
+arr[] = {2, 5, 7}
+start = 3, end = 30
+
+Output: 2
+
+Explanation:
+
+Step 1: 3*2 = 6 % 100000 = 6 
+
+Step 2: 6*5 = 30 % 100000 = 30
+
 Solution::
 
 ```java
@@ -1938,6 +2343,27 @@ class Pair {
 https://takeuforward.org/data-structure/g-40-number-of-ways-to-arrive-at-destination/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1
+
+You are in a city that consists of n intersections numbered from 0 to n - 1 with bi-directional roads between some intersections. The inputs are generated such that you can reach any intersection from any other intersection and that there is at most one road between any two intersections.
+
+You are given an integer n and a 2D integer array roads where roads[i] = [ui, vi, timei] means that there is a road between intersections ui and vi that takes timei minutes to travel. You want to know in how many ways you can travel from intersection 0 to intersection n - 1 in the shortest amount of time.
+
+Return the number of ways you can arrive at your destination in the shortest amount of time. Since the answer may be large, return it modulo 109 + 7.
+
+
+Input:
+n=7, m=10
+edges= [[0,6,7],[0,1,2],[1,2,3],[1,3,3],[6,3,3],[3,5,1],[6,5,1],[2,5,1],[0,4,5],[4,6,2]]
+
+Output: 4
+
+Explaination:
+
+The four ways to get there in 7 minutes are:
+- 0  6
+- 0  4  6
+- 0  1  2  5  6
+- 0  1  3  5  6
 
 Solution::
 
@@ -2007,6 +2433,10 @@ https://takeuforward.org/data-structure/bellman-ford-algorithm-g-41/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1
 
+Given a weighted and directed graph of V vertices and E edges, Find the shortest distance of all the vertex's from the source vertex S. If a vertices can't be reach from the S then mark the distance as 10^8.
+
+Note: If the Graph contains a negative cycle then return an array consisting of only -1.
+
 Solution::
 
 ```java
@@ -2048,6 +2478,8 @@ public class Solution {
 https://takeuforward.org/data-structure/floyd-warshall-algorithm-g-42/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1
+
+The problem is to find the shortest distances between every pair of vertices in a given edge-weighted directed graph. The graph is represented as an adjacency matrix of size n*n. Matrix[i][j] denotes the weight of the edge from i to j. If Matrix[i][j]=-1, it means there is no edge from i to j.
 
 Solution::
 
@@ -2095,6 +2527,10 @@ public class Solution {
 https://takeuforward.org/data-structure/find-the-city-with-the-smallest-number-of-neighbours-at-a-threshold-distance-g-43/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/1
+
+There are n cities labeled from 0 to n-1 with m edges connecting them. Given the array edges where edges[i] = [fromi , toi ,weighti]  represents a bidirectional and weighted edge between cities fromi and toi, and given the integer distanceThreshold. You need to find out a city with the smallest number of cities that are reachable through some path and whose distance is at most Threshold Distance. If there are multiple such cities, our answer will be the city with the greatest label.
+
+Note: The distance of a path connecting cities i and j is equal to the sum of the edge's weights along that path.
 
 Solution::
 
@@ -2154,6 +2590,8 @@ https://takeuforward.org/data-structure/prims-algorithm-minimum-spanning-tree-c-
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
 
+Given a weighted, undirected, and connected graph with V vertices and E edges, your task is to find the sum of the weights of the edges in the Minimum Spanning Tree (MST) of the graph. The graph is represented by an adjacency list, where each element adj[i] is a vector containing pairs of integers. Each pair represents an edge, with the first integer denoting the endpoint of the edge and the second integer denoting the weight of the edge.
+
 Solution::
 
 ```java
@@ -2204,6 +2642,8 @@ class Pair {
 https://takeuforward.org/data-structure/kruskals-algorithm-minimum-spanning-tree-g-47/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1
+
+Given a weighted, undirected, and connected graph with V vertices and E edges, your task is to find the sum of the weights of the edges in the Minimum Spanning Tree (MST) of the graph. The graph is represented by an adjacency list, where each element adj[i] is a vector containing pairs of integers. Each pair represents an edge, with the first integer denoting the endpoint of the edge and the second integer denoting the weight of the edge.
 
 Solution:: 
 
@@ -2319,6 +2759,20 @@ https://takeuforward.org/data-structure/number-of-operations-to-make-network-con
 
 Problem Link:: https://www.geeksforgeeks.org/problems/connecting-the-graph/1
 
+You are given a graph with n vertices (0 to n-1) and m edges. You can remove one edge from anywhere and add that edge between any two vertices in one operation. Find the minimum number of operations that will be required to connect the graph.
+If it is not possible to connect the graph, return -1.
+
+
+Input:
+n = 4
+m = 3
+Edges = [ [0, 1] , [0, 2] , [1, 2] ]
+
+Output: 1
+
+Explanation:
+Remove edge between vertices 1 and 2 and add between vertices 1 and 3.
+
 Solution::
 
 ```java
@@ -2413,6 +2867,28 @@ class DisjointSet {
 https://takeuforward.org/data-structure/accounts-merge-dsu-g-50/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/account-merge/1
+
+Given a list of accounts of size n where each element accounts [ i ] is a list of strings, where the first element account [ i ][ 0 ]  is a name, and the rest of the elements are emails representing emails of the account.
+Geek wants you to merge these accounts. Two accounts belong to the same person if there is some common email to both accounts. Note that even if two accounts have the same name, they may belong to different people as people could have the same name. A person can have any number of accounts initially, but all of their accounts have the same name.
+After merging the accounts, return the accounts in the following format: The first element of each account is the name, and the rest of the elements are emails in sorted order.
+
+Note: Accounts themselves can be returned in any order.
+
+Input:
+n = 4
+accounts [ ] =
+[["John","johnsmith@mail.com","john_newyork@mail.com"],
+["John","johnsmith@mail.com","john00@mail.com"],
+["Mary","mary@mail.com"],
+["John","johnnybravo@mail.com"]]
+
+Output:
+[["John","john00@mail.com","john_newyork@mail.com", "johnsmith@mail.com"],
+["Mary","mary@mail.com"],
+["John","johnnybravo@mail.com"]]
+
+Explanation:
+The first and second John's are the same person as they have the common email "johnsmith@mail.com". The third John and Mary are different people as none of their email addresses are used by other accounts.We could return these arrays in any order, for example, the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'], ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
 
 Solution::
 
@@ -2526,6 +3002,9 @@ https://takeuforward.org/graph/number-of-islands-ii-online-queries-dsu-g-51/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/number-of-islands/1
 
+You are given a n,m which means the row and column of the 2D matrix and an array of  size k denoting the number of operations. Matrix elements is 0 if there is water or 1 if there is land. Originally, the 2D matrix is all 0 which means there is no land in the matrix. The array has k operator(s) and each operator has two integer A[i][0], A[i][1] means that you can change the cell matrix[A[i][0]][A[i][1]] from sea to island. Return how many island are there in the matrix after each operation.You need to return an array of size k.
+Note : An island means group of 1s such that they share a common side.
+
 
 Solution::
 
@@ -2637,6 +3116,21 @@ class DisjointSet {
 https://takeuforward.org/data-structure/making-a-large-island-dsu-g-52/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/maximum-connected-group/1
+
+You are given an n x n binary grid. A grid is considered binary if every value in the grid is either 1 or 0. You can change at most one cell in the grid from 0 to 1. You need to find the largest group of connected  1's. Two cells are said to be connected if both are adjacent to each other and both have the same value.
+
+Input:
+2
+1 1
+0 1
+
+Output:
+4
+
+Explanation:
+By changing cell (2,1), we can obtain a connected group of 4 1's
+1 1
+1 1
 
 Solution::
 
@@ -2763,6 +3257,30 @@ https://takeuforward.org/data-structure/most-stones-removed-with-same-row-or-col
 
 Problem Link:: https://www.geeksforgeeks.org/problems/maximum-stone-removal-1662179442/1
 
+There are n stones at some integer coordinate points on a 2D plane. Each coordinate point may have at most one stone.
+
+You need to remove some stones. 
+
+A stone can be removed if it shares either the same row or the same column as another stone that has not been removed.
+
+Given an array stones of length n where stones[i] = [xi, yi] represents the location of the ith stone, return the maximum possible number of stones that you can remove.
+
+
+Input:
+n=6
+[[0 0] ,[ 0 1], [1 0] ,[1 2] ,[2 1] ,[2 2]]
+
+Output:
+5
+
+
+One way to remove 5 stones are
+1--[0,0]
+2--[1,0]
+3--[0,1]
+4--[2,1]
+5--[1,2]
+
 Solution::
 
 ```java
@@ -2862,6 +3380,8 @@ https://takeuforward.org/graph/strongly-connected-components-kosarajus-algorithm
 
 Problem Link:: https://www.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1
 
+Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, Find the number of strongly connected components in the graph.
+
 Solution::
 
 ```java
@@ -2939,6 +3459,13 @@ https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-
 
 Problem Link:: https://leetcode.com/problems/critical-connections-in-a-network/description/
 
+There are n servers numbered from 0 to n - 1 connected by undirected server-to-server connections forming a network where connections[i] = [ai, bi] represents a connection between servers ai and bi. Any server can reach other servers directly or indirectly through the network.
+
+A critical connection is a connection that, if removed, will make some servers unable to reach some other server.
+
+Return all critical connections in the network in any order.
+
+
 Solution::
 
 ```java
@@ -3000,6 +3527,9 @@ public class Solution {
 https://takeuforward.org/data-structure/articulation-point-in-graph-g-56/
 
 Problem Link:: https://www.geeksforgeeks.org/problems/articulation-point-1/1
+
+Given an undirected connected graph with V vertices and adjacency list adj. You are required to find all the vertices removing which (and edges through it) disconnects the graph into 2 or more components and return it in sorted manner.
+Note: Indexing is zero-based i.e nodes numbering from (0 to V-1). There might be loops present in the graph.
 
 Solution::
 
