@@ -20,6 +20,9 @@ int solve(Node root, int res) {
 
 https://www.geeksforgeeks.org/problems/diameter-of-binary-tree/1
 
+The diameter of a tree (sometimes called the width) is the number of nodes on the longest path between two end nodes. The diagram below shows two trees each with diameter nine, the leaves that form the ends of the longest path are shaded (note that there is more than one path in each tree of length nine, but no path longer than nine nodes).
+
+
 ```java
 public class Solution {
 	
@@ -46,6 +49,11 @@ public class Solution {
 **2. Maximum path sum from any node to any/Binary Tree Maximum Path Sum**
 
 https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
+
+A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+
+The path sum of a path is the sum of the node's values in the path.
+Given the root of a binary tree, return the maximum path sum of any non-empty path.
 
 
 ```java
