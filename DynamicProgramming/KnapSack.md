@@ -79,6 +79,11 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1
 
+You are given weights and values of N items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack. Note that we have only one quantity of each item.
+
+In other words, given two integer arrays val[0..N-1] and wt[0..N-1] which represent values and weights associated with N items respectively. Also given an integer W which represents knapsack capacity, find out the maximum value subset of val[] such that sum of the weights of this subset is smaller than or equal to W. You cannot break an item, either pick the complete item or dont pick it (0-1 property).
+
+
 ```java
 public class Solution {
 	
@@ -134,6 +139,8 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1
 
+Given an array of non-negative integers, and a value sum, determine if there is a subset of the given set with sum equal to given sum. 
+
 
 ```java
 public class Solution {
@@ -169,6 +176,8 @@ public class Solution {
 **2. Equal sum partition**
 
 https://www.geeksforgeeks.org/problems/subset-sum-problem2014/1
+
+Given an array arr[] of size N, check if it can be partitioned into two parts such that the sum of elements in both parts is the same.
 
 
 ```java
@@ -211,6 +220,10 @@ public class Solution {
 
 https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1
 
+Given an array arr of size n of non-negative integers and an integer sum, the task is to count all subsets of the given array with a sum equal to a given sum.
+
+Note: Answer can be very large, so, output answer modulo 10^9+7.
+
 
 ```java
 public class Solution {
@@ -249,6 +262,8 @@ public class Solution {
 **4. Minimum Subset sum Diff**
 
 https://www.geeksforgeeks.org/problems/minimum-sum-partition3317/1
+
+Given an array arr of size n containing non-negative integers, the task is to divide it into two sets S1 and S2 such that the absolute difference between their sums is minimum and find the minimum difference
 
 
 ```java
@@ -297,6 +312,13 @@ public class Solution {
 
 https://leetcode.com/problems/target-sum/
 
+You are given an integer array nums and an integer target.
+
+You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
+
+For example, if nums = [2, 1], you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+Return the number of different expressions that you can build, which evaluates to target.
+
 
 ```java
 public class Solution {
@@ -339,6 +361,10 @@ public class Solution {
 **6. Number of subset with given difference**
 
 https://practice.geeksforgeeks.org/problems/partitions-with-given-difference/1
+
+Given an array arr, partition it into two subsets(possibly empty) such that each element must belong to only one subset. Let the sum of the elements of these two subsets be S1 and S2.
+
+Given a difference d, count the number of partitions in which S1 is greater than or equal to S2 and the difference between S1 and S2 is equal to d. Since the answer may be large return it modulo 10^9 + 7.
 
 
 ```java
