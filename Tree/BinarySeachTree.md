@@ -225,3 +225,246 @@ public class Solution {
 	}
 }
 ```
+
+**6. Kth Smallest Element in a BST**
+
+https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+
+Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
+
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ 
+public class Solution {
+	
+	int ans = 0;
+	int cnt = 0;
+
+	private void inorder(TreeNode root, int k) {
+		if (root == null || cnt >= k) {
+			return;
+		}
+		inorder(root.left, k);
+		cnt++;
+		if (cnt == k) {
+			ans = root.val;
+			return;
+		}
+		inorder(root.right, k);
+
+	}
+
+	public int kthSmallest(TreeNode root, int k) {
+		inorder(root, k);
+		return ans;
+
+	}
+}
+```
+
+
+**7. Validate Binary Search Tree**
+
+https://leetcode.com/problems/validate-binary-search-tree/description/
+
+Given the root of a binary tree, determine if it is a valid binary search tree (BST).
+
+A valid BST is defined as follows:
+
+The left  subtree of a node contains only nodes with keys less than the node's key.
+
+The right subtree of a node contains only nodes with keys greater than the node's key.
+
+Both the left and right subtrees must also be binary search trees.
+
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+public class Solution {
+
+	private boolean isValidBST(TreeNode root, long min, long max) {
+		if (root == null) {
+			return true;
+		}
+		if (root.val <= min || root.val >= max) {
+			return false;
+		}
+		return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+
+	}
+
+	public boolean isValidBST(TreeNode root) {
+
+		return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+	}
+}
+```
+
+
+**8. Lowest Common Ancestor of a Binary Search Tree**
+
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
+
+Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+
+According to the definition of LCA on Wikipedia:
+
+The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).
+
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ 
+public class Solution {
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == null) {
+			return null;
+		}
+		if (root.val < p.val && root.val < q.val) {
+			return lowestCommonAncestor(root.right, p, q);
+		}
+		if (root.val > p.val && root.val > q.val) {
+			return lowestCommonAncestor(root.left, p, q);
+		}
+		return root;
+	}
+}
+```
+
+**9. Construct Binary Search Tree from Preorder Traversal**
+
+https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/
+
+Given an array of integers preorder, which represents the preorder traversal of a BST (i.e., binary search tree), construct the tree and return its root.
+
+It is guaranteed that there is always possible to find a binary search tree with the given requirements for the given test cases.
+
+A binary search tree is a binary tree where for every node, any descendant of Node.left has a value strictly less than Node.val, and any descendant of Node.right has a value strictly greater than Node.val.
+
+A preorder traversal of a binary tree displays the value of the node first, then traverses Node.left, then traverses Node.right.
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ 
+public class Solution {
+	int pos = 0;
+
+	private TreeNode bstFromPreorder(int[] preorder, int max) {
+		if (pos == preorder.length || preorder[pos] > max) {
+			return null;
+		}
+		TreeNode root = new TreeNode(preorder[pos++]);
+		root.left = bstFromPreorder(preorder, root.val);
+		root.right = bstFromPreorder(preorder, max);
+		return root;
+	}
+
+	public TreeNode bstFromPreorder(int[] preorder) {
+
+		return bstFromPreorder(preorder, Integer.MAX_VALUE);
+
+	}
+}
+```
+
+**10. Inorder Successor in BST**
+
+https://www.geeksforgeeks.org/problems/inorder-successor-in-bst/1
+
+Given a BST, and a reference to a Node x in the BST. Find the Inorder Successor of the given node in the BST.
+
+
+Example 1:
+
+```json
+Input:
+      2
+    /   \
+   1     3
+K(data of x) = 2
+Output: 3 
+Explanation: 
+Inorder traversal : 1 2 3 
+Hence, inorder successor of 2 is 3.
+```
+
+```java
+class Node {
+	int data;
+	Node left, right;
+
+	Node(int d) {
+		data = d;
+		left = right = null;
+	}
+}
+
+public class Solution {
+
+	public Node inorderSuccessor(Node root, Node x) {
+		Node successor = null;
+		while (root != null) {
+			if (x.data >= root.data) {
+				root = root.right;
+			} else {
+				successor = root;
+				root = root.left;
+			}
+		}
+
+		return successor;
+	}
+}
+```
