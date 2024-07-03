@@ -428,7 +428,7 @@ Given a BST, and a reference to a Node x in the BST. Find the Inorder Successor 
 
 Example 1:
 
-```json
+```css
 Input:
       2
     /   \
@@ -439,6 +439,7 @@ Explanation:
 Inorder traversal : 1 2 3 
 Hence, inorder successor of 2 is 3.
 ```
+
 
 ```java
 class Node {
