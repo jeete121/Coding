@@ -440,6 +440,7 @@ Inorder traversal : 1 2 3
 Hence, inorder successor of 2 is 3.
 ```
 
+Solution::
 
 ```java
 class Node {
