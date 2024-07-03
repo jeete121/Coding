@@ -470,3 +470,234 @@ public class Solution {
 	}
 }
 ```
+
+
+**11. Predecessor and Successor**
+
+https://www.geeksforgeeks.org/problems/predecessor-and-successor/1
+
+There is BST given with the root node with the key part as an integer only. You need to find the in-order successor and predecessor of a given key. If either predecessor or successor is not found, then set it to NULL.
+
+Note:- In an inorder traversal the number just smaller than the target is the predecessor and the number just greater than the target is the successor. 
+
+
+Example 1:
+
+```css
+Input:
+      8
+    /   \
+   1     9
+    \     \
+     4    10
+    /
+   3
+key = 8 
+Output: 4 9
+Explanation: 
+In the given BST the inorder predecessor of 8 is 4 and inorder successor of 8 is 9.
+```
+
+Solution
+
+```java
+class Node {
+	int data;
+	Node left, right;
+
+	Node(int d) {
+		data = d;
+		left = right = null;
+	}
+}
+
+public class Solution {
+	private static Node findSuccessor(Node root, int x) {
+
+		Node successor = null;
+		while (root != null) {
+			if (x >= root.data) {
+				root = root.right;
+			} else {
+				successor = root;
+				root = root.left;
+			}
+		}
+		return successor;
+	}
+
+	private static Node findPrecessor(Node root, int x) {
+
+		Node predecessor = null;
+		while (root != null) {
+			if (x > root.data) {
+				predecessor = root;
+				root = root.right;
+			} else {
+				root = root.left;
+			}
+		}
+		return predecessor;
+	}
+
+	public static void findPreSuc(Node root, Node[] pre, Node[] suc, int key) {
+
+		suc[0] = findSuccessor(root, key);
+		pre[0] = findPrecessor(root, key);
+	}
+}
+```
+
+**12. Binary Search Tree Iterator**
+
+https://leetcode.com/problems/binary-search-tree-iterator/description/
+
+Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST):
+
+BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of the BST is given as part of the constructor. The pointer should be initialized to a non-existent number smaller than any element in the BST.
+
+boolean hasNext() Returns true if there exists a number in the traversal to the right of the pointer, otherwise returns false.
+
+int next() Moves the pointer to the right, then returns the number at the pointer.
+
+Notice that by initializing the pointer to a non-existent smallest number, the first call to next() will return the smallest element in the BST.
+
+You may assume that next() calls will always be valid. That is, there will be at least a next number in the in-order traversal when next() is called.
+
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+ 
+public class BSTIterator {
+
+	private Stack<TreeNode> st = new Stack<>();
+
+	public BSTIterator(TreeNode root) {
+		pushAll(root);
+	}
+
+	public int next() {
+		TreeNode node = st.pop();
+		pushAll(node.right);
+		return node.val;
+	}
+
+	public boolean hasNext() {
+		return !st.isEmpty();
+	}
+
+	private void pushAll(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+
+		while (root != null) {
+			st.push(root);
+			root = root.left;
+		}
+	}
+}
+```
+
+
+**13. Two Sum IV - Input is a BST**
+
+https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/
+
+Given the root of a binary search tree and an integer k, return true if there exist two elements in the BST such that their sum is equal to k, or false otherwise.
+
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+public class Solution {
+	public boolean findTarget(TreeNode root, int k) {
+
+		BSTIterator l = new BSTIterator(root, false);
+		BSTIterator r = new BSTIterator(root, true);
+		int i = l.next();
+		int j = r.next();
+
+		while (i < j) {
+			if (i + j == k) {
+				return true;
+			}
+			if (i + j > k) {
+				j = r.next();
+			} else {
+				i = l.next();
+			}
+
+		}
+		return false;
+	}
+}
+
+class BSTIterator {
+
+	private Stack<TreeNode> st = new Stack<>();
+	boolean reverse = true;
+
+	BSTIterator(TreeNode root, boolean isReverse) {
+		reverse = isReverse;
+		pushAll(root);
+	}
+
+	public boolean hasNext() {
+		return !st.isEmpty();
+	}
+
+	public int next() {
+		TreeNode node = st.pop();
+		if (reverse == false) {
+			pushAll(node.right);
+		} else {
+			pushAll(node.left);
+		}
+		return node.val;
+	}
+
+	private void pushAll(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		while (root != null) {
+			st.push(root);
+			if (reverse == false) {
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+		}
+	}
+}
+```
