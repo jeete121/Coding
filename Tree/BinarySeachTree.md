@@ -701,3 +701,151 @@ class BSTIterator {
 	}
 }
 ```
+
+
+**14. Recover Binary Search Tree**
+
+https://leetcode.com/problems/recover-binary-search-tree/description/
+
+You are given the root of a binary search tree (BST), where the values of exactly two nodes of the tree were swapped by mistake. Recover the tree without changing its structure.
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+ 
+public class Solution {
+	private TreeNode first;
+	private TreeNode middle;
+	private TreeNode last;
+	private TreeNode prev;
+
+	private void inorder(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+
+		inorder(root.left);
+
+		if (prev != null && (root.val < prev.val)) {
+
+			// If this is first violation then mark first and middle
+			if (first == null) {
+				first = prev;
+				middle = root;
+			}
+			// If this is second violation then mark it as last
+			else {
+				last = root;
+			}
+		}
+		//mark this as previous
+		prev = root;
+		inorder(root.right);
+	}
+
+	public void recoverTree(TreeNode root) {
+
+		first = last = middle = null;
+		prev = new TreeNode(Integer.MIN_VALUE);
+		inorder(root);
+		if (first != null && last != null) {
+			int temp = first.val;
+			first.val = last.val;
+			last.val = temp;
+		} else if (first != null && middle != null) {
+			int temp = first.val;
+			first.val = middle.val;
+			middle.val = temp;
+		}
+
+	}
+}
+```
+
+**15. Largest BST**
+
+https://www.geeksforgeeks.org/problems/largest-bst/1
+
+Given a binary tree. Find the size of its largest subtree that is a Binary Search Tree.
+
+Note: Here Size is equal to the number of nodes in the subtree.
+
+Example 1:
+
+```css
+Input:
+        1
+      /   \
+     4     4
+   /   \
+  6     8
+Output: 1
+Explanation: There's no sub-tree with size
+greater than 1 which forms a BST. All the
+leaf Nodes are the BSTs with size equal
+to 1.
+
+```
+```java
+class Node {
+	int data;
+	Node left, right;
+
+	public Node(int d) {
+		data = d;
+		left = right = null;
+	}
+}
+
+public class Solution {
+
+	private static NodeValue largestBstHelper(Node root) {
+		if (root == null) {
+			return new NodeValue(Integer.MAX_VALUE, Integer.MIN_VALUE, 0);
+		}
+
+		NodeValue left = largestBstHelper(root.left);
+		NodeValue right = largestBstHelper(root.right);
+
+		// if current node is greater than max of left and
+		// smaller than min in right it is a bst
+		if (left.maxNode < root.data && root.data < right.minNode) {
+			return new NodeValue(Math.min(root.data, left.minNode), Math.max(root.data, right.maxNode),
+					left.maxSize + right.maxSize + 1);
+		}
+
+		// Otherwise return [-inf,inf] so that parent can't be a valid BST
+		return new NodeValue(Integer.MIN_VALUE, Integer.MAX_VALUE, Math.max(left.maxSize, right.maxSize));
+	}
+
+	static int largestBst(Node root) {
+
+		return largestBstHelper(root).maxSize;
+
+	}
+
+}
+
+class NodeValue {
+	public int maxNode, minNode, maxSize;
+
+	NodeValue(int minNode, int maxNode, int maxSize) {
+		this.minNode = minNode;
+		this.maxNode = maxNode;
+		this.maxSize = maxSize;
+	}
+}
+```
