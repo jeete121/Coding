@@ -1175,3 +1175,305 @@ public class Solution {
 	}
 }
 ```
+
+
+**16. Koko Eating Bananas**
+
+https://www.naukri.com/code360/problems/minimum-rate-to-eat-bananas_7449064
+
+A monkey is given ‘n’ piles of bananas, where the 'ith' pile has ‘a[i]’ bananas. An integer ‘h’ is also given, which denotes the time (in hours) in which all the bananas should be eaten.
+
+Each hour, the monkey chooses a non-empty pile of bananas and eats ‘m’ bananas. If the pile contains less than ‘m’ bananas, then the monkey consumes all the bananas and won’t eat any more bananas in that hour.
+
+Find the minimum number of bananas ‘m’ to eat per hour so that the monkey can eat all the bananas within ‘h’ hours.
+
+
+```css
+Example:
+
+Input: ‘n’ = 4, ‘a’ =  [3, 6, 2, 8] , ‘h’ = 7
+
+Output: 3
+
+Explanation: If ‘m’ = 3, then 
+The time taken to empty the 1st pile is 1 hour.
+The time taken to empty the 2nd pile is 2 hour.
+The time taken to empty the 3rd pile is 1 hour.
+The time taken to empty the 4th pile is 3 hour.
+Therefore a total of 7 hours is taken. It can be shown that if the rate of eating bananas is reduced, they can’t be eaten in 7 hours.
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1:
+4
+7 15 6 3
+8
+
+Sample Output 1:
+5
+
+
+Explanation Of Sample Input 1:
+Input: ‘n’ = 4, ‘a’ = [7, 15, 6, 3], ‘h’ = 8
+
+Output: 5
+
+Explanation: If ‘m’ = 5, then 
+The time taken to empty the 1st pile is 2 hour.
+The time taken to empty the 2nd pile is 3 hour.
+The time taken to empty the 3rd pile is 2 hour.
+The time taken to empty the 4th pile is 1 hour.
+Therefore a total of 8 hours is taken. It can be shown that if the rate of eating bananas is reduced, they can’t be eaten in 8 hours.
+
+
+Sample Input 2:
+5
+25 12 8 14 19
+5
+
+
+Sample Output 2:
+25
+
+
+Explanation Of Sample Input 2:
+Input: ‘n’ = 5, ‘a’ = [25,12,8,14,19], ‘h’ = 5
+
+Output: 25
+
+Explanation: If ‘m’ = 25, 
+The time taken to empty the 1st pile is 1 hour.
+The time taken to empty the 2nd pile is 1 hour.
+The time taken to empty the 3rd pile is 1 hour.
+The time taken to empty the 4th pile is 1 hour.
+The time taken to empty the 5th pile is 1 hour.
+Therefore a total of 5 hours is taken. It can be shown that if the rate of eating bananas is reduced, they can’t be eaten in 5 hours.
+
+
+Expected Time Complexity:
+Try to solve the problem in O(log n).
+```
+
+
+Solution
+
+
+```java
+public class Solution {
+
+	private static int minimumRate(int v[], int m) {
+		int total = 0;
+		for (int i = 0; i < v.length; i++) {
+			total += Math.ceil((double) (v[i]) / (double) (m));
+
+		}
+		return total;
+	}
+
+	public static int minimumRateToEatBananas(int[] v, int h) {
+		int maxElement = -1;
+		for (int i = 0; i < v.length; i++) {
+			if (maxElement < v[i]) {
+				maxElement = v[i];
+			}
+		}
+		int low = 1, high = maxElement;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int total = minimumRate(v, mid);
+			if (total <= h) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return low;
+	}
+}
+```
+
+
+**17. Rose Garden**
+
+https://www.naukri.com/code360/problems/rose-garden_2248080
+
+You are given 'n' roses and you are also given an array 'arr' where 'arr[i]' denotes that the 'ith' rose will bloom on the 'arr[i]th' day.
+
+You can only pick already bloomed roses that are adjacent to make a bouquet. You are also told that you require exactly 'k' adjacent bloomed roses to make a single bouquet.
+
+Find the minimum number of days required to make at least 'm' bouquets each containing 'k' roses. Return -1 if it is not possible.
+
+
+
+```css
+Example :
+Input: n = 9,  arr = [ 1, 2, 1, 2, 7, 2, 2, 3, 1 ], k = 3, m = 2
+
+Output: 3. 
+
+Explanation: This is because on the 3rd day: all the roses with 'arr[i]' less than equal to 3 have already bloomed, this means every rose except the 5th rose has bloomed. Now we can form the first bouquet from the first three roses and the second bouquet from the last three roses.
+Detailed explanation ( Input/output format, Notes, Images )
+
+Sample Input 1 :
+9
+1 2 1 2 7 2 2 3 1
+3 2
+Sample Output 1 :
+3
+Explanation For Sample Input 1 :
+We will return 3, because:
+All the roses with 'arr[i]' less than equal to 3 have already bloomed after 3 days, this means every rose except the 5th rose has bloomed. Now we can form the first bouquet from the first three roses and the second bouquet from the last three roses.
+
+Sample Input 2 :
+4
+1 1 1 1
+1 1
+Sample Output 2 :
+1
+```
+
+
+Solution:
+
+```java
+public class Solution {
+
+	private static int func(int arr[], int m, int k) {
+
+		int cnt = 0;
+		int i = 0, n = arr.length;
+		int total = 0;
+		while (i < n) {
+			if (arr[i] <= m) {
+				while (i < n && arr[i] <= m) {
+					cnt++;
+					i++;
+				}
+				total += cnt / k;
+			} else {
+				i++;
+			}
+			cnt = 0;
+		}
+		return total;
+
+	}
+
+	public static int roseGarden(int[] arr, int r, int b) {
+
+		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+		int low = min, high = max;
+		int ans = -1;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int count = func(arr, mid, r);
+			if (count >= b) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return ans;
+
+	}
+}
+```
+
+
+**18. Smallest divisor**
+
+https://www.naukri.com/code360/problems/smallest-divisor-with-the-given-limit_1755882
+
+You are given an array of integers 'arr' and an integer 'limit'.
+
+Your task is to find the smallest positive integer divisor, such that upon dividing all the elements of the given array by it, the sum of the division's result is less than or equal to the given integer's limit.
+
+Note:
+Each result of the division is rounded to the nearest integer greater than or equal to that element. For Example, 7/3 = 3.
+
+
+```css
+Sample Input 1 :
+5
+1 2 3 4 5
+8  
+Sample Output 1 :
+3
+Explanation for Sample Input 1 :
+We can get a sum of 15(1 + 2 + 3 + 4 + 5) if we choose 1 as a divisor. 
+The sum is 9(1 + 1 + 2 + 2 + 3)  if we choose 2 as a divisor, and the sum is 7(1 + 1 + 1 + 2 + 2) if we choose 3 as a divisor, which is less than the 'limit'.
+Hence we return 3.
+Sample Input 2 :
+4
+8 4 2 3 
+10
+
+Sample Output 2 :
+2
+
+Explanation for Sample Input 2:
+We can get a sum of 17(8 + 4 + 2 + 3) if we choose 1 as a divisor. 
+The sum is 9(4 + 2 + 1 + 2) if we choose 2 as a divisor, which is less than the 'limit'.
+Hence, we return 2.
+
+Sample Input 3:
+5
+2 3 5 7 11
+11
+Sample Output 3 :
+3
+```
+
+```java
+public class Solution {
+
+	private static int func(int arr[], int m) {
+		int total = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			total += Math.ceil((double) (arr[i]) / (double) (m));
+		}
+		return total;
+
+	}
+
+	public static int smallestDivisor(int arr[], int limit) {
+
+		int n = arr.length;
+		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+		int low = min, high = max;
+
+		int ans = low;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int count = func(arr, mid);
+
+			if (count <= limit) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return ans;
+	}
+}
+```
