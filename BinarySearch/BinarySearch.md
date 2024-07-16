@@ -1477,3 +1477,366 @@ public class Solution {
 	}
 }
 ```
+
+
+**19. Capacity To Ship Packages Within D Days**
+
+https://www.naukri.com/code360/problems/capacity-to-ship-packages-within-d-days_1229379
+
+You are the owner of a Shipment company. You use conveyor belts to ship packages from one port to another. The packages must be shipped within 'd' days.
+
+The weights of the packages are given in an array 'weights'. The packages are loaded on the conveyor belts every day in the same order as they appear in the array. The loaded weights must not exceed the maximum weight capacity of the ship.
+
+Find out the least-weight capacity so that you can ship all the packages within 'd' days.
+
+```css
+Sample Input 1:
+8 5
+5 4 5 2 3 4 5 6
+
+Sample Output 1:
+9
+
+Explanation for Sample Input 1:
+In the test case, the given weights are [5,4,5,2,3,4,5,6] and these are needed to be shipped in 5 days. We can divide these weights in the following manner:
+Day         Weights            Total
+1        -   5, 4          -    9
+2        -   5, 2          -    7
+3        -   3, 4          -    7
+4        -   5             -    5
+5        -   6             -    6
+The least weight capacity needed is 9, which is the total amount of weight that needs to be taken on Day 1.
+
+Sample Input 2:
+10 1
+1 2 3 4 5 6 7 8 9 10
+Sample Output 2:
+55
+```
+
+Solution
+
+```java
+public class Solution {
+
+	private static int func(int weights[], int cap) {
+
+		int days = 1, load = 0;
+		for (int i = 0; i < weights.length; i++) {
+			if (load + weights[i] > cap) {
+				load = weights[i];
+				days++;
+			} else {
+				load += weights[i];
+			}
+		}
+
+		return days;
+	}
+
+	public static int leastWeightCapacity(int[] weights, int d) {
+		int n = weights.length;
+		int max = Integer.MIN_VALUE, sum = 0;
+		for (int i = 0; i < n; i++) {
+			if (max < weights[i]) {
+				max = weights[i];
+
+			}
+			sum += weights[i];
+		}
+
+		int low = max, high = sum;
+		int ans = low;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int total = func(weights, mid);
+			if (total <= d) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return ans;
+	}
+}
+```
+
+
+**20. Kth Missing Positive Number**
+
+https://leetcode.com/problems/kth-missing-positive-number/description/
+
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+
+Return the kth positive integer that is missing from this array.
+
+
+```css
+Example 1:
+
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+
+Example 2:
+
+Input: arr = [1,2,3,4], k = 2
+Output: 6
+Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
+```
+
+Solution
+
+```java
+public class Solution {
+	public int findKthPositive(int[] arr, int k) {
+
+		int n = arr.length;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int missing = arr[mid] - (mid + 1);
+			if (missing < k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		// ans = arr[high] + more
+		// missing = arr[high] - (high + 1);
+		// more = k - missing
+		// int ans = arr[high] + k - arr[high] + high + 1;
+		return k + high + 1;
+
+	}
+}
+```
+
+
+
+**21. Aggressive Cows**
+
+https://www.naukri.com/code360/problems/aggressive-cows_1082559
+
+You are given an array 'arr' consisting of 'n' integers which denote the position of a stall.
+
+You are also given an integer 'k' which denotes the number of aggressive cows.
+
+You are given the task of assigning stalls to 'k' cows such that the minimum distance between any two of them is the maximum possible.
+
+Print the maximum possible minimum distance.
+
+
+```css
+Example:
+Input: 'n' = 3, 'k' = 2 and 'arr' = {1, 2, 3}
+
+Output: 2
+
+Explanation: The maximum possible minimum distance will be 2 when 2 cows are placed at positions {1, 3}. Here distance between cows is 2.
+
+Sample Input 1 :
+6 4
+0 3 4 7 10 9
+
+Sample Output 1 :
+3
+
+Explanation to Sample Input 1 :
+The maximum possible minimum distance between any two cows will be 3 when 4 cows are placed at positions {0, 3, 7, 10}. Here distance between cows are 3, 4 and 3 respectively.
+
+Sample Input 2 :
+5 2
+4 2 1 3 6
+
+Sample Output 2 :
+5
+
+Expected time complexity:
+Can you solve this in O(n * log(n)) time complexity?
+```
+
+
+Solution
+
+```java
+import java.util.Arrays;
+
+public class Solution {
+
+	private static int countCows(int stalls[], int m, int k) {
+
+		int place = stalls[0];
+		for (int i = 1; i < stalls.length; i++) {
+			if (stalls[i] - place >= m) {
+				place = stalls[i];
+				k--;
+			}
+			if (k == 1)
+				return m;
+		}
+
+		return -1;
+
+	}
+
+	public static int aggressiveCows(int[] stalls, int k) {
+
+		Arrays.sort(stalls);
+		int n = stalls.length;
+		int low = 1, high = stalls[n - 1] - stalls[0];
+		int ans = low;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (countCows(stalls, mid, k) == -1) {
+				high = mid - 1;
+			} else {
+				ans = mid;
+				low = mid + 1;
+			}
+		}
+
+		return ans;
+	}
+}
+```
+
+
+**22. Allocate Books**
+
+https://www.naukri.com/code360/problems/allocate-books_1090540
+
+Given an array ‘arr’ of integer numbers, ‘arr[i]’ represents the number of pages in the ‘i-th’ book.
+
+There are ‘m’ number of students, and the task is to allocate all the books to the students.
+
+Allocate books in such a way that:
+
+1. Each student gets at least one book.
+
+2. Each book should be allocated to only one student.
+
+3. Book allocation should be in a contiguous manner.
+
+You have to allocate the book to ‘m’ students such that the maximum number of pages assigned to a student is minimum.
+
+If the allocation of books is not possible, return -1.
+
+
+```css
+Example:
+Input: ‘n’ = 4 ‘m’ = 2 
+‘arr’ = [12, 34, 67, 90]
+
+Output: 113
+
+Explanation: All possible ways to allocate the ‘4’ books to '2' students are:
+
+12 | 34, 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12’, and student two is ‘34+ 67+ 90 = 191’, so the maximum is ‘max(12, 191)= 191’.
+
+12, 34 | 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 = 46’, and student two is ‘67+ 90 = 157’, so the maximum is ‘max(46, 157)= 157’.
+
+12, 34, 67 | 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 +67 = 113’, and student two is ‘90’, so the maximum is ‘max(113, 90)= 113’.
+
+We are getting the minimum in the last case.
+
+Hence answer is ‘113’.
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1:
+4 2
+12 34 67 90
+Sample Output 1:
+113
+Explanation of sample input 1:
+All possible ways to allocate the ‘4’ books to '2' students are:
+
+12 | 34, 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12’, and student two is ‘34+ 67+ 90 = 191’, so the maximum is ‘max(12, 191)= 191’.
+
+12, 34 | 67, 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 = 46’, and student two is ‘67+ 90 = 157’, so the maximum is ‘max(46, 157)= 157’.
+
+12, 34, 67 | 90 - the sum of all the pages of books allocated to student 1 is ‘12+ 34 +67 = 113’, and student two is ‘90’, so the maximum is ‘max(113, 90)= 113’.
+
+We are getting the minimum in the last case.
+
+Hence answer is ‘113’.
+Sample Input 2:
+5 4
+25 46 28 49 24
+Sample Output 2:
+71
+Explanation of sample input 2:
+All possible ways to allocate the ‘5’ books to '4' students are:
+
+25 | 46 | 28 | 49 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '46', '28', and '73'. So the maximum is '73'.
+
+25 | 46 | 28 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '46', '77', and '24'. So the maximum is '77'.
+
+25 | 46 28 | 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '25', '74', '49', and '24'. So the maximum is '74'.
+
+25 46 | 28 | 49 | 24 - the sum of all the pages of books allocated to students 1, 2, 3, and 4 are '71', '28', '49', and '24'. So the maximum is '71'.
+
+We are getting the minimum in the last case.
+
+Hence answer is ‘71’.
+Expected time complexity:
+The expected time complexity is O(n * log(s)), where ‘n’ is the number of integers in the array ‘arr’ and ‘s’ is the sum of all the elements of ‘arr’.
+```
+
+
+Solution
+
+
+```java
+import java.util.ArrayList;
+
+public class Solution {
+
+	private static int countStudents(ArrayList<Integer> arr, int m) {
+
+		int pages = 0;
+		int n = arr.size();
+		int studentCount = 1;
+		for (int i = 0; i < n; i++) {
+			if (pages + arr.get(i) <= m) {
+				pages += arr.get(i);
+			} else {
+				studentCount++;
+				pages = arr.get(i);
+			}
+		}
+
+		return studentCount;
+	}
+
+	public static int findPages(ArrayList<Integer> arr, int n, int m) {
+
+		int sum = 0;
+		if (n < m) {
+			return -1;
+		}
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+			if (arr.get(i) > max) {
+				max = arr.get(i);
+			}
+			sum += arr.get(i);
+		}
+		int low = max, high = sum;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int total = countStudents(arr, mid);
+			if (total > m) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return low;
+	}
+}
+```
