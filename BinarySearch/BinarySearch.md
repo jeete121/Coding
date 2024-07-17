@@ -1840,3 +1840,338 @@ public class Solution {
 	}
 }
 ```
+
+**23. Painter's Partition Problem**
+
+https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557
+
+Given an array/list of length ‘n’, where the array/list represents the boards and each element of the given array/list represents the length of each board. Some ‘k’ numbers of painters are available to paint these boards. Consider that each unit of a board takes 1 unit of time to paint.
+
+You are supposed to return the area of the minimum time to get this job done of painting all the ‘n’ boards under a constraint that any painter will only paint the continuous sections of boards.
+
+
+
+```css
+Example :
+Input: arr = [2, 1, 5, 6, 2, 3], k = 2
+
+Output: 11
+
+Explanation:
+First painter can paint boards 1 to 3 in 8 units of time and the second painter can paint boards 4-6 in 11 units of time. Thus both painters will paint all the boards in max(8,11) = 11 units of time. It can be shown that all the boards can't be painted in less than 11 units of time.
+
+
+Detailed explanation ( Input/output format, Notes, Images )
+Sample Input 1 :
+4 2
+10 20 30 40
+
+Sample Output 1 :
+60
+
+Explanation For Sample Input 1 :
+In this test case, we can divide the first 3 boards for one painter and the last board for the second painter.
+
+Sample Input 2 :
+2 2
+48 90
+
+Sample Output 2 :
+90
+
+Expected Time Complexity:
+Try to do this in O(n*log(n)).
+```
+
+Solution
+
+
+```java
+import java.util.ArrayList;
+
+public class Solution {
+	private static int countPainter(ArrayList<Integer> boards, int mid) {
+
+		int cnt = 1, sum = 0;
+		for (int i = 0; i < boards.size(); i++) {
+			if (sum + boards.get(i) <= mid) {
+				sum += boards.get(i);
+			} else {
+				cnt++;
+				sum = boards.get(i);
+			}
+		}
+
+		return cnt;
+	}
+
+	public static int findLargestMinDistance(ArrayList<Integer> boards, int k) {
+		int n = boards.size();
+		if (k > n) {
+			return -1;
+		}
+		int sum = 0, max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+			if (boards.get(i) > max) {
+				max = boards.get(i);
+			}
+			sum += boards.get(i);
+		}
+
+		int low = max, high = sum;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int total = countPainter(boards, mid);
+			if (total > k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return low;
+	}
+}
+```
+
+
+
+**24. Split Array Largest Sum**
+
+https://leetcode.com/problems/split-array-largest-sum/description/
+
+Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized.
+
+Return the minimized largest sum of the split.
+
+A subarray is a contiguous part of the array.
+
+```css
+Example 1:
+
+Input: nums = [7,2,5,10,8], k = 2
+Output: 18
+Explanation: There are four ways to split nums into two subarrays.
+The best way is to split it into [7,2,5] and [10,8], where the largest sum among the two subarrays is only 18.
+Example 2:
+
+Input: nums = [1,2,3,4,5], k = 2
+Output: 9
+Explanation: There are four ways to split nums into two subarrays.
+The best way is to split it into [1,2,3] and [4,5], where the largest sum among the two subarrays is only 9.
+```
+
+
+Solution
+
+
+```java
+public class Solution {
+	private int countSplit(int nums[], int mid) {
+		int cnt = 1, sum = 0;
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] + sum <= mid) {
+				sum += nums[i];
+			} else {
+				cnt++;
+				sum = nums[i];
+			}
+		}
+
+		return cnt;
+	}
+
+	public int splitArray(int[] nums, int k) {
+
+		int n = nums.length;
+		if (k > n) {
+			return -1;
+		}
+		int max = Integer.MIN_VALUE, sum = 0;
+		for (int i = 0; i < n; i++) {
+			if (nums[i] > max) {
+				max = nums[i];
+			}
+			sum += nums[i];
+		}
+		int low = max, high = sum;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			int total = countSplit(nums, mid);
+
+			if (total > k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return low;
+
+	}
+}
+```
+
+
+**25. Minimize Max Distance to Gas Station**
+
+https://www.naukri.com/code360/problems/minimise-max-distance_7541449
+
+You are given a sorted array ‘arr’ of length ‘n’, which contains positive integer positions of ‘n’ gas stations on the X-axis.
+
+You are also given an integer ‘k’.
+You have to place 'k' new gas stations on the X-axis.
+
+You can place them anywhere on the non-negative side of the X-axis, even on non-integer positions.
+Let 'dist' be the maximum value of the distance between adjacent gas stations after adding 'k' new gas stations.
+Find the minimum value of dist.
+
+
+Example:
+Input: ‘n' = 7 , ‘k’=6, ‘arr’ = {1,2,3,4,5,6,7}.
+
+Answer: 0.5
+
+Explanation:
+We can place 6 gas stations at 1.5, 2.5, 3.5, 4.5, 5.5, 6.5. 
+
+Thus the value of 'dist' will be 0.5. It can be shown that we can't get a lower value of 'dist' by placing 6 gas stations.
+
+Note:
+You will only see 1 or 0 in the output where:
+  1 represents your answer is correct.
+  0 represents your answer is wrong. 
+Answers within 10^-6 of the actual answer will be accepted.
+
+
+```css
+Sample Input 1:
+5 4
+1 2 3 4 5
+
+Expected Answer:
+0.5
+
+Output Printed On Console:
+1
+
+Explanation of sample output 1:
+k = 4, arr = {1,2,3,4,5} 
+
+One of the possible ways to place 4 gas stations is {1,1.5,2,2.5,3,3.5,4,4.5,5}
+
+Thus the maximum difference between adjacent gas stations is 0.5. 
+
+Hence, the value of ‘dist’ is 0.5. It can be shown that there is no possible way to add 4 gas stations in such a way that the value of ‘dist’ is lower than this. (Note: 1 will be printed in the output for the correct answer). 
+
+Sample Input 2:
+10 1
+1 2 3 4 5 6 7 8 9 10
+
+Expected Answer:
+1
+
+Output Printed On Console:
+1
+
+Explanation of sample output 2:
+k = 1, arr = {1,2,3,4,5,6,7,8,9,10} 
+
+One of the possible ways to place 1 gas station is {1,1.5,2,3,4,5,6,7,8,9,10} 
+Thus the maximum difference between adjacent gas stations is still 1. 
+
+Hence, the value of ‘dist’ is 1. It can be shown that there is no possible way to add 1 gas station in such a way that the value of ‘dist’ is lower than this. (Note: 1 will be printed in the output for the correct answer). 
+
+Expected Time Complexity
+Try solving this in O(n*log(A)), where A is the maximum value in array 'arr'.
+```
+
+Approach 1: Using Priority Queue
+
+
+```java
+import java.util.Arrays;
+import java.util.PriorityQueue;
+
+public class Solution {
+	public static double MinimiseMaxDistance(int[] arr, int K) {
+		int n = arr.length;
+		PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> Double.compare(b.first, a.first));
+
+		int howMany[] = new int[n - 1];
+		Arrays.fill(howMany, 0);
+		for (int i = 0; i < n - 1; i++) {
+			pq.add(new Node((double) (arr[i + 1] - arr[i]), i));
+		}
+
+		for (int i = 1; i <= K; i++) {
+			Node top = pq.poll();
+			int index = top.second;
+			howMany[index]++;
+			double iniDiff = arr[index + 1] - arr[index];
+			double newDiff = iniDiff / (double) (howMany[index] + 1);
+			pq.add(new Node(newDiff, index));
+		}
+
+		return pq.peek().first;
+
+	}
+}
+
+class Node {
+	double first;
+	int second;
+
+	Node(double first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+}
+```
+
+
+Approach 2: Binary Search
+
+
+```java
+public class Solution {
+
+	private static int countGasStatation(int arr[], double dist) {
+		int cnt = 0;
+		for (int i = 1; i < arr.length; i++) {
+			int numberInBetween = (int) ((arr[i] - arr[i - 1]) / dist);
+			if (arr[i] - arr[i - 1] == dist * numberInBetween) {
+				numberInBetween--;
+			}
+			cnt += numberInBetween;
+		}
+		return cnt;
+	}
+
+	public static double MinimiseMaxDistance(int[] arr, int K) {
+
+		int max = Integer.MIN_VALUE;
+		for (int i = 1; i < arr.length; i++) {
+			if ((arr[i] - arr[i - 1]) > max) {
+				max = arr[i] - arr[i - 1];
+			}
+		}
+		double low = 0.0, high = (double) (max);
+		double ans = high;
+		while ((high - low) > 1e-6) {
+			double mid = (low + high) / 2.0;
+			int total = countGasStatation(arr, mid);
+			if (total > K) {
+				low = mid;
+			} else {
+				ans = high;
+				high = mid;
+			}
+		}
+		return high;
+	}
+}
+```
