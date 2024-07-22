@@ -2175,3 +2175,517 @@ public class Solution {
 	}
 }
 ```
+
+
+**26. Median of Two Sorted Arrays**
+
+https://leetcode.com/problems/median-of-two-sorted-arrays/description/
+
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+The overall run time complexity should be O(log (m+n)).
+
+ 
+```css
+Example 1:
+
+Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+Example 2:
+
+Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+```
+
+
+Solution
+
+
+```java
+public class Solution {
+	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+
+		int n = nums1.length, m = nums2.length;
+
+		if (n > m) {
+			return findMedianSortedArrays(nums2, nums1);
+		}
+		int left = (n + m + 1) / 2;
+		int low = 0, high = n;
+		while (low <= high) {
+			int mid1 = low + (high - low) / 2;
+			int mid2 = left - mid1;
+			int l1 = Integer.MIN_VALUE, l2 = Integer.MIN_VALUE;
+			int r1 = Integer.MAX_VALUE, r2 = Integer.MAX_VALUE;
+			if (mid1 < n) {
+				r1 = nums1[mid1];
+			}
+			if (mid2 < m) {
+				r2 = nums2[mid2];
+			}
+			if (mid1 - 1 >= 0) {
+				l1 = nums1[mid1 - 1];
+			}
+			if (mid2 - 1 >= 0) {
+				l2 = nums2[mid2 - 1];
+			}
+			if (l1 <= r2 && l2 <= r1) {
+				if ((n + m) % 2 == 1) {
+					return Math.max(l1, l2);
+				} else {
+					return (double) (Math.max(l1, l2) + Math.min(r1, r2)) / 2.0;
+				}
+			} else if (l1 > r2) {
+				high = mid1 - 1;
+			} else {
+				low = mid1 + 1;
+			}
+		}
+
+		return 0;
+	}
+}
+```
+
+
+**27. K-th Element of Two Sorted Arrays**
+
+
+https://www.naukri.com/code360/problems/k-th-element-of-2-sorted-array_1164159
+
+You're given two sorted arrays 'arr1' and 'arr2' of size 'n' and 'm' respectively and an element 'k'.
+
+Find the element that would be at the 'kth' position of the combined sorted array.
+
+Position 'k' is given according to 1 - based indexing, but arrays 'arr1' and 'arr2' are using 0 - based indexing.
+
+
+```css
+For example :
+Input: 'arr1' = [2, 3, 45], 'arr2' = [4, 6, 7, 8] and 'k' = 4
+Output: 6
+Explanation: The merged array will be [2, 3, 4, 6, 7, 8, 45]. The element at position '4' of this array is 6. Hence we return 6.
+
+Sample Input 1:
+5
+2 3 6 7 9
+4
+1 4 8 10
+4
+Sample Output 1:
+4
+Explanation of sample input 1 :
+The merged array will be: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+
+The element at position '4' is 4 so we return 4.
+Sample Input 2:
+5
+1 2 3 5 6
+5
+4 7 8 9 100  
+6
+Sample Output 2:
+6
+Explanation of sample input 2 :
+The merged array will be: [1, 2, 3, 4, 5, 6, 7, 8, 9, 100]
+
+The element at position '6'  is 6, so we return 6.
+```
+
+
+Solution
+
+
+```java
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static int kthElement(ArrayList<Integer> arr1, ArrayList<Integer> arr2, int n, int m, int k) {
+		if (n > m) {
+			return kthElement(arr2, arr1, m, n, k);
+		}
+		int low = Math.max(0, k - m), high = Math.min(k, n);
+
+		while (low <= high) {
+			int mid1 = low + (high - low) / 2;
+			int mid2 = k - mid1;
+			int l1 = Integer.MIN_VALUE, l2 = Integer.MIN_VALUE;
+			int r1 = Integer.MAX_VALUE, r2 = Integer.MAX_VALUE;
+			if (mid1 < n) {
+				r1 = arr1.get(mid1);
+			}
+			if (mid2 < m) {
+				r2 = arr2.get(mid2);
+			}
+			if (mid1 - 1 >= 0) {
+				l1 = arr1.get(mid1 - 1);
+			}
+			if (mid2 - 1 >= 0) {
+				l2 = arr2.get(mid2 - 1);
+			}
+			if (l1 <= r2 && l2 <= r1) {
+				return Math.max(l1, l2);
+			} else if (l1 > r2) {
+				high = mid1 - 1;
+			} else {
+				low = mid1 + 1;
+			}
+		}
+		return 0;
+	}
+}
+```
+
+
+**28. Row with max 1s**
+
+https://www.geeksforgeeks.org/problems/row-with-max-1s0023/1
+
+Given a boolean 2D array, consisting of only 1's and 0's, where each row is sorted. Find the 0-based index of the first row that has the maximum number of 1's. Return the 0-based index of the first row that has the most number of 1s. If no such row exists, return -1.
+
+```css
+Examples :
+Input: arr[][] = [[0, 1, 1, 1],[0, 0, 1, 1],[1, 1, 1, 1],[0, 0, 0, 0]]
+Output: 2
+
+Explanation: Row 2 contains 4 1's (0-based indexing).
+
+Input: arr[][] = [[0, 0], [1, 1]]
+Output: 1
+Explanation: Row 1 contains 2 1's (0-based indexing).
+```
+ 
+ Solution
+
+```java
+public class Solution {
+
+	private int countOnes(int[] arr) {
+		int n = arr.length;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] == 0) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+		return n - low;
+
+	}
+
+	public int rowWithMax1s(int arr[][]) {
+		int n = arr.length;
+		int ans = 0, index = -1;
+		for (int i = 0; i < n; i++) {
+			int cntOnes = countOnes(arr[i]);
+			if (cntOnes > ans) {
+				ans = cntOnes;
+				index = i;
+			}
+		}
+		return index;
+	}
+}
+```
+
+
+**29. Search a 2D Matrix**
+
+https://leetcode.com/problems/search-a-2d-matrix/description/
+
+You are given an m x n integer matrix matrix with the following two properties:
+
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+Given an integer target, return true if target is in matrix or false otherwise.
+
+You must write a solution in O(log(m * n)) time complexity.
+
+```css
+Example 1:
+
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+Output: true
+Example 2:
+
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
+Output: false
+```
+
+Approach 1: Time Complexity O(m *log(n))
+
+```java
+public class Solution {
+	private boolean isFound(int arr[], int target) {
+		int n = arr.length;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] == target) {
+				return true;
+			} else if (arr[mid] > target) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return false;
+	}
+
+	public boolean searchMatrix(int[][] matrix, int target) {
+		int m = matrix.length;
+		int n = matrix[0].length;
+		for (int i = 0; i < m; i++) {
+
+			if (target >= matrix[i][0] && target <= matrix[i][n - 1]) {
+				if (isFound(matrix[i], target)) {
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+}
+```
+
+
+Approach 2:  Time Complexity : O(log(m*n))
+
+
+```java
+public class Solution {
+	public boolean searchMatrix(int[][] matrix, int target) {
+
+		int m = matrix.length, n = matrix[0].length;
+		int low = 0, high = n * m - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int row = mid / n;
+			int col = mid % n;
+			if (matrix[row][col] == target) {
+				return true;
+			} else if (matrix[row][col] > target) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return false;
+	}
+}
+```
+
+
+**30. Search a 2D Matrix II**
+
+https://leetcode.com/problems/search-a-2d-matrix-ii/description/
+
+Write an efficient algorithm that searches for a value target in an m x n integer matrix matrix. This matrix has the following properties:
+
+Integers in each row are sorted in ascending from left to right.
+Integers in each column are sorted in ascending from top to bottom.
+
+
+```css
+Example 1:
+
+Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5
+Output: true
+
+Example 2:
+
+Input: matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20
+Output: false
+```
+
+
+Solution
+
+
+```java
+public class Solution {
+	public boolean searchMatrix(int[][] matrix, int target) {
+		int n = matrix.length, m = matrix[0].length;
+		int row = 0, col = m - 1;
+
+		while (row < n && col >= 0) {
+			if (matrix[row][col] == target) {
+				return true;
+			} else if (matrix[row][col] < target) {
+				row++;
+			} else {
+				col--;
+			}
+		}
+
+		return false;
+	}
+}
+```
+
+
+**31. Find a Peak Element II**
+
+https://leetcode.com/problems/find-a-peak-element-ii/description/
+
+A peak element in a 2D grid is an element that is strictly greater than all of its adjacent neighbors to the left, right, top, and bottom.
+
+Given a 0-indexed m x n matrix mat where no two adjacent cells are equal, find any peak element mat[i][j] and return the length 2 array [i,j].
+
+You may assume that the entire matrix is surrounded by an outer perimeter with the value -1 in each cell.
+
+You must write an algorithm that runs in O(m log(n)) or O(n log(m)) time.
+ 
+
+```css
+Example 1:
+
+Input: mat = [[1,4],[3,2]]
+Output: [0,1]
+Explanation: Both 3 and 4 are peak elements so [1,0] and [0,1] are both acceptable answers.
+
+Example 2:
+
+Input: mat = [[10,20,15],[21,30,14],[7,16,32]]
+Output: [1,1]
+Explanation: Both 30 and 32 are peak elements so [1,1] and [2,2] are both acceptable answers.
+```
+
+
+Solution
+
+
+```java
+public class Solution {
+	private int maxElement(int[][] mat, int n, int mid) {
+		int row = 0, max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+			if (mat[i][mid] > max) {
+				max = mat[i][mid];
+				row = i;
+			}
+		}
+		return row;
+	}
+
+	public int[] findPeakGrid(int[][] mat) {
+
+		int n = mat.length, m = mat[0].length;
+		int low = 0, high = m - 1;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int row = maxElement(mat, n, mid);
+			int left = (mid - 1 >= 0) ? mat[row][mid - 1] : -1, right = mid + 1 < m ? mat[row][mid + 1] : -1;
+			if (mat[row][mid] > left && mat[row][mid] > right) {
+				return new int[] { row, mid };
+			} else if (mat[row][mid] < left) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return new int[] { -1, -1 };
+
+	}
+}
+```
+
+
+**32. Median in a row-wise sorted Matrix**
+
+https://www.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1
+
+Given a row wise sorted matrix of size R*C where R and C are always odd, find the median of the matrix.
+
+
+```css
+Example 1:
+
+Input:
+R = 3, C = 3
+M = [[1, 3, 5], 
+     [2, 6, 9], 
+     [3, 6, 9]]
+Output: 5
+Explanation: Sorting matrix elements gives 
+us {1,2,3,3,5,6,6,9,9}. Hence, 5 is median. 
+ 
+
+Example 2:
+
+Input:
+R = 3, C = 1
+M = [[1], [2], [3]]
+Output: 2
+Explanation: Sorting matrix elements gives 
+us {1,2,3}. Hence, 2 is median.
+```
+
+
+Solution
+
+```java
+public class Solution {
+
+	private int binarySeach(int arr[], int C, int element) {
+
+		int low = 0, high = C - 1;
+		int ans = C;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (arr[mid] > element) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+
+		return ans;
+	}
+
+	private int countSmallElement(int[][] mat, int R, int C, int mid) {
+
+		int cnt = 0;
+		for (int i = 0; i < R; i++) {
+			cnt += binarySeach(mat[i], C, mid);
+		}
+		return cnt;
+	}
+
+	int median(int matrix[][], int R, int C) {
+		int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
+		for (int i = 0; i < R; i++) {
+			if (matrix[i][0] < low) {
+				low = matrix[i][0];
+			}
+			if (matrix[i][C - 1] > high) {
+				high = matrix[i][C - 1];
+			}
+		}
+
+		int cnt = (R * C) / 2;
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int smallCnt = countSmallElement(matrix, R, C, mid);
+			if (smallCnt <= cnt) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return low;
+	}
+}
+```
