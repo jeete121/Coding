@@ -26,6 +26,7 @@ public class Solution {
 https://www.geeksforgeeks.org/problems/implementing-ceil-in-bst/1
 
 Given a BST and a number X, find Ceil of X.
+
 Note: Ceil(X) is a number that is either equal to X or is immediately greater than X.
 
 If Ceil could not be found, return -1.
@@ -43,9 +44,9 @@ public class Tree {
 		}
 		if (root.data >= key) {
 			ceil = root.data;
-			findCeil(root.left, key);
+			findCeilHelper(root.left, key);
 		} else {
-			findCeil(root.right, key);
+			findCeilHelper(root.right, key);
 		}
 	}
 
@@ -57,6 +58,7 @@ public class Tree {
 	}
 }
 ```
+
 
 Approach 2: Iterative
 
