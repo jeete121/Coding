@@ -83,10 +83,12 @@ https://www.geeksforgeeks.org/problems/longest-common-substring1452/1
 
 Given two strings. The task is to find the length of the longest common substring.
 
+```css
 Input: S1 = "ABCDGH", S2 = "ACDGHR", n = 6, m = 6
 Output: 4
 Explanation: The longest common substring
 is "CDGH" which has length 4.
+```
 
 
 ```java
@@ -229,13 +231,14 @@ Given two strings X and Y of lengths m and n respectively, find the length of th
 Note: X and Y can have both uppercase and lowercase letters.
 
 
+```css
 Input: X = abcd, Y = xycd
 Output: 6
 
 Explanation: Shortest Common Supersequence
 would be abxycd which is of length 6 and
 has both the strings as its subsequences.
-
+```
 
 ```java
 public class Solution {
@@ -275,6 +278,7 @@ Given two strings str1 and str2, return the shortest string that has both str1 a
 
 A string s is a subsequence of string t if deleting some number of characters from t (possibly 0) results in the string s.
 
+```css
 Input: str1 = "abac", str2 = "cab"
 Output: "cabac"
 
@@ -282,6 +286,7 @@ Explanation:
 str1 = "abac" is a subsequence of "cabac" because we can delete the first "c".
 str2 = "cab" is a subsequence of "cabac" because we can delete the last "ac".
 The answer provided is the shortest such string that satisfies these properties.
+```
 
 
 ```java
@@ -353,6 +358,7 @@ https://www.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertion
 Given two strings str1 and str2. The task is to remove or insert the minimum number of characters from/in str1 so as to transform it into str2. It could be possible that the same character needs to be removed/deleted from one point of str1 and inserted to some another point.
 
 
+```css
 Input: str1 = "heap", str2 = "pea"
 Output: 3
 
@@ -373,6 +379,7 @@ heap---> pea
 LCS--> ea (deletes hp from heap)--> add p to ea-->(pea)
 
 return m-LCS+n-LCS;==> m+n-2*LCS;
+```
 
 ```java
 public class Solution {
@@ -414,6 +421,7 @@ Given string str, find the length of the longest repeating subsequence such that
 The two identified subsequences A and B can use the same ith character from string str if and only if that ith character has different indices in A and B. For example, A = "xax" and B = "xax" then the index of first "x" must be different in the original string for A and B.
 
 
+```css
 Input:
 str = "axxzxy"
 Output: 2
@@ -442,6 +450,7 @@ We are able to use character 'x'
 (at index 2 in str) in both subsequences
 as it appears on index 1 in subsequence A 
 and index 0 in subsequence B.
+```
 
 
 ```java
@@ -479,6 +488,7 @@ https://www.geeksforgeeks.org/problems/find-length-of-longest-subsequence4905/1
 
 Given two string X and Y of length N and M respectively. The task is to find the length of the longest subsequence of string X which is a substring in sequence Y.
 
+```css
 Input:
 N = 4, M = 8
 X = "abcd"
@@ -488,6 +498,40 @@ Output: 3
 Explanation: "acd" is the longest subsequence
              from string X present as a
              substring in string Y.
+```
+
+
+```java
+public class Solution {
+	private int maxSubsequence(String X, String Y, int N, int M, int t[][]) {
+		if (N == 0 || M == 0) {
+			return 0;
+		}
+		if (t[N][M] != -1) {
+			return t[N][M];
+		}
+		if (X.charAt(N - 1) == Y.charAt(M - 1)) {
+			return t[N][M] = 1 + maxSubsequence(X, Y, N - 1, M - 1, t);
+		}
+		return t[N][M] = maxSubsequence(X, Y, N - 1, M, t);
+
+	}
+
+	int maxSubsequenceSubstring(String X, String Y, int N, int M) {
+		int t[][] = new int[N + 1][M + 1];
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < N + 1; i++) {
+			Arrays.fill(t[i], -1);
+		}
+		for (int i = 0; i <= M; i++) {
+			max = Math.max(max, maxSubsequence(X, Y, N, i, t));
+		}
+
+		return max;
+	}
+}
+```
+
 
 
 **8. Subsequence pattern matching**
@@ -499,8 +543,10 @@ Given two strings s and t, return true if s is a subsequence of t, or false othe
 A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
 
 
+```css
 Input: s = "abc", t = "ahbgdc"
 Output: true
+```
 
 
 ```java
@@ -556,12 +602,16 @@ Given a String, find the longest palindromic subsequence.
 NOTE: Subsequence of a given sequence is a sequence that can be derived from the given sequence by deleting some or no elements without changing the order of the remaining elements
 
 
+```css
 Input: S = "bbabcbcab"
 Output: 7
 Explanation: Subsequence "babcbab" is the
 longest subsequence which is also a palindrome.
 
 LPS(a)==> LCS(a,reverse(a))
+```
+
+
 
 ```java
 public class Solution {
