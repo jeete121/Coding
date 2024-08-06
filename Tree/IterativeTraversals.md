@@ -2,6 +2,26 @@
 
 https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [1,3,2]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
+
+Solution
+
+
 ```java
 public class Solution {
 
@@ -33,6 +53,26 @@ public class Solution {
 
 https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
+Given the root of a binary tree, return the preorder traversal of its nodes' values.
+
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [1,2,3]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
+
+Solution
+
+
 ```java
 public class Solution {
 	
@@ -63,6 +103,23 @@ public class Solution {
 **3. Postorder Traversal**
 
 https://leetcode.com/problems/binary-tree-postorder-traversal/description/
+
+Given the root of a binary tree, return the postorder traversal of its nodes' values.
+
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [3,2,1]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
 
 Approach 1: Using 2 Stacks
 
@@ -130,6 +187,24 @@ public class Solution {
 **4. Level Order Traversal**
 
 https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+
+Given the root of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
+
+```css
+Example 1:
+Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[9,20],[15,7]]
+
+Example 2:
+Input: root = [1]
+Output: [[1]]
+
+Example 3:
+Input: root = []
+Output: []
+```
+
+Solution
 
 ```java
 public class Solution {

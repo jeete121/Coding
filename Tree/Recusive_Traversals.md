@@ -2,6 +2,24 @@
 
 https://leetcode.com/problems/binary-tree-inorder-traversal/description/
 
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [1,3,2]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
+
+
 Left, Root, Right
 
 ```java
@@ -31,6 +49,23 @@ public class Solution {
 
 https://leetcode.com/problems/binary-tree-preorder-traversal/description/
 
+Given the root of a binary tree, return the preorder traversal of its nodes' values.
+
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [1,2,3]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
+
 Root, Left, Right
 
 ```java
@@ -57,6 +92,23 @@ public class Solution {
 **3. Postorder Traversal**
 
 https://leetcode.com/problems/binary-tree-postorder-traversal/description/
+
+Given the root of a binary tree, return the postorder traversal of its nodes' values.
+
+```css
+Example 1:
+Input: root = [1,null,2,3]
+Output: [3,2,1]
+
+Example 2:
+Input: root = []
+Output: []
+
+Example 3:
+Input: root = [1]
+Output: [1]
+```
+
 
 Left,Right,Root
 
