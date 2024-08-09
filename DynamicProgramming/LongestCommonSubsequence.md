@@ -651,9 +651,53 @@ https://leetcode.com/problems/longest-palindromic-substring/description/
 
 Given a string s, return the longest palindromic substring in s.
  
+```css
 Input: s = "babad"
 Output: "bab"
 Explanation: "aba" is also a valid answer.
+```
+
+
+```java
+public class Solution {
+	public String longestPalindrome(String s) {
+		int n = s.length();
+		if (n == 0) {
+			return "";
+		}
+		boolean dp[][] = new boolean[n][n];
+
+        //palindrome of length 1
+		for (int i = 0; i < n; i++) {
+			dp[i][i] = true;
+		}
+		int start = 0, maxLen = 1;
+		//palindrome of length 2
+		for (int i = 0; i < n - 1; i++) {
+			if (s.charAt(i) == s.charAt(i + 1)) {
+				dp[i][i + 1] = true;
+				start = i;
+				maxLen = 2;
+			}
+		}
+
+        //palindrome of length 3 to n
+		for (int length = 3; length <= n; length++) {
+			for (int i = 0; i < n - length + 1; i++) {
+				int j = i + length - 1;
+				// check if substring is also Palindromic Substring
+				if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1] == true) {
+					dp[i][j] = true;
+					start = i;
+					maxLen = length;
+				}
+			}
+		}
+
+		return s.substring(start, start + maxLen);
+	}
+}
+```
 
 
 **12. Count of Palindromic substring**
@@ -666,6 +710,8 @@ A string is a palindrome when it reads the same backward as forward.
 
 A substring is a contiguous sequence of characters within the string.
 
+
+```css
 Example 1:
 
 Input: s = "abc"
@@ -677,6 +723,54 @@ Example 2:
 Input: s = "aaa"
 Output: 6
 Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+```
+
+Solution
+
+```java
+public class Solution {
+	public int countSubstrings(String s) {
+		int n = s.length();
+		boolean p[][] = new boolean[n][n];
+		int dp[][] = new int[n + 1][n];
+
+		// palindrome of length 1
+		for (int i = 0; i < n; i++) {
+			p[i][i] = true;
+		}
+
+		// palindrome of length 2
+		for (int i = 0; i < n - 1; i++) {
+			if (s.charAt(i) == s.charAt(i + 1)) {
+				p[i][i + 1] = true;
+				dp[i][i + 1] = 1;
+			}
+		}
+
+		// palindrome of length 3 to n
+		for (int length = 3; length <= n; length++) {
+			for (int i = 0; i < n - length + 1; i++) {
+				int j = i + length - 1;
+				if (s.charAt(i) == s.charAt(j) && p[i + 1][j - 1] == true) {
+					p[i][j] = true;
+				}
+				// Add current palindrome substring ( + 1)
+				// and rest palindrome substring (dp[i][j-1]
+				// + dp[i+1][j]) remove common palindrome
+				// substrings (- dp[i+1][j-1])
+				if (p[i][j] == true) {
+
+					dp[i][j] = dp[i][j - 1] + dp[i + 1][j] + 1 - dp[i + 1][j - 1];
+				} else {
+					dp[i][j] = dp[i][j - 1] + dp[i + 1][j] - dp[i + 1][j - 1];
+				}
+			}
+		}
+
+		return n + dp[0][n - 1];
+	}
+}
+```
 
 
 **13. Minimum no. of deletion in a string to make it a palindrome.**
@@ -684,14 +778,19 @@ Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
 https://www.geeksforgeeks.org/problems/minimum-number-of-deletions4610/1
 
 Given a string 'str' of size n. The task is to remove or delete the minimum number of characters from the string so that the resultant string is a palindrome. Find the minimum number of characters we need to remove.
+
 Note: The order of characters should be maintained.
 
+```css
 Example 1:
 
 Input: n = 7, str = "aebcbda"
 Output: 2
 Explanation: We'll remove 'e' and
 'd' and the string become "abcba".
+```
+
+
 
 ```java
 public class Solution {
@@ -729,11 +828,12 @@ public class Solution {
 https://www.geeksforgeeks.org/problems/form-a-palindrome2544/1
 
 Given a string, find the minimum number of characters to be inserted to convert it to palindrome.
+
+```css
 For Example:
 ab: Number of insertions required is 1. bab or aba
 aa: Number of insertions required is 0. aa
 abcd: Number of insertions required is 3. dcbabcd
-
 
 Input: abcd
 Output: 3
@@ -742,6 +842,7 @@ Explanation:
 Here we can append 3 characters in the 
 beginning,and the resultant string will 
 be a palindrome ("dcbabcd").
+```
 
 ```java
 public class Solution {
