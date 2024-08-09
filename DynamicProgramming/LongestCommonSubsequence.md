@@ -587,10 +587,48 @@ Given two strings, s1 and s2, count the number of subsequences of string s1 equa
 
 Return the total count modulo 1e9+7.
 
+```css
 Input: s1 = geeksforgeeks, s2 = gks
 Output: 4
 
 Explaination: We can pick characters from s1 as a subsequence from indices {0,3,4}, {0,3,12}, {0,11,12} and {8,11,12}.So total 4 subsequences of s1 that are equal to s2.
+```
+
+
+Solution
+
+```java
+public class Solution {
+	static int mod = 1000000007;
+
+	private static int countWays(String s1, String s2, int n, int m, int dp[][]) {
+		if ((n == 0 && m == 0) || m == 0) {
+			return 1;
+		}
+		if (n == 0) {
+			return 0;
+		}
+		if (dp[n][m] != -1) {
+			return dp[n][m];
+		}
+		if (s1.charAt(n - 1) == s2.charAt(m - 1)) {
+			return dp[n][m] = (countWays(s1, s2, n - 1, m - 1, dp) % mod + countWays(s1, s2, n - 1, m, dp) % mod) % mod;
+		}
+		return dp[n][m] = countWays(s1, s2, n - 1, m, dp) % mod;
+	}
+
+	public static int countWays(String s1, String s2) {
+		int n = s1.length(), m = s2.length();
+		int dp[][] = new int[n + 1][m + 1];
+		for (int i = 0; i <= n; i++) {
+			for (int j = 0; j <= m; j++) {
+				dp[i][j] = -1;
+			}
+		}
+		return countWays(s1, s2, n, m, dp) % mod;
+	}
+}
+```
 
 
 **10. Longest Palindromic Subsequence**
