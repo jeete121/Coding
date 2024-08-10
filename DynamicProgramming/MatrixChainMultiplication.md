@@ -534,8 +534,8 @@ If the eggs breaks at a certain floor, it will break at any floor above.
 Return the minimum number of moves that you need to determine with certainty what the value of f is.
 
 
-I```css
-nput: N = 2, K = 10
+```css
+Input: N = 2, K = 10
 Output: 4
 ```
 
