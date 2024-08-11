@@ -162,6 +162,7 @@ Given a grid of size n*m (n is the number of rows and m is the number of columns
 Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.
 
 
+```css
 Input:
 grid = {{0,1},{1,0},{1,1},{1,0}}
 Output: 1
@@ -173,6 +174,7 @@ The grid is-
 1 1
 1 0
 All lands are connected.
+```
 
 Solution::
 
@@ -237,11 +239,13 @@ Given a coordinate (sr, sc) representing the starting pixel (row and column) of 
 To perform a "flood fill", consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.
 
 
+```css
 Input: image = {{1,1,1},{1,1,0},{1,0,1}},
 sr = 1, sc = 1, newColor = 2.
 Output: {{2,2,2},{2,2,0},{2,0,1}}
 
 Explanation: From the center of the image (with position (sr, sc) = (1, 1)), all pixels connected by a path of the same color as the starting pixel are colored with the new color.Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
+```
 
 Solution::
 
@@ -309,13 +313,17 @@ https://takeuforward.org/data-structure/rotten-oranges/
 Problem Link:: https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 
 Given a grid of dimension nxm where each cell in the grid can have values 0, 1 or 2 which has the following meaning:
+
 0 : Empty cell
+
 1 : Cells have fresh oranges
+
 2 : Cells have rotten oranges
 
 We have to determine what is the earliest time after which all the oranges are rotten. A rotten orange at index [i,j] can rot other fresh orange at indexes [i-1,j], [i+1,j], [i,j-1], [i,j+1] (up, down, left and right) in unit time. 
 
 
+```css
 Input: grid = {{0,1,2},{0,1,2},{2,1,1}}
 Output: 1
 
@@ -326,6 +334,7 @@ Explanation: The grid is-
 Oranges at positions (0,2), (1,2), (2,0)
 will rot oranges at (0,1), (1,1), (2,2) and 
 (2,1) in unit time.
+```
 
 Solution::
 
@@ -547,6 +556,7 @@ Given a binary grid of n*m. Find the distance of the nearest 1 in the grid for e
 The distance is calculated as |i1  - i2| + |j1 - j2|, where i1, j1 are the row number and column number of the current cell, and i2, j2 are the row number and column number of the nearest cell having value 1. There should be atleast one 1 in the grid.
 
 
+```css
 Input: grid = {{0,1,1,0},{1,1,0,0},{0,0,1,1}}
 Output: {{1,0,0,1},{0,0,1,1},{1,1,0,0}}
 
@@ -558,6 +568,7 @@ Explanation: The grid is-
 (2,1) are at a distance of 1 from 1's at (0,1),
 (0,2), (0,2), (2,3), (1,0) and (1,1)
 respectively.
+```
 
 Solution::
 
@@ -636,6 +647,7 @@ Given a matrix mat of size N x M where every element is either 'O' or 'X'. Repla
 A 'O' (or a set of 'O') is considered to be surrounded by 'X' if there are 'X' at locations just below, just above, just left and just right of it.
 
 
+```css
 Input: 
 n = 5, m = 4
 mat = {{'X', 'X', 'X', 'X'}, 
@@ -653,6 +665,7 @@ ans = {{'X', 'X', 'X', 'X'},
 
 Explanation: 
 Following the rule the above matrix is the resultant matrix. 
+```
 
 Solution::
 
@@ -716,6 +729,7 @@ A move consists of walking from one land cell to another adjacent (4-directional
 
 Find the number of land cells in grid for which we cannot walk off the boundary of the grid in any number of moves.
 
+```css
 Input:
 grid[][] = {{0, 0, 0, 0},
             {1, 0, 1, 0},
@@ -731,6 +745,7 @@ Explanation:
 0 1 1 0
 0 0 0 0
 The highlighted cells represents the land cells.
+```
 
 Solution:: 
 
@@ -816,6 +831,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/number-of-distinct-islands
 
 Given a boolean 2D matrix grid of size n * m. You have to find the number of distinct islands where a group of connected 1s (horizontally or vertically) forms an island. Two islands are considered to be distinct if and only if one island is not equal to another (not rotated or reflected).
 
+```css
 Example 1:
 
 Input:
@@ -835,6 +851,7 @@ grid[][] = {{1, 1, 0, 0, 0},
 Same colored islands are equal.
 We have 2 equal islands, so we 
 have only 1 distinct island.
+```
 
 Solution:: 
 
@@ -1250,6 +1267,7 @@ There are a total of N tasks, labeled from 0 to N-1. Some tasks may have prerequ
 Given the total number of tasks N and a list of prerequisite pairs P, find if it is possible to finish all tasks.
 
 
+```css
 Input: 
 N = 4, P = 3
 prerequisites = {{1,0},{2,1},{3,2}}
@@ -1261,6 +1279,7 @@ To do task 1 you should have completed
 task 0, and to do task 2 you should 
 have finished task 1, and to do task 3 you 
 should have finished task 2. So it is possible.
+```
 
 Solution 1::
 
@@ -1312,6 +1331,7 @@ Given the total number of n tasks and a list of prerequisite pairs of size m. Fi
 Note: There may be multiple correct orders, you just need to return any one of them. If it is impossible to finish all tasks, return an empty array. Driver code will print "No Ordering Possible", on returning an empty array. Returning any correct order will give the output as 1, whereas any invalid order will give the output 0. 
 
 
+```css
 Input:
 n = 2, m = 1
 prerequisites = {{1, 0}}
@@ -1320,6 +1340,7 @@ Output: 1
 
 Explanation:
 The output 1 denotes that the order is valid. So, if you have, implemented your function correctly, then output would be 1 for all test cases. One possible order is [0, 1].
+```
 
 Solution 2::
 
@@ -1442,6 +1463,7 @@ Given a sorted dictionary of an alien language having N words and k starting alp
 Note: Many orders may be possible for a particular test case, thus you may return any valid order and output will be 1 if the order of string returned by the function is correct else 0 denoting incorrect string returned.
 
 
+```css
 Input: 
 N = 5, K = 4
 dict = {"baa","abcd","abca","cab","cad"}
@@ -1454,6 +1476,7 @@ Here order of characters is
 and in the given language "baa" comes before 
 "abcd", therefore 'b' is before 'a' in output.
 Similarly we can find other orders.
+```
 
 Solution::
 
@@ -1516,6 +1539,7 @@ Given a Directed Acyclic Graph of N vertices from 0 to N-1 and a 2D Integer arra
 
 Find the shortest path from src(0) vertex to all the vertices and if it is impossible to reach any vertex, then return -1 for that vertex.
 
+```css
 Input:
 N = 4, M = 2
 edge = [[0,1,2],[0,2,1]]
@@ -1529,6 +1553,7 @@ Shortest path from 0 to 1 is 0->1 with edge weight 2.
 Shortest path from 0 to 2 is 0->2 with edge weight 1.
 
 There is no way we can reach 3, so it's -1 for 3.
+```
 
 Solution::
 
@@ -1667,6 +1692,7 @@ startWord may or may not be part of the wordList
 
 Note: If no possible way to transform sequence from startWord to targetWord return 0
 
+```css
 Input:
 wordList = {"des","der","dfr","dgt","dfs"}
 startWord = "der", targetWord= "dfs",
@@ -1677,6 +1703,7 @@ Explanation:
 The length of the smallest transformation
 sequence from "der" to "dfs" is 3
 i,e "der" -> "dfr" -> "dfs".
+```
 
 Solution::
 
@@ -1754,6 +1781,7 @@ Return an empty list if there is no such transformation sequence.
 
 
 
+```css
 Input:
 startWord = "der", targetWord = "dfs",
 wordList = {"des","der","dfr","dgt","dfs"}
@@ -1768,6 +1796,7 @@ And the following are the only two ways to get
 to targetWord:-
 "der" -> "des" -> "dfs".
 "der" -> "dfr" -> "dfs".
+```
 
 Solution::
 
@@ -1845,6 +1874,7 @@ Given a weighted, undirected and connected graph of V vertices and an adjacency 
 
 Note: The Graph doesn't contain any negative weight cycle.
 
+```css
 Input:
 V = 2
 adj [] = {{{1, 9}}, {{0, 9}}}
@@ -1852,6 +1882,7 @@ S = 0
 
 Output:
 0 9
+```
 
 Solution:: 
 
@@ -1910,6 +1941,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/shortest-path-in-weighted-
 You are given a weighted undirected graph having n vertices numbered from 1 to n and m edges describing there are edges between a to b with some weight, find the shortest path between the vertex 1 and the vertex n,  if there exists a path then return a list whose first element is the weight of the path. If no path exists then return a list containing a single element -1.
 
 
+```css
 Input:
 n = 5, m= 6
 edges = [[1,2,2], [2,5,5], [2,3,4], [1,4,1],[4,3,3],[3,5,1]]
@@ -1918,6 +1950,7 @@ Output: 5 1 4 3 5
 
 Explaination:
 Shortest path from 1 to n is by the path 1 4 3 5 whose weight is 5. 
+```
 
 Solution::
 
@@ -2005,6 +2038,7 @@ If the path is not possible between source cell and destination cell, then retur
 Note : You can move into an adjacent cell if that adjacent cell is filled with element 1. Two cells are adjacent if they share a side. In other words, you can move in one of the four directions, Up, Down, Left and Right. The source and destination cell are based on the zero based indexing. The destination cell should be 1.
 
 
+```css
 Input:
 grid[][] = {{1, 1, 1, 1},
             {1, 1, 0, 1},
@@ -2024,6 +2058,7 @@ Explanation:
 1 0 0 1
 The highlighted part in the matrix denotes the 
 shortest path from source to destination cell.
+```
 
 
 Solution:: 
@@ -2095,6 +2130,7 @@ You are a hiker preparing for an upcoming hike. You are given heights[][], a 2D 
 Note: A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.
 
 
+```css
 Input:
 row = 3
 columns = 3 
@@ -2104,6 +2140,7 @@ Output: 2
 
 Explaination: 
 The route 1->3->5->3->5 has a maximum absolute difference of 2 in consecutive cells. This is better than the route 1->2->2->2->5, where the maximum absolute difference is 3.
+```
 
 Solution::
 
@@ -2177,6 +2214,7 @@ You are also given three integers src, dst, and k, return the cheapest price fro
 
 Note: The price from city A to B may be different From the price from city B to A.
 
+```css
 Input:
 n = 4
 flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]]
@@ -2190,6 +2228,7 @@ Explanation:
 The optimal path with at most 1 stop from city 0 to 3 is marked in red and has cost 100 + 600 = 700.
 
 Note that the path through cities [0,1,2,3] is cheaper but is invalid because it uses 2 stops.
+```
 
 
 Solution::
@@ -2273,6 +2312,7 @@ Given start, end and an array arr of n numbers. At each step, start is multiplie
 Your task is to find the minimum steps in which end can be achieved starting from start. If it is not possible to reach end, then return -1.
 
 
+```css
 Input:
 arr[] = {2, 5, 7}
 start = 3, end = 30
@@ -2284,6 +2324,7 @@ Explanation:
 Step 1: 3*2 = 6 % 100000 = 6 
 
 Step 2: 6*5 = 30 % 100000 = 30
+```
 
 Solution::
 
@@ -2351,6 +2392,7 @@ You are given an integer n and a 2D integer array roads where roads[i] = [ui, vi
 Return the number of ways you can arrive at your destination in the shortest amount of time. Since the answer may be large, return it modulo 109 + 7.
 
 
+```css
 Input:
 n=7, m=10
 edges= [[0,6,7],[0,1,2],[1,2,3],[1,3,3],[6,3,3],[3,5,1],[6,5,1],[2,5,1],[0,4,5],[4,6,2]]
@@ -2364,6 +2406,7 @@ The four ways to get there in 7 minutes are:
 - 0  4  6
 - 0  1  2  5  6
 - 0  1  3  5  6
+```
 
 Solution::
 
@@ -2763,6 +2806,7 @@ You are given a graph with n vertices (0 to n-1) and m edges. You can remove one
 If it is not possible to connect the graph, return -1.
 
 
+```css
 Input:
 n = 4
 m = 3
@@ -2772,6 +2816,7 @@ Output: 1
 
 Explanation:
 Remove edge between vertices 1 and 2 and add between vertices 1 and 3.
+```
 
 Solution::
 
@@ -2874,6 +2919,7 @@ After merging the accounts, return the accounts in the following format: The fir
 
 Note: Accounts themselves can be returned in any order.
 
+```css
 Input:
 n = 4
 accounts [ ] =
@@ -2889,6 +2935,7 @@ Output:
 
 Explanation:
 The first and second John's are the same person as they have the common email "johnsmith@mail.com". The third John and Mary are different people as none of their email addresses are used by other accounts.We could return these arrays in any order, for example, the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'], ['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
+```
 
 Solution::
 
@@ -3119,6 +3166,7 @@ Problem Link:: https://www.geeksforgeeks.org/problems/maximum-connected-group/1
 
 You are given an n x n binary grid. A grid is considered binary if every value in the grid is either 1 or 0. You can change at most one cell in the grid from 0 to 1. You need to find the largest group of connected  1's. Two cells are said to be connected if both are adjacent to each other and both have the same value.
 
+```css
 Input:
 2
 1 1
@@ -3131,6 +3179,7 @@ Explanation:
 By changing cell (2,1), we can obtain a connected group of 4 1's
 1 1
 1 1
+```
 
 Solution::
 
@@ -3266,6 +3315,7 @@ A stone can be removed if it shares either the same row or the same column as an
 Given an array stones of length n where stones[i] = [xi, yi] represents the location of the ith stone, return the maximum possible number of stones that you can remove.
 
 
+```css
 Input:
 n=6
 [[0 0] ,[ 0 1], [1 0] ,[1 2] ,[2 1] ,[2 2]]
@@ -3280,6 +3330,7 @@ One way to remove 5 stones are
 3--[0,1]
 4--[2,1]
 5--[1,2]
+```
 
 Solution::
 
